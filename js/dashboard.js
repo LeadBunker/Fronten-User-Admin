@@ -196,10 +196,7 @@ function showQR(type) {
 
 function buyCredits(planName, credits, price) {
     console.log(`🛒 buyCredits called: ${planName}, ${credits} credits, $${price}`);
-    if (confirm(`💎 Purchase Credits?\n\nPlan: ${planName}\nCredits: ${credits}\nPrice: $${price}\n\nProceed to checkout?`)) {
-        alert(`✅ Redirecting to checkout...\n\nPlan: ${planName}\nAmount: $${price}\n\nIn production, this would redirect to the payment gateway.`);
-        // window.location.href = 'checkout.html?plan=' + planName;
-    }
+    showBuyCreditsModal(planName, credits, price);
 }
 
 function depositCrypto() {
@@ -211,11 +208,11 @@ function depositCrypto() {
 // ============================================
 
 function viewTask(taskId) {
-    alert(`📋 Task Details\n\nTask ID: ${taskId}\n\nIn production, this would open a modal with:\n• Full task details\n• Extracted data preview\n• Download options\n• Statistics and analytics`);
+    showViewTaskModal(taskId);
 }
 
 function downloadResults(taskId, format) {
-    alert(`⬇️ Download Results\n\nTask ID: ${taskId}\nFormat: ${format}\n\nIn production, this would start downloading your extracted data in ${format} format.`);
+    showDownloadOptionsModal(taskId);
 }
 
 function deleteTask(taskId) {
@@ -256,7 +253,7 @@ function validateEmails(listId) {
 // ============================================
 
 function viewTransactionDetails(txnId) {
-    alert(`📋 Transaction Details\n\nTransaction ID: ${txnId}\n\nIn production, this would show:\n• Complete transaction history\n• Payment method details\n• Invoice download option\n• Refund status (if applicable)`);
+    showViewTransactionModal(txnId);
 }
 
 function downloadInvoice(txnId) {
@@ -268,12 +265,7 @@ function downloadInvoice(txnId) {
 // ============================================
 
 function generateAPIKey() {
-    if (confirm(`🔑 Generate New API Key?\n\nThis will create a new API key for programmatic access.\n\nKeep your API keys secure and never share them publicly.\n\nProceed?`)) {
-        const newKey = 'lb_' + Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
-        alert(`✅ New API Key Generated!\n\nKey: ${newKey}\n\n⚠️ Save this key now! You won't be able to see it again for security reasons.`);
-        // In production, this would add the key to the UI
-        location.reload();
-    }
+    showGenerateAPIKeyModal();
 }
 
 function copyAPIKey(key) {
