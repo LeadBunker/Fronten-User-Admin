@@ -346,6 +346,14 @@
     <script>
         // Set current year in footer
         document.getElementById(\'currentYear\').textContent = new Date().getFullYear();
+        
+        // Mobile Menu Toggle
+        function toggleSidebar() {
+            const sidebar = document.querySelector('.sidebar');
+            const overlay = document.querySelector('.sidebar-overlay');
+            sidebar.classList.toggle('active');
+            overlay.classList.toggle('active');
+        }
     </script>
     <script src="js/modals.js"></script>
     <script src="js/dashboard.js"></script>
