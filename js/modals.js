@@ -131,8 +131,284 @@ function showBuyCreditsModal(planName, credits, price) {
 }
 
 function proceedToCheckout(planName, credits, price) {
-    alert(`✅ Redirecting to secure checkout...\n\nPlan: ${planName}\nAmount: $${price}\n\nIn production, this would redirect to Stripe/PayPal payment gateway.`);
     ModalSystem.close('buyCreditsModal');
+    showCryptoPaymentModal(planName, credits, price);
+}
+
+// Crypto Payment Modal
+function showCryptoPaymentModal(planName, credits, price) {
+    const modalId = 'cryptoPaymentModal';
+    
+    const content = `
+        <div class="modal-container">
+            <div class="modal-header">
+                <h2><i class="fab fa-bitcoin"></i> Pay with Cryptocurrency</h2>
+                <p>Select your preferred cryptocurrency and complete payment</p>
+                <button class="modal-close" onclick="ModalSystem.close('${modalId}')">×</button>
+            </div>
+            
+            <div class="modal-body">
+                <div class="modal-section">
+                    <div class="payment-amount-display">
+                        <div class="amount-label">Amount to Pay</div>
+                        <div class="amount-value">$${price}</div>
+                        <div class="amount-crypto" id="cryptoEquivalent">≈ 0.0013 BTC</div>
+                    </div>
+                </div>
+                
+                <div class="modal-section">
+                    <div class="modal-section-title">Select Cryptocurrency</div>
+                    <div class="crypto-payment-options">
+                        <div class="crypto-option-card btc selected" onclick="selectCrypto('btc', '${price}')">
+                            <div class="crypto-icon">
+                                <i class="fab fa-bitcoin"></i>
+                            </div>
+                            <div class="crypto-name">Bitcoin</div>
+                            <div class="crypto-network">BTC Network</div>
+                        </div>
+                        <div class="crypto-option-card eth" onclick="selectCrypto('eth', '${price}')">
+                            <div class="crypto-icon">
+                                <i class="fab fa-ethereum"></i>
+                            </div>
+                            <div class="crypto-name">Ethereum</div>
+                            <div class="crypto-network">ERC-20</div>
+                        </div>
+                        <div class="crypto-option-card usdt" onclick="selectCrypto('usdt', '${price}')">
+                            <div class="crypto-icon">
+                                ₮
+                            </div>
+                            <div class="crypto-name">USDT</div>
+                            <div class="crypto-network">TRC-20</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="modal-section" id="paymentDetailsSection">
+                    <div class="modal-section-title">Payment Details</div>
+                    <div class="payment-details-section">
+                        <div class="payment-qr-code">
+                            <div class="qr-placeholder" id="qrCodeDisplay">
+                                <div style="text-align: center; color: #1F2937;">
+                                    <i class="fas fa-qrcode" style="font-size: 48px; margin-bottom: 8px;"></i>
+                                    <div style="font-size: 11px; font-weight: 600;">QR CODE</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="wallet-address-box">
+                            <label class="wallet-address-label">
+                                <i class="fas fa-wallet"></i> Wallet Address
+                            </label>
+                            <div class="wallet-address-display">
+                                <div class="wallet-address-text" id="walletAddressText">
+                                    1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa
+                                </div>
+                                <button class="copy-address-btn" onclick="copyWalletAddress()">
+                                    <i class="fas fa-copy"></i>
+                                    <span id="copyBtnText">Copy</span>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="modal-alert warning">
+                            <div class="modal-alert-icon"><i class="fas fa-exclamation-triangle"></i></div>
+                            <div class="modal-alert-content">
+                                <div class="modal-alert-title">Important</div>
+                                <div class="modal-alert-text">
+                                    • Send exactly $${price} worth of <span id="selectedCryptoName">Bitcoin</span><br>
+                                    • Payment will be confirmed after 1 network confirmation<br>
+                                    • Credits will be added automatically to your account
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="modal-section">
+                    <div class="modal-info-grid">
+                        <div class="modal-info-item">
+                            <div class="modal-info-label">Plan</div>
+                            <div class="modal-info-value">${planName}</div>
+                        </div>
+                        <div class="modal-info-item">
+                            <div class="modal-info-label">Credits</div>
+                            <div class="modal-info-value success">${credits} Credits</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="modal-actions">
+                <button class="modal-btn modal-btn-secondary" onclick="ModalSystem.close('${modalId}')">
+                    <i class="fas fa-times"></i> Cancel Payment
+                </button>
+                <button class="modal-btn modal-btn-success" onclick="confirmPaymentSent()">
+                    <i class="fas fa-check"></i> I've Sent Payment
+                </button>
+            </div>
+        </div>
+    `;
+    
+    ModalSystem.create(modalId, content);
+    ModalSystem.open(modalId);
+}
+
+// Wallet addresses for different cryptocurrencies
+const walletAddresses = {
+    btc: '1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa',
+    eth: '0x742d35Cc6634C0532925a3b844Bc9e7595f0bEb',
+    usdt: 'TN3W4H6rK2ce4vX9YnFQHwKENnHjoxb3m9'
+};
+
+// Select cryptocurrency
+function selectCrypto(cryptoType, price) {
+    // Remove selected class from all cards
+    document.querySelectorAll('.crypto-option-card').forEach(card => {
+        card.classList.remove('selected');
+    });
+    
+    // Add selected class to clicked card
+    event.currentTarget.classList.add('selected');
+    
+    // Update wallet address
+    const walletAddressText = document.getElementById('walletAddressText');
+    if (walletAddressText) {
+        walletAddressText.textContent = walletAddresses[cryptoType];
+    }
+    
+    // Update crypto name in alert
+    const cryptoNames = {
+        btc: 'Bitcoin',
+        eth: 'Ethereum',
+        usdt: 'USDT (TRC-20)'
+    };
+    const selectedCryptoName = document.getElementById('selectedCryptoName');
+    if (selectedCryptoName) {
+        selectedCryptoName.textContent = cryptoNames[cryptoType];
+    }
+    
+    // Update crypto equivalent (simulated conversion)
+    const cryptoEquivalent = document.getElementById('cryptoEquivalent');
+    if (cryptoEquivalent) {
+        const conversions = {
+            btc: (price / 45000).toFixed(6),
+            eth: (price / 2500).toFixed(4),
+            usdt: price
+        };
+        const symbols = {
+            btc: 'BTC',
+            eth: 'ETH',
+            usdt: 'USDT'
+        };
+        cryptoEquivalent.textContent = `≈ ${conversions[cryptoType]} ${symbols[cryptoType]}`;
+    }
+}
+
+// Copy wallet address to clipboard
+function copyWalletAddress() {
+    const walletAddress = document.getElementById('walletAddressText').textContent;
+    const copyBtn = document.querySelector('.copy-address-btn');
+    const copyBtnText = document.getElementById('copyBtnText');
+    
+    navigator.clipboard.writeText(walletAddress).then(() => {
+        // Change button appearance
+        copyBtn.classList.add('copied');
+        copyBtnText.innerHTML = '<i class="fas fa-check"></i> Copied';
+        
+        // Reset after 2 seconds
+        setTimeout(() => {
+            copyBtn.classList.remove('copied');
+            copyBtnText.innerHTML = 'Copy';
+        }, 2000);
+    }).catch(err => {
+        alert('Failed to copy address. Please copy manually.');
+    });
+}
+
+// Confirm payment sent
+function confirmPaymentSent() {
+    ModalSystem.close('cryptoPaymentModal');
+    showPaymentConfirmationModal();
+}
+
+// Payment confirmation modal
+function showPaymentConfirmationModal() {
+    const modalId = 'paymentConfirmationModal';
+    
+    const content = `
+        <div class="modal-container">
+            <div class="modal-header" style="background: linear-gradient(135deg, #10B981 0%, #059669 100%);">
+                <h2><i class="fas fa-check-circle"></i> Payment Received!</h2>
+                <p>We're processing your transaction</p>
+                <button class="modal-close" onclick="ModalSystem.close('${modalId}')">×</button>
+            </div>
+            
+            <div class="modal-body">
+                <div class="modal-alert success">
+                    <div class="modal-alert-icon"><i class="fas fa-check-circle"></i></div>
+                    <div class="modal-alert-content">
+                        <div class="modal-alert-title">Payment Confirmation Pending</div>
+                        <div class="modal-alert-text">
+                            We've received your payment notification. Your transaction is being confirmed on the blockchain. 
+                            This usually takes 5-30 minutes depending on network congestion.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="modal-section">
+                    <div class="modal-section-title">What Happens Next?</div>
+                    <ul class="modal-list">
+                        <li class="modal-list-item">
+                            <div class="modal-list-icon" style="background: #10B981;">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="modal-list-content">
+                                <div class="modal-list-title">Waiting for Confirmation</div>
+                                <div class="modal-list-subtitle">1 blockchain confirmation required</div>
+                            </div>
+                        </li>
+                        <li class="modal-list-item">
+                            <div class="modal-list-icon" style="background: #667eea;">
+                                <i class="fas fa-coins"></i>
+                            </div>
+                            <div class="modal-list-content">
+                                <div class="modal-list-title">Credits Added Automatically</div>
+                                <div class="modal-list-subtitle">No action needed from you</div>
+                            </div>
+                        </li>
+                        <li class="modal-list-item">
+                            <div class="modal-list-icon" style="background: #F59E0B;">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="modal-list-content">
+                                <div class="modal-list-title">Email Notification</div>
+                                <div class="modal-list-subtitle">You'll receive a confirmation email</div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="modal-alert info">
+                    <div class="modal-alert-icon"><i class="fas fa-info-circle"></i></div>
+                    <div class="modal-alert-content">
+                        <div class="modal-alert-title">Having Issues?</div>
+                        <div class="modal-alert-text">
+                            If you don't see your credits within 1 hour, please contact our support team with your transaction ID.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="modal-actions">
+                <button class="modal-btn modal-btn-success" onclick="ModalSystem.close('${modalId}')">
+                    <i class="fas fa-check"></i> Got It
+                </button>
+            </div>
+        </div>
+    `;
+    
+    ModalSystem.create(modalId, content);
+    ModalSystem.open(modalId);
 }
 
 // View Task Modal

@@ -44,6 +44,14 @@
     box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
     position: relative;
     animation: slideUp 0.3s ease;
+    /* Hide scrollbar but keep scrolling */
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.modal-container::-webkit-scrollbar {
+    display: none;
 }
 
 @keyframes slideUp {
@@ -444,6 +452,218 @@
     color: #991B1B;
 }
 
+/* Crypto Payment Modal Styles */
+.crypto-payment-options {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.crypto-option-card {
+    background: white;
+    border: 3px solid #E5E7EB;
+    border-radius: 16px;
+    padding: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+    position: relative;
+}
+
+.crypto-option-card:hover {
+    border-color: #667eea;
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(102, 126, 234, 0.2);
+}
+
+.crypto-option-card.selected {
+    border-color: #667eea;
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+    box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+}
+
+.crypto-option-card.selected::after {
+    content: '✓';
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 24px;
+    height: 24px;
+    background: #10B981;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 14px;
+}
+
+.crypto-icon {
+    width: 60px;
+    height: 60px;
+    margin: 0 auto 12px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    color: white;
+}
+
+.crypto-option-card.btc .crypto-icon {
+    background: linear-gradient(135deg, #f7931a 0%, #f2a900 100%);
+}
+
+.crypto-option-card.eth .crypto-icon {
+    background: linear-gradient(135deg, #627eea 0%, #4e6fd8 100%);
+}
+
+.crypto-option-card.usdt .crypto-icon {
+    background: linear-gradient(135deg, #26a17b 0%, #1f8a68 100%);
+}
+
+.crypto-name {
+    font-size: 14px;
+    font-weight: 700;
+    color: #1F2937;
+    margin-bottom: 4px;
+}
+
+.crypto-network {
+    font-size: 11px;
+    color: #9CA3AF;
+    font-weight: 500;
+}
+
+.payment-details-section {
+    background: #F9FAFB;
+    border-radius: 16px;
+    padding: 24px;
+    margin-bottom: 20px;
+    border: 2px solid #E5E7EB;
+}
+
+.payment-qr-code {
+    width: 200px;
+    height: 200px;
+    margin: 0 auto 20px;
+    background: white;
+    border-radius: 12px;
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #E5E7EB;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.qr-placeholder {
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(
+        45deg,
+        #000,
+        #000 2px,
+        #fff 2px,
+        #fff 4px
+    );
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    color: #9CA3AF;
+    font-weight: 600;
+}
+
+.wallet-address-box {
+    background: white;
+    border: 2px solid #E5E7EB;
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 16px;
+}
+
+.wallet-address-label {
+    font-size: 12px;
+    color: #6B7280;
+    font-weight: 600;
+    margin-bottom: 8px;
+    display: block;
+}
+
+.wallet-address-display {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.wallet-address-text {
+    flex: 1;
+    font-family: 'Courier New', monospace;
+    font-size: 13px;
+    color: #1F2937;
+    background: #F9FAFB;
+    padding: 12px;
+    border-radius: 8px;
+    word-break: break-all;
+    line-height: 1.6;
+}
+
+.copy-address-btn {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s;
+    white-space: nowrap;
+}
+
+.copy-address-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+}
+
+.copy-address-btn.copied {
+    background: #10B981;
+}
+
+.payment-amount-display {
+    text-align: center;
+    padding: 20px;
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+    border-radius: 12px;
+    margin-bottom: 20px;
+}
+
+.amount-label {
+    font-size: 12px;
+    color: #6B7280;
+    margin-bottom: 4px;
+}
+
+.amount-value {
+    font-size: 32px;
+    font-weight: 700;
+    color: #667eea;
+    margin-bottom: 4px;
+}
+
+.amount-crypto {
+    font-size: 14px;
+    color: #9CA3AF;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
     .modal-container {
@@ -475,6 +695,10 @@
     
     .modal-btn {
         width: 100%;
+    }
+    
+    .crypto-payment-options {
+        grid-template-columns: 1fr;
     }
 }
 
