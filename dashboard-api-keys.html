@@ -247,7 +247,7 @@
                             </div>
                             <div class="key-value">
                                 <code>lb_live_4h8k2j9d8f7g6h5j4k3l2m1n</code>
-                                <button class="btn-icon" title="Copy to clipboard" onclick="copyAPIKey(\'sample-key\')"><i class="fas fa-copy"></i></button>
+                                <button class="btn-icon" title="Copy to clipboard" onclick="copyAPIKey('sample-key')"><i class="fas fa-copy"></i></button>
                             </div>
                             <div class="key-meta">
                                 <span><i class="fas fa-calendar"></i> Created: Nov 1, 2024</span>
@@ -256,8 +256,8 @@
                             </div>
                         </div>
                         <div class="key-actions">
-                            <button class="btn-sm btn-secondary" onclick="showEditAPIKeyModal(\'key-001\', \'Production Key\')">Edit</button>
-                            <button class="btn-sm btn-danger" onclick="showRevokeAPIKeyModal(\'key-001\', \'Production Key\')">Revoke</button>
+                            <button class="btn-sm btn-secondary" onclick="showEditAPIKeyModal('key-001', 'Production Key')">Edit</button>
+                            <button class="btn-sm btn-danger" onclick="showRevokeAPIKeyModal('key-001', 'Production Key')">Revoke</button>
                         </div>
                     </div>
 
@@ -269,7 +269,7 @@
                             </div>
                             <div class="key-value">
                                 <code>lb_test_9j8h7g6f5d4s3a2q1w0e9r8t</code>
-                                <button class="btn-icon" title="Copy to clipboard" onclick="copyAPIKey(\'sample-key\')"><i class="fas fa-copy"></i></button>
+                                <button class="btn-icon" title="Copy to clipboard" onclick="copyAPIKey('sample-key')"><i class="fas fa-copy"></i></button>
                             </div>
                             <div class="key-meta">
                                 <span><i class="fas fa-calendar"></i> Created: Oct 15, 2024</span>
@@ -278,8 +278,8 @@
                             </div>
                         </div>
                         <div class="key-actions">
-                            <button class="btn-sm btn-secondary" onclick="showEditAPIKeyModal(\'key-002\', \'Development Key\')">Edit</button>
-                            <button class="btn-sm btn-danger" onclick="showRevokeAPIKeyModal(\'key-002\', \'Development Key\')">Revoke</button>
+                            <button class="btn-sm btn-secondary" onclick="showEditAPIKeyModal('key-002', 'Development Key')">Edit</button>
+                            <button class="btn-sm btn-danger" onclick="showRevokeAPIKeyModal('key-002', 'Development Key')">Revoke</button>
                         </div>
                     </div>
 
@@ -351,9 +351,11 @@
             </div>
         </footer>
     </div>
+    <script src="js/modals.js"></script>
+    <script src="js/dashboard.js"></script>
     <script>
         // Set current year in footer
-        document.getElementById(\'currentYear\').textContent = new Date().getFullYear();
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
         
         // Mobile Menu Toggle
         function toggleSidebar() {
@@ -362,8 +364,9 @@
             sidebar.classList.toggle('active');
             overlay.classList.toggle('active');
         }
+        
+        // Debug: Check if modal functions are loaded
+        console.log('Modal functions available:', typeof showEditAPIKeyModal !== 'undefined', typeof showRevokeAPIKeyModal !== 'undefined');
     </script>
-    <script src="js/modals.js"></script>
-    <script src="js/dashboard.js"></script>
 </body>
 </html>
