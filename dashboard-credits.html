@@ -250,7 +250,7 @@
                             <li><i class="fas fa-check"></i> Basic support</li>
                             <li><i class="fas fa-check"></i> CSV export</li>
                         </ul>
-                        <button class="btn btn-secondary btn-block">Select Plan</button>
+                        <button class="btn btn-secondary btn-block" onclick="buyCredits('Starter', '500', '19')">Select Plan</button>
                     </div>
 
                     <div class="price-card featured">
@@ -270,7 +270,7 @@
                             <li><i class="fas fa-check"></i> API access</li>
                             <li><i class="fas fa-check"></i> Team collaboration</li>
                         </ul>
-                        <button class="btn btn-primary btn-block">Select Plan</button>
+                        <button class="btn btn-primary btn-block" onclick="buyCredits('Pro', '2000', '49')">Select Plan</button>
                     </div>
 
                     <div class="price-card">
@@ -288,7 +288,7 @@
                             <li><i class="fas fa-check"></i> SLA guarantee</li>
                             <li><i class="fas fa-check"></i> White-label option</li>
                         </ul>
-                        <button class="btn btn-secondary btn-block">Contact Sales</button>
+                        <button class="btn btn-secondary btn-block" onclick="alert('📞 Contact Sales\n\nFor Enterprise plans, please contact our sales team:\n\n📧 Email: sales@leadbunker.com\n📞 Phone: +1 (555) 123-4567\n\nWe\'ll create a custom plan for your needs!')">Contact Sales</button>
                     </div>
                 </div>
             </section>
@@ -304,26 +304,26 @@
                     <div class="credit-pack">
                         <div class="pack-credits">100 Credits</div>
                         <div class="pack-price">$15</div>
-                        <button class="btn btn-sm btn-primary">Buy Now</button>
+                        <button class="btn btn-sm btn-primary" onclick="buyCredits('100 Credit Pack', '100', '15')">Buy Now</button>
                     </div>
                     <div class="credit-pack">
                         <div class="pack-credits">500 Credits</div>
                         <div class="pack-price">$65</div>
                         <div class="pack-savings">Save $10</div>
-                        <button class="btn btn-sm btn-primary">Buy Now</button>
+                        <button class="btn btn-sm btn-primary" onclick="buyCredits('500 Credit Pack', '500', '65')">Buy Now</button>
                     </div>
                     <div class="credit-pack popular">
                         <div class="pack-badge">Best Value</div>
                         <div class="pack-credits">1,000 Credits</div>
                         <div class="pack-price">$120</div>
                         <div class="pack-savings">Save $30</div>
-                        <button class="btn btn-sm btn-primary">Buy Now</button>
+                        <button class="btn btn-sm btn-primary" onclick="buyCredits('1000 Credit Pack', '1000', '120')">Buy Now</button>
                     </div>
                     <div class="credit-pack">
                         <div class="pack-credits">5,000 Credits</div>
                         <div class="pack-price">$500</div>
                         <div class="pack-savings">Save $250</div>
-                        <button class="btn btn-sm btn-primary">Buy Now</button>
+                        <button class="btn btn-sm btn-primary" onclick="buyCredits('5000 Credit Pack', '5000', '500')">Buy Now</button>
                     </div>
                 </div>
             </section>

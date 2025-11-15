@@ -286,7 +286,7 @@
                         <span class="badge badge-primary">Admin</span>
                         <span class="badge badge-success">Active</span>
                         <div class="member-actions">
-                            <button class="btn-sm btn-secondary">Edit Role</button>
+                            <button class="btn-sm btn-secondary" onclick="editMember(\'member-123\')">Edit Role</button>
                         </div>
                     </div>
 
@@ -300,8 +300,8 @@
                         <span class="badge badge-info">Member</span>
                         <span class="badge badge-success">Active</span>
                         <div class="member-actions">
-                            <button class="btn-sm btn-secondary">Edit Role</button>
-                            <button class="btn-sm btn-danger">Remove</button>
+                            <button class="btn-sm btn-secondary" onclick="editMember(\'member-123\')">Edit Role</button>
+                            <button class="btn-sm btn-danger" onclick="removeMember(\'member-123\')">Remove</button>
                         </div>
                     </div>
 
@@ -315,8 +315,8 @@
                         <span class="badge badge-secondary">Viewer</span>
                         <span class="badge badge-success">Active</span>
                         <div class="member-actions">
-                            <button class="btn-sm btn-secondary">Edit Role</button>
-                            <button class="btn-sm btn-danger">Remove</button>
+                            <button class="btn-sm btn-secondary" onclick="editMember(\'member-123\')">Edit Role</button>
+                            <button class="btn-sm btn-danger" onclick="removeMember(\'member-123\')">Remove</button>
                         </div>
                     </div>
 
@@ -330,7 +330,7 @@
                         <span class="badge badge-info">Member</span>
                         <span class="badge badge-warning">Pending</span>
                         <div class="member-actions">
-                            <button class="btn-sm btn-secondary">Resend</button>
+                            <button class="btn-sm btn-secondary" onclick="alert(\'📧 Resend Invitation\n\nInvitation email resent successfully!\')">Resend</button>
                             <button class="btn-sm btn-danger">Cancel</button>
                         </div>
                     </div>
@@ -345,7 +345,7 @@
                         <span class="badge badge-secondary">Viewer</span>
                         <span class="badge badge-warning">Pending</span>
                         <div class="member-actions">
-                            <button class="btn-sm btn-secondary">Resend</button>
+                            <button class="btn-sm btn-secondary" onclick="alert(\'📧 Resend Invitation\n\nInvitation email resent successfully!\')">Resend</button>
                             <button class="btn-sm btn-danger">Cancel</button>
                         </div>
                     </div>

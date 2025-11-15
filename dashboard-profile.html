@@ -267,7 +267,7 @@
                         <p class="card-subtitle">Update your personal details</p>
                     </div>
                     <div class="header-right">
-                        <button class="btn btn-primary btn-sm">
+                        <button class="btn btn-primary btn-sm" onclick="alert('✏️ Edit Profile\n\nIn production, this would allow you to edit:\n• Profile picture\n• Display name\n• Email address\n• Phone number\n• Timezone\n• Language preferences')">
                             <i class="fas fa-edit"></i> Edit Profile
                         </button>
                     </div>
@@ -313,21 +313,21 @@
                             <strong>Password</strong>
                             <p>Last changed 30 days ago</p>
                         </div>
-                        <button class="btn btn-secondary btn-sm">Change Password</button>
+                        <button class="btn btn-secondary btn-sm" onclick="changePassword()">Change Password</button>
                     </div>
                     <div class="security-item">
                         <div>
                             <strong>Two-Factor Authentication</strong>
                             <p>Add an extra layer of security</p>
                         </div>
-                        <button class="btn btn-primary btn-sm">Enable 2FA</button>
+                        <button class="btn btn-primary btn-sm" onclick="enable2FA()">Enable 2FA</button>
                     </div>
                     <div class="security-item">
                         <div>
                             <strong>Active Sessions</strong>
                             <p>2 active sessions</p>
                         </div>
-                        <button class="btn btn-secondary btn-sm">View Sessions</button>
+                        <button class="btn btn-secondary btn-sm" onclick="alert('🔐 Active Sessions\\n\\nIn production, this would show all your active login sessions with device info, location, and last activity.')">View Sessions</button>
                     </div>
                 </div>
             </section>

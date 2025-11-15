@@ -216,9 +216,7 @@
                         <p class="card-subtitle">Manage your API keys for programmatic access</p>
                     </div>
                     <div class="header-right">
-                        <button class="btn btn-primary">
-                            <i class="fas fa-plus"></i> Generate New Key
-                        </button>
+                        <button class="btn btn-primary" onclick="generateAPIKey()"><i class="fas fa-plus"></i> Generate New Key</button>
                     </div>
                 </div>
                 
@@ -248,9 +246,7 @@
                             </div>
                             <div class="key-value">
                                 <code>lb_live_4h8k2j9d8f7g6h5j4k3l2m1n</code>
-                                <button class="btn-icon" title="Copy to clipboard">
-                                    <i class="fas fa-copy"></i>
-                                </button>
+                                <button class="btn-icon" title="Copy to clipboard"> onclick="copyAPIKey(\'sample-key\')"><i class="fas fa-copy"></i></button>
                             </div>
                             <div class="key-meta">
                                 <span><i class="fas fa-calendar"></i> Created: Nov 1, 2024</span>
@@ -259,8 +255,8 @@
                             </div>
                         </div>
                         <div class="key-actions">
-                            <button class="btn-sm btn-secondary">Edit</button>
-                            <button class="btn-sm btn-danger">Revoke</button>
+                            <button class="btn-sm btn-secondary" onclick="alert(\'✏️ Edit API Key\n\nIn production, this would open an edit modal.\')">Edit</button>
+                            <button class="btn-sm btn-danger" onclick="revokeAPIKey(\'key-123\')">Revoke</button>
                         </div>
                     </div>
 
@@ -272,9 +268,7 @@
                             </div>
                             <div class="key-value">
                                 <code>lb_test_9j8h7g6f5d4s3a2q1w0e9r8t</code>
-                                <button class="btn-icon" title="Copy to clipboard">
-                                    <i class="fas fa-copy"></i>
-                                </button>
+                                <button class="btn-icon" title="Copy to clipboard"> onclick="copyAPIKey(\'sample-key\')"><i class="fas fa-copy"></i></button>
                             </div>
                             <div class="key-meta">
                                 <span><i class="fas fa-calendar"></i> Created: Oct 15, 2024</span>
@@ -283,8 +277,8 @@
                             </div>
                         </div>
                         <div class="key-actions">
-                            <button class="btn-sm btn-secondary">Edit</button>
-                            <button class="btn-sm btn-danger">Revoke</button>
+                            <button class="btn-sm btn-secondary" onclick="alert(\'✏️ Edit API Key\n\nIn production, this would open an edit modal.\')">Edit</button>
+                            <button class="btn-sm btn-danger" onclick="revokeAPIKey(\'key-123\')">Revoke</button>
                         </div>
                     </div>
 

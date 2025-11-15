@@ -337,7 +337,7 @@
                     <div class="credit-amount">2,450 Credits</div>
                     <div class="credit-value">≈ $24.50 value</div>
                 </div>
-                <button class="btn btn-primary btn-block">
+                <button class="btn btn-primary btn-block" onclick="window.location.href='dashboard-credits.html'">
                     <i class="fas fa-plus"></i> Add Credits
                 </button>
             </section>
@@ -413,8 +413,8 @@
                         </div>
                     </div>
                     <div class="form-actions">
-                        <button class="btn btn-primary"><i class="fas fa-play"></i> Start Extraction</button>
-                        <button class="btn btn-secondary"><i class="fas fa-upload"></i> Bulk Upload</button>
+                        <button class="btn btn-primary" onclick="startExtraction()"><i class="fas fa-play"></i> Start Extraction</button>
+                        <button class="btn btn-secondary" onclick="alert('📤 Bulk Upload\n\nUpload a CSV/TXT file with multiple URLs to extract.\n\nIn production, this would open a file upload modal.')"><i class="fas fa-upload"></i> Bulk Upload</button>
                     </div>
                 </div>
             </section>
@@ -445,7 +445,7 @@
                                 <td><span class="badge badge-success">Completed</span></td>
                                 <td>89 emails, 23 phones</td>
                                 <td>
-                                    <button class="btn-sm btn-primary">Download</button>
+                                    <button class="btn-sm btn-primary" onclick="downloadResults('LB-1234', 'CSV')">Download</button>
                                 </td>
                             </tr>
                             <tr>
@@ -455,7 +455,7 @@
                                 <td><span class="badge badge-warning">Processing</span></td>
                                 <td>65% complete</td>
                                 <td>
-                                    <button class="btn-sm btn-secondary">View Progress</button>
+                                    <button class="btn-sm btn-secondary" onclick="viewTask('LB-1233')">View Progress</button>
                                 </td>
                             </tr>
                             <tr>
@@ -465,7 +465,7 @@
                                 <td><span class="badge badge-success">Completed</span></td>
                                 <td>156 emails, 89 phones</td>
                                 <td>
-                                    <button class="btn-sm btn-primary">Download</button>
+                                    <button class="btn-sm btn-primary" onclick="downloadResults('LB-1232', 'CSV')">Download</button>
                                 </td>
                             </tr>
                         </tbody>
@@ -484,7 +484,7 @@
                     <div class="credit-amount">2,450 Credits</div>
                     <div class="credit-value">≈ $24.50 value</div>
                 </div>
-                <button class="btn btn-primary btn-block">
+                <button class="btn btn-primary btn-block" onclick="window.location.href='dashboard-credits.html'">
                     <i class="fas fa-plus"></i> Add Credits
                 </button>
             </section>
