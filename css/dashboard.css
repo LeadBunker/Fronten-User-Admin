@@ -60,11 +60,8 @@ body {
     display: flex;
     flex-direction: column;
     border-right: 1px solid var(--border-color);
-    min-height: 100vh;
-    height: 100%;
-    position: sticky;
-    top: 0;
-    align-self: flex-start;
+    min-height: 100%;
+    position: relative;
 }
 
 .sidebar-header {
@@ -2506,8 +2503,8 @@ div[style*="overflow: auto"]::-webkit-scrollbar {
     color: white;
     padding: 16px 20px;
     text-align: center;
-    margin-top: 30px;
-    border-radius: 16px 16px 0 0;
+    border-radius: 0;
+    margin-top: 0;
 }
 
 .footer-content {
