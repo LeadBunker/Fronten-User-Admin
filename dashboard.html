@@ -427,7 +427,8 @@
                     <a href="dashboard-tasks.html" class="view-all">View all</a>
                 </div>
                 <div class="table-responsive">
-                    <table class="tasks-table">
+                    <!-- Desktop Table View -->
+                    <table class="tasks-table desktop-tasks-table">
                         <thead>
                             <tr>
                                 <th>Task ID</th>
@@ -471,6 +472,60 @@
                             </tr>
                         </tbody>
                     </table>
+                    
+                    <!-- Mobile Card View -->
+                    <div class="mobile-tasks-container">
+                        <div class="mobile-task-card">
+                            <div class="mobile-task-header">
+                                <span class="mobile-task-id">#LB-1234</span>
+                                <span class="badge badge-success mobile-task-status"><i class="fas fa-check-circle"></i> Completed</span>
+                            </div>
+                            <div class="mobile-task-domain">example.com</div>
+                            <div class="mobile-task-meta">
+                                <span class="badge badge-info">Full Extraction</span>
+                                <span class="mobile-task-results">89 emails, 23 phones</span>
+                            </div>
+                            <div class="mobile-task-footer">
+                                <button class="btn-sm btn-primary" onclick="downloadResults('LB-1234', 'CSV')">
+                                    <i class="fas fa-download"></i> Download
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="mobile-task-card">
+                            <div class="mobile-task-header">
+                                <span class="mobile-task-id">#LB-1233</span>
+                                <span class="badge badge-warning mobile-task-status"><i class="fas fa-spinner fa-spin"></i> Processing</span>
+                            </div>
+                            <div class="mobile-task-domain">techstartup.io</div>
+                            <div class="mobile-task-meta">
+                                <span class="badge badge-warning">Email Only</span>
+                                <span class="mobile-task-results">65% complete</span>
+                            </div>
+                            <div class="mobile-task-footer">
+                                <button class="btn-sm btn-secondary" onclick="viewTask('LB-1233')">
+                                    <i class="fas fa-eye"></i> View Progress
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="mobile-task-card">
+                            <div class="mobile-task-header">
+                                <span class="mobile-task-id">#LB-1232</span>
+                                <span class="badge badge-success mobile-task-status"><i class="fas fa-check-circle"></i> Completed</span>
+                            </div>
+                            <div class="mobile-task-domain">blockchain-project.com</div>
+                            <div class="mobile-task-meta">
+                                <span class="badge badge-info">Full Extraction</span>
+                                <span class="mobile-task-results">156 emails, 89 phones</span>
+                            </div>
+                            <div class="mobile-task-footer">
+                                <button class="btn-sm btn-primary" onclick="downloadResults('LB-1232', 'CSV')">
+                                    <i class="fas fa-download"></i> Download
+                                </button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </section>
         </main>
@@ -553,6 +608,102 @@
     <script>
         // Set current year in footer
         document.getElementById('currentYear').textContent = new Date().getFullYear();
+    </script>
+    
+    <style>
+        /* Mobile Responsive - Tasks Table */
+        @media (max-width: 768px) {
+            /* Hide desktop table on mobile */
+            .desktop-tasks-table {
+                display: none;
+            }
+            
+            /* Mobile Task Cards */
+            .mobile-tasks-container {
+                display: flex;
+                flex-direction: column;
+                gap: 12px;
+            }
+            
+            .mobile-task-card {
+                background: white;
+                border: 1px solid #E5E7EB;
+                border-radius: 12px;
+                padding: 16px;
+                transition: all 0.2s ease;
+            }
+            
+            .mobile-task-card:hover {
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+                transform: translateY(-2px);
+            }
+            
+            .mobile-task-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: flex-start;
+                margin-bottom: 12px;
+            }
+            
+            .mobile-task-id {
+                font-weight: 700;
+                font-size: 14px;
+                color: #667eea;
+            }
+            
+            .mobile-task-status {
+                flex-shrink: 0;
+            }
+            
+            .mobile-task-domain {
+                font-weight: 600;
+                font-size: 14px;
+                color: #111827;
+                margin-bottom: 10px;
+                line-height: 1.4;
+            }
+            
+            .mobile-task-meta {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 8px;
+                margin-bottom: 12px;
+                align-items: center;
+            }
+            
+            .mobile-task-meta .badge {
+                font-size: 11px;
+                padding: 4px 8px;
+            }
+            
+            .mobile-task-results {
+                font-size: 12px;
+                color: #6B7280;
+                font-weight: 500;
+            }
+            
+            .mobile-task-footer {
+                display: flex;
+                justify-content: flex-end;
+                padding-top: 12px;
+                border-top: 1px solid #F3F4F6;
+            }
+            
+            .mobile-task-footer .btn-sm {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+        
+        /* Desktop - Hide mobile cards */
+        @media (min-width: 769px) {
+            .mobile-tasks-container {
+                display: none;
+            }
+        }
+    </style>
+    
+    <script>
         
         // Mobile Menu Toggle
         function toggleSidebar() {
