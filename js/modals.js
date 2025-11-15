@@ -861,6 +861,222 @@ function confirmRevokeAPIKey(keyId, keyName) {
     }, 2000);
 }
 
+// Edit Team Member Modal
+function showEditMemberModal(memberId, memberName, memberEmail, currentRole) {
+    const modalId = 'editMemberModal';
+    
+    const content = `
+        <div class="modal-container">
+            <div class="modal-header">
+                <h2><i class="fas fa-user-edit"></i> Edit Team Member Role</h2>
+                <p>Update permissions for ${memberName}</p>
+                <button class="modal-close" onclick="ModalSystem.close('${modalId}')">×</button>
+            </div>
+            
+            <div class="modal-body">
+                <div class="modal-section">
+                    <div class="modal-info-grid">
+                        <div class="modal-info-item">
+                            <div class="modal-info-label">Member Name</div>
+                            <div class="modal-info-value">${memberName}</div>
+                        </div>
+                        <div class="modal-info-item">
+                            <div class="modal-info-label">Email</div>
+                            <div class="modal-info-value">${memberEmail}</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="modal-section">
+                    <label style="display: block; font-weight: 600; margin-bottom: 12px; color: #374151;">
+                        <i class="fas fa-shield-alt"></i> Select Role
+                    </label>
+                    <select id="memberRoleSelect" style="width: 100%; padding: 12px; border: 2px solid #E5E7EB; border-radius: 10px; font-size: 14px; outline: none; transition: border 0.2s;" onfocus="this.style.borderColor='#667eea'" onblur="this.style.borderColor='#E5E7EB'">
+                        <option value="admin" ${currentRole === 'admin' ? 'selected' : ''}>Admin - Full access to all features</option>
+                        <option value="member" ${currentRole === 'member' ? 'selected' : ''}>Member - Can create and manage tasks</option>
+                        <option value="viewer" ${currentRole === 'viewer' ? 'selected' : ''}>Viewer - Read-only access</option>
+                    </select>
+                </div>
+                
+                <div class="modal-section">
+                    <div style="background: #F9FAFB; border-radius: 12px; padding: 16px; border-left: 4px solid #667eea;">
+                        <h4 style="margin: 0 0 12px 0; color: #374151; font-size: 14px; font-weight: 600;">
+                            <i class="fas fa-info-circle" style="color: #667eea;"></i> Role Permissions
+                        </h4>
+                        <div id="rolePermissions" style="font-size: 13px; color: #6B7280; line-height: 1.6;">
+                            <!-- Permissions will be updated dynamically -->
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="modal-alert info">
+                    <div class="modal-alert-icon"><i class="fas fa-bell"></i></div>
+                    <div class="modal-alert-content">
+                        <div class="modal-alert-title">Member Notification</div>
+                        <div class="modal-alert-text">The team member will be notified via email about their role change.</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="modal-actions">
+                <button class="modal-btn modal-btn-secondary" onclick="ModalSystem.close('${modalId}')">
+                    <i class="fas fa-times"></i> Cancel
+                </button>
+                <button class="modal-btn modal-btn-primary" onclick="confirmEditMember('${memberId}', '${memberName}')">
+                    <i class="fas fa-save"></i> Update Role
+                </button>
+            </div>
+        </div>
+    `;
+    
+    ModalSystem.create(modalId, content);
+    ModalSystem.open(modalId);
+    
+    // Update permissions display when role changes
+    const roleSelect = document.getElementById('memberRoleSelect');
+    const permissionsDiv = document.getElementById('rolePermissions');
+    
+    const updatePermissions = () => {
+        const role = roleSelect.value;
+        let permissions = '';
+        
+        if (role === 'admin') {
+            permissions = `
+                ✅ Full access to all features<br>
+                ✅ Manage team members<br>
+                ✅ View and edit all tasks<br>
+                ✅ Access billing and settings<br>
+                ✅ Generate API keys
+            `;
+        } else if (role === 'member') {
+            permissions = `
+                ✅ Create and manage own tasks<br>
+                ✅ View team tasks<br>
+                ✅ Export data<br>
+                ❌ Cannot manage team members<br>
+                ❌ No billing access
+            `;
+        } else if (role === 'viewer') {
+            permissions = `
+                ✅ View tasks and results<br>
+                ✅ Download exports<br>
+                ❌ Cannot create tasks<br>
+                ❌ Cannot manage team<br>
+                ❌ No billing access
+            `;
+        }
+        
+        permissionsDiv.innerHTML = permissions;
+    };
+    
+    roleSelect.addEventListener('change', updatePermissions);
+    updatePermissions();
+}
+
+function confirmEditMember(memberId, memberName) {
+    const newRole = document.getElementById('memberRoleSelect').value;
+    const roleLabels = {
+        'admin': 'Admin',
+        'member': 'Member',
+        'viewer': 'Viewer'
+    };
+    
+    ModalSystem.close('editMemberModal');
+    alert(`✅ Team Member Updated!\n\nMember: ${memberName}\nNew Role: ${roleLabels[newRole]}\n\n${memberName} has been notified of their new role.`);
+    
+    // In production, you would refresh or update the UI
+    setTimeout(() => {
+        window.location.reload();
+    }, 2000);
+}
+
+// Remove Team Member Modal
+function showRemoveMemberModal(memberId, memberName, memberEmail) {
+    const modalId = 'removeMemberModal';
+    
+    const content = `
+        <div class="modal-container">
+            <div class="modal-header" style="background: linear-gradient(135deg, #EF4444 0%, #DC2626 100%);">
+                <h2 style="color: white;"><i class="fas fa-user-minus"></i> Remove Team Member</h2>
+                <p style="color: rgba(255,255,255,0.9);">This action cannot be undone</p>
+                <button class="modal-close" onclick="ModalSystem.close('${modalId}')" style="color: white;">×</button>
+            </div>
+            
+            <div class="modal-body">
+                <div class="modal-alert danger">
+                    <div class="modal-alert-icon"><i class="fas fa-exclamation-triangle"></i></div>
+                    <div class="modal-alert-content">
+                        <div class="modal-alert-title">Warning: Permanent Removal</div>
+                        <div class="modal-alert-text">Removing this team member will revoke their access immediately. They will no longer be able to access the dashboard or any shared resources.</div>
+                    </div>
+                </div>
+                
+                <div class="modal-section">
+                    <div class="modal-info-grid">
+                        <div class="modal-info-item">
+                            <div class="modal-info-label">Member Name</div>
+                            <div class="modal-info-value">${memberName}</div>
+                        </div>
+                        <div class="modal-info-item">
+                            <div class="modal-info-label">Email</div>
+                            <div class="modal-info-value">${memberEmail}</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="modal-section">
+                    <label style="display: block; font-weight: 600; margin-bottom: 8px; color: #374151;">
+                        Type "REMOVE" to confirm
+                    </label>
+                    <input type="text" id="removeConfirmText" placeholder="Type REMOVE to confirm" style="width: 100%; padding: 12px; border: 2px solid #E5E7EB; border-radius: 10px; font-size: 14px; outline: none; transition: border 0.2s;" onfocus="this.style.borderColor='#EF4444'" onblur="this.style.borderColor='#E5E7EB'">
+                </div>
+                
+                <div class="modal-alert warning">
+                    <div class="modal-alert-icon"><i class="fas fa-exclamation-circle"></i></div>
+                    <div class="modal-alert-content">
+                        <div class="modal-alert-title">What happens next?</div>
+                        <div class="modal-alert-text">
+                            • Member loses access immediately<br>
+                            • All shared tasks remain intact<br>
+                            • Member receives removal notification<br>
+                            • You can re-invite them later if needed
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="modal-actions">
+                <button class="modal-btn modal-btn-secondary" onclick="ModalSystem.close('${modalId}')">
+                    <i class="fas fa-times"></i> Cancel
+                </button>
+                <button class="modal-btn modal-btn-danger" onclick="confirmRemoveMember('${memberId}', '${memberName}')">
+                    <i class="fas fa-user-minus"></i> Remove Member
+                </button>
+            </div>
+        </div>
+    `;
+    
+    ModalSystem.create(modalId, content);
+    ModalSystem.open(modalId);
+}
+
+function confirmRemoveMember(memberId, memberName) {
+    const confirmText = document.getElementById('removeConfirmText').value;
+    
+    if (confirmText !== 'REMOVE') {
+        alert('❌ Please type "REMOVE" to confirm this action.');
+        return;
+    }
+    
+    ModalSystem.close('removeMemberModal');
+    alert(`✅ Team Member Removed!\n\nMember: ${memberName}\n\n${memberName} has been removed from your team and will receive a notification email.`);
+    
+    // In production, you would refresh or update the UI
+    setTimeout(() => {
+        window.location.reload();
+    }, 2000);
+}
+
 // View Transaction Modal
 function showViewTransactionModal(txnId) {
     const modalId = 'viewTransactionModal';

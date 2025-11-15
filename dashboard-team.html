@@ -287,7 +287,7 @@
                         <span class="badge badge-primary">Admin</span>
                         <span class="badge badge-success">Active</span>
                         <div class="member-actions">
-                            <button class="btn-sm btn-secondary" onclick="editMember(\'member-123\')">Edit Role</button>
+                            <button class="btn-sm btn-secondary" onclick="showEditMemberModal('member-001', 'John Doe', 'john.doe@company.com', 'admin')">Edit Role</button>
                         </div>
                     </div>
 
@@ -301,8 +301,8 @@
                         <span class="badge badge-info">Member</span>
                         <span class="badge badge-success">Active</span>
                         <div class="member-actions">
-                            <button class="btn-sm btn-secondary" onclick="editMember(\'member-123\')">Edit Role</button>
-                            <button class="btn-sm btn-danger" onclick="removeMember(\'member-123\')">Remove</button>
+                            <button class="btn-sm btn-secondary" onclick="showEditMemberModal('member-002', 'Jane Smith', 'jane.smith@company.com', 'member')">Edit Role</button>
+                            <button class="btn-sm btn-danger" onclick="showRemoveMemberModal('member-002', 'Jane Smith', 'jane.smith@company.com')">Remove</button>
                         </div>
                     </div>
 
@@ -316,8 +316,8 @@
                         <span class="badge badge-secondary">Viewer</span>
                         <span class="badge badge-success">Active</span>
                         <div class="member-actions">
-                            <button class="btn-sm btn-secondary" onclick="editMember(\'member-123\')">Edit Role</button>
-                            <button class="btn-sm btn-danger" onclick="removeMember(\'member-123\')">Remove</button>
+                            <button class="btn-sm btn-secondary" onclick="showEditMemberModal('member-003', 'Mike Johnson', 'mike.johnson@company.com', 'viewer')">Edit Role</button>
+                            <button class="btn-sm btn-danger" onclick="showRemoveMemberModal('member-003', 'Mike Johnson', 'mike.johnson@company.com')">Remove</button>
                         </div>
                     </div>
 
