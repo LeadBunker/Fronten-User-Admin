@@ -311,6 +311,7 @@
                 </div>
                 
                 <div class="table-container">
+                    <!-- Desktop Table View -->
                     <table class="tasks-table">
                         <thead>
                             <tr>
@@ -391,6 +392,99 @@
                             </tr>
                         </tbody>
                     </table>
+                    
+                    <!-- Mobile Card View -->
+                    <div class="mobile-tickets-container">
+                        <div class="mobile-ticket-card" onclick="openTicket('12847')">
+                            <div class="mobile-ticket-header">
+                                <span class="mobile-ticket-id">#12847</span>
+                                <span class="badge badge-warning mobile-ticket-status"><i class="fas fa-circle-notch fa-spin"></i> In Progress</span>
+                            </div>
+                            <div class="mobile-ticket-subject">Cannot complete payment with Bitcoin</div>
+                            <div class="mobile-ticket-meta">
+                                <span class="badge badge-info">Billing</span>
+                                <span class="badge badge-danger">High</span>
+                            </div>
+                            <div class="mobile-ticket-footer">
+                                <span class="mobile-ticket-time"><i class="fas fa-clock"></i> 2 hours ago</span>
+                                <button class="btn-sm btn-primary" onclick="event.stopPropagation(); openTicket('12847')">
+                                    <i class="fas fa-eye"></i> View
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="mobile-ticket-card" onclick="openTicket('12846')">
+                            <div class="mobile-ticket-header">
+                                <span class="mobile-ticket-id">#12846</span>
+                                <span class="badge badge-success mobile-ticket-status"><i class="fas fa-check-circle"></i> Resolved</span>
+                            </div>
+                            <div class="mobile-ticket-subject">API rate limit clarification</div>
+                            <div class="mobile-ticket-meta">
+                                <span class="badge badge-secondary">Technical</span>
+                                <span class="badge badge-warning">Medium</span>
+                            </div>
+                            <div class="mobile-ticket-footer">
+                                <span class="mobile-ticket-time"><i class="fas fa-clock"></i> 1 day ago</span>
+                                <button class="btn-sm btn-primary" onclick="event.stopPropagation(); openTicket('12846')">
+                                    <i class="fas fa-eye"></i> View
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="mobile-ticket-card" onclick="openTicket('12845')">
+                            <div class="mobile-ticket-header">
+                                <span class="mobile-ticket-id">#12845</span>
+                                <span class="badge badge-secondary mobile-ticket-status"><i class="fas fa-times-circle"></i> Closed</span>
+                            </div>
+                            <div class="mobile-ticket-subject">How to export data in JSON format?</div>
+                            <div class="mobile-ticket-meta">
+                                <span class="badge badge-primary">Feature</span>
+                                <span class="badge badge-success">Low</span>
+                            </div>
+                            <div class="mobile-ticket-footer">
+                                <span class="mobile-ticket-time"><i class="fas fa-clock"></i> 3 days ago</span>
+                                <button class="btn-sm btn-primary" onclick="event.stopPropagation(); openTicket('12845')">
+                                    <i class="fas fa-eye"></i> View
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="mobile-ticket-card" onclick="openTicket('12844')">
+                            <div class="mobile-ticket-header">
+                                <span class="mobile-ticket-id">#12844</span>
+                                <span class="badge badge-success mobile-ticket-status"><i class="fas fa-check-circle"></i> Resolved</span>
+                            </div>
+                            <div class="mobile-ticket-subject">Extraction failing for specific domain</div>
+                            <div class="mobile-ticket-meta">
+                                <span class="badge badge-secondary">Technical</span>
+                                <span class="badge badge-danger">High</span>
+                            </div>
+                            <div class="mobile-ticket-footer">
+                                <span class="mobile-ticket-time"><i class="fas fa-clock"></i> 5 days ago</span>
+                                <button class="btn-sm btn-primary" onclick="event.stopPropagation(); openTicket('12844')">
+                                    <i class="fas fa-eye"></i> View
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="mobile-ticket-card" onclick="openTicket('12843')">
+                            <div class="mobile-ticket-header">
+                                <span class="mobile-ticket-id">#12843</span>
+                                <span class="badge badge-secondary mobile-ticket-status"><i class="fas fa-times-circle"></i> Closed</span>
+                            </div>
+                            <div class="mobile-ticket-subject">Question about team member permissions</div>
+                            <div class="mobile-ticket-meta">
+                                <span class="badge badge-warning">Account</span>
+                                <span class="badge badge-success">Low</span>
+                            </div>
+                            <div class="mobile-ticket-footer">
+                                <span class="mobile-ticket-time"><i class="fas fa-clock"></i> 1 week ago</span>
+                                <button class="btn-sm btn-primary" onclick="event.stopPropagation(); openTicket('12843')">
+                                    <i class="fas fa-eye"></i> View
+                                </button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 
                 <div class="pagination">
@@ -532,9 +626,97 @@
             gap: 20px;
         }
         
+        /* Mobile Responsive - Ticket Table */
         @media (max-width: 768px) {
             .support-form .form-row {
                 grid-template-columns: 1fr;
+            }
+            
+            /* Hide table on mobile and show card layout */
+            .table-container {
+                overflow: visible;
+            }
+            
+            .tasks-table {
+                display: none;
+            }
+            
+            /* Mobile Ticket Cards */
+            .mobile-tickets-container {
+                display: flex;
+                flex-direction: column;
+                gap: 12px;
+            }
+            
+            .mobile-ticket-card {
+                background: white;
+                border: 1px solid #E5E7EB;
+                border-radius: 12px;
+                padding: 16px;
+                cursor: pointer;
+                transition: all 0.2s ease;
+            }
+            
+            .mobile-ticket-card:hover {
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+                transform: translateY(-2px);
+            }
+            
+            .mobile-ticket-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: flex-start;
+                margin-bottom: 12px;
+            }
+            
+            .mobile-ticket-id {
+                font-weight: 700;
+                font-size: 14px;
+                color: #667eea;
+            }
+            
+            .mobile-ticket-status {
+                flex-shrink: 0;
+            }
+            
+            .mobile-ticket-subject {
+                font-weight: 600;
+                font-size: 14px;
+                color: #111827;
+                margin-bottom: 10px;
+                line-height: 1.4;
+            }
+            
+            .mobile-ticket-meta {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 8px;
+                margin-bottom: 12px;
+            }
+            
+            .mobile-ticket-meta .badge {
+                font-size: 11px;
+                padding: 4px 8px;
+            }
+            
+            .mobile-ticket-footer {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding-top: 12px;
+                border-top: 1px solid #F3F4F6;
+            }
+            
+            .mobile-ticket-time {
+                font-size: 12px;
+                color: #6B7280;
+            }
+        }
+        
+        /* Desktop - Hide mobile cards */
+        @media (min-width: 769px) {
+            .mobile-tickets-container {
+                display: none;
             }
         }
     </style>
