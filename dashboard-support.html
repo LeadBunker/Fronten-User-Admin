@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Support - Leadbunker Dashboard</title>
+    <title>Support Ticket #12847 - Leadbunker Dashboard</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
     <link rel="stylesheet" href="css/dashboard.css">
     <link rel="stylesheet" href="css/modals.css">
+    <link rel="stylesheet" href="css/support.css">
 </head>
 <body>
     <!-- Mobile Header -->
@@ -15,7 +16,7 @@
         <button class="mobile-menu-btn" onclick="toggleSidebar()">
             <i class="fas fa-bars"></i>
         </button>
-        <h1 class="mobile-page-title">Support</h1>
+        <h1 class="mobile-page-title">Support Ticket</h1>
         <a href="dashboard-profile.html" class="mobile-profile-link">
             <img src="https://ui-avatars.com/api/?name=John+Doe&background=667eea&color=fff&size=80" alt="Profile" class="mobile-profile-img">
         </a>
@@ -59,244 +60,268 @@
 
         <!-- Main Content -->
         <main class="main-content">
-            <header class="main-header">
-                <h1>Support</h1>
-                 <!-- NOTIFICATION BELL TEMPLATE - Copy this to replace basic bell/search buttons -->
-<div class="header-actions">
-    <!-- Notification Bell -->
-    <div class="notification-wrapper">
-        <button class="icon-btn notification-bell" id="userNotificationBell">
-            <i class="fas fa-bell"></i>
-            <span class="notification-badge">5</span>
-        </button>
-        
-        <!-- User Notification Dropdown -->
-        <div class="notification-dropdown" id="userNotificationDropdown">
-            <div class="notification-header">
-                <h3>Notifications</h3>
-                <div class="notification-actions">
-                    <button class="mark-all-read" onclick="markAllNotificationsRead()">
-                        <i class="fas fa-check-double"></i> Mark all read
+            <!-- Support Ticket Header -->
+            <div class="support-ticket-header">
+                <div class="ticket-header-top">
+                    <button class="back-btn" onclick="window.location.href='dashboard-support-list.html'">
+                        <i class="fas fa-arrow-left"></i> Back to Tickets
                     </button>
-                </div>
-            </div>
-            
-            <!-- Notification Tabs -->
-            <div class="notification-tabs">
-                <button class="tab-btn active" data-tab="all" onclick="switchNotificationTab('all')">
-                    All <span class="tab-count">5</span>
-                </button>
-                <button class="tab-btn" data-tab="important" onclick="switchNotificationTab('important')">
-                    Important <span class="tab-count urgent">2</span>
-                </button>
-                <button class="tab-btn" data-tab="unread" onclick="switchNotificationTab('unread')">
-                    Unread <span class="tab-count">5</span>
-                </button>
-            </div>
-            
-            <!-- Notifications List -->
-            <div class="notifications-list" id="userNotificationsList">
-                
-                <!-- Important Notifications -->
-                <div class="notification-item unread urgent" data-priority="important">
-                    <div class="notification-icon urgent">
-                        <i class="fas fa-coins"></i>
+                    <div class="ticket-actions">
+                        <button class="btn-sm btn-secondary" onclick="showCloseTicketModal()">
+                            <i class="fas fa-check-circle"></i> Close Ticket
+                        </button>
                     </div>
-                    <div class="notification-content">
-                        <div class="notification-title">Crypto Deposit Received!</div>
-                        <div class="notification-desc">0.05 BTC deposited to your wallet</div>
-                        <div class="notification-meta">
-                            <span class="notification-time"><i class="fas fa-clock"></i> 10 mins ago</span>
-                            <a href="dashboard-transactions.html" class="notification-link">View Transaction →</a>
+                </div>
+                
+                <div class="ticket-header-main">
+                    <div class="ticket-info-left">
+                        <h1 class="ticket-title">
+                            <i class="fas fa-ticket-alt"></i>
+                            Cannot complete payment with Bitcoin
+                        </h1>
+                        <div class="ticket-meta">
+                            <span class="ticket-id">#12847</span>
+                            <span class="ticket-divider">•</span>
+                            <span class="ticket-category"><i class="fas fa-tag"></i> Billing Question</span>
+                            <span class="ticket-divider">•</span>
+                            <span class="ticket-date"><i class="fas fa-calendar"></i> Nov 15, 2024, 10:24 AM</span>
                         </div>
                     </div>
-                    <button class="notification-mark-read" onclick="markNotificationRead(this)" title="Mark as read">
-                        <i class="fas fa-check"></i>
-                    </button>
+                    <div class="ticket-info-right">
+                        <span class="badge badge-warning ticket-status">
+                            <i class="fas fa-circle-notch fa-spin"></i> In Progress
+                        </span>
+                        <span class="badge badge-info ticket-priority">
+                            <i class="fas fa-flag"></i> High Priority
+                        </span>
+                    </div>
                 </div>
                 
-                <div class="notification-item unread urgent" data-priority="important">
-                    <div class="notification-icon urgent">
-                        <i class="fas fa-gem"></i>
+                <!-- Assigned Agent -->
+                <div class="assigned-agent">
+                    <div class="agent-avatar">
+                        <img src="https://ui-avatars.com/api/?name=Sarah+Johnson&background=10B981&color=fff&size=80" alt="Sarah Johnson">
+                        <span class="agent-status-dot"></span>
                     </div>
-                    <div class="notification-content">
-                        <div class="notification-title">Low Credits Warning</div>
-                        <div class="notification-desc">You have 150 credits remaining</div>
-                        <div class="notification-meta">
-                            <span class="notification-time"><i class="fas fa-clock"></i> 2 hours ago</span>
-                            <a href="dashboard-credits.html" class="notification-link">Buy Credits →</a>
-                        </div>
+                    <div class="agent-info">
+                        <div class="agent-name">Sarah Johnson</div>
+                        <div class="agent-role">Senior Support Agent</div>
                     </div>
-                    <button class="notification-mark-read" onclick="markNotificationRead(this)" title="Mark as read">
-                        <i class="fas fa-check"></i>
-                    </button>
-                </div>
-                
-                <!-- Regular Notifications -->
-                <div class="notification-item unread" data-priority="normal">
-                    <div class="notification-icon medium">
-                        <i class="fas fa-check-circle"></i>
-                    </div>
-                    <div class="notification-content">
-                        <div class="notification-title">Extraction Completed</div>
-                        <div class="notification-desc">example.com - 89 emails, 23 phones extracted</div>
-                        <div class="notification-meta">
-                            <span class="notification-time"><i class="fas fa-clock"></i> 3 hours ago</span>
-                            <a href="dashboard-tasks.html" class="notification-link">View Results →</a>
-                        </div>
-                    </div>
-                    <button class="notification-mark-read" onclick="markNotificationRead(this)" title="Mark as read">
-                        <i class="fas fa-check"></i>
-                    </button>
-                </div>
-                
-                <div class="notification-item unread" data-priority="normal">
-                    <div class="notification-icon low">
-                        <i class="fas fa-gift"></i>
-                    </div>
-                    <div class="notification-content">
-                        <div class="notification-title">Welcome Bonus Applied!</div>
-                        <div class="notification-desc">100 free credits added to your account</div>
-                        <div class="notification-meta">
-                            <span class="notification-time"><i class="fas fa-clock"></i> 1 day ago</span>
-                            <a href="dashboard-credits.html" class="notification-link">View Credits →</a>
-                        </div>
-                    </div>
-                    <button class="notification-mark-read" onclick="markNotificationRead(this)" title="Mark as read">
-                        <i class="fas fa-check"></i>
-                    </button>
-                </div>
-                
-                <div class="notification-item unread" data-priority="normal">
-                    <div class="notification-icon low">
-                        <i class="fas fa-bell"></i>
-                    </div>
-                    <div class="notification-content">
-                        <div class="notification-title">New Feature Available</div>
-                        <div class="notification-desc">Try our improved email validation system</div>
-                        <div class="notification-meta">
-                            <span class="notification-time"><i class="fas fa-clock"></i> 2 days ago</span>
-                            <a href="dashboard-new-extraction.html" class="notification-link">Try Now →</a>
-                        </div>
-                    </div>
-                    <button class="notification-mark-read" onclick="markNotificationRead(this)" title="Mark as read">
-                        <i class="fas fa-check"></i>
-                    </button>
-                </div>
-                
-            </div>
-            
-            <!-- Notification Footer -->
-            <div class="notification-footer">
-                <a href="#" class="view-all-notifications">View All Notifications</a>
-            </div>
-        </div>
-    </div>
-    
-    <!-- Search Button -->
-    <button class="icon-btn" onclick="toggleSearch()" title="Search">
-        <i class="fas fa-search"></i>
-    </button>
-    
-    <!-- User Profile -->
-    <div class="user-profile">
-        <div class="user-info">
-            <span class="welcome-text">Welcome back</span>
-            <span class="user-name">John Doe</span>
-        </div>
-        <img src="https://i.pravatar.cc/40?u=john" alt="User Avatar" class="user-avatar">
-    </div>
-</div>
-            </header>
-
-            <!-- Quick Help -->
-            <div class="stats-cards">
-                <div class="stat-card">
-                    <div class="stat-icon" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
-                        <i class="fas fa-book"></i>
-                    </div>
-                    <div class="stat-content">
-                        <div class="stat-value">45+</div>
-                        <div class="stat-label">Articles</div>
-                    </div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-icon" style="background: linear-gradient(135deg, #4ade80 0%, #22c55e 100%);">
-                        <i class="fas fa-clock"></i>
-                    </div>
-                    <div class="stat-content">
-                        <div class="stat-value">&lt; 2h</div>
-                        <div class="stat-label">Avg Response</div>
-                    </div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-icon" style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);">
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <div class="stat-content">
-                        <div class="stat-value">4.9/5</div>
-                        <div class="stat-label">Satisfaction</div>
-                    </div>
+                    <span class="badge badge-success">
+                        <i class="fas fa-circle"></i> Online
+                    </span>
                 </div>
             </div>
 
-            <!-- Submit Ticket -->
-            <section class="card">
-                <div class="card-header">
-                    <div>
-                        <h2><i class="fas fa-ticket-alt"></i> Submit Support Ticket</h2>
-                        <p class="card-subtitle">Get help from our support team</p>
+            <!-- Support Conversation -->
+            <section class="support-conversation-container">
+                <div class="conversation-thread" id="conversationThread">
+                    
+                    <!-- User's Initial Message -->
+                    <div class="message-item user-message">
+                        <div class="message-avatar">
+                            <img src="https://ui-avatars.com/api/?name=John+Doe&background=667eea&color=fff&size=80" alt="John Doe">
+                        </div>
+                        <div class="message-content">
+                            <div class="message-header">
+                                <span class="message-author">You</span>
+                                <span class="message-time"><i class="fas fa-clock"></i> Nov 15, 2024, 10:24 AM</span>
+                            </div>
+                            <div class="message-body">
+                                <p>Hello support team,</p>
+                                <p>I'm trying to purchase credits using Bitcoin but the payment keeps failing. I've tried three times already and each time it says "Payment processing error" after I send the BTC to the provided address.</p>
+                                <p>I sent 0.0015 BTC to the wallet address: <code>bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh</code></p>
+                                <p>Transaction ID: <code>7a5c3d9f8e2b1a4d6c9e8f7b5a3d2c1e9f8d7c6b5a4d3c2e1f9d8c7b6a5d4c3e</code></p>
+                                <p>Can you please help me complete this transaction? I really need the credits urgently for a project deadline.</p>
+                                <p>Thanks!</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Agent Joined Notification -->
+                    <div class="system-notification">
+                        <i class="fas fa-user-check"></i>
+                        <span><strong>Sarah Johnson</strong> joined the conversation</span>
+                        <span class="notification-time">10:26 AM</span>
+                    </div>
+
+                    <!-- Agent Response 1 -->
+                    <div class="message-item agent-message">
+                        <div class="message-avatar">
+                            <img src="https://ui-avatars.com/api/?name=Sarah+Johnson&background=10B981&color=fff&size=80" alt="Sarah Johnson">
+                            <span class="agent-badge">
+                                <i class="fas fa-shield-alt"></i>
+                            </span>
+                        </div>
+                        <div class="message-content">
+                            <div class="message-header">
+                                <span class="message-author">Sarah Johnson</span>
+                                <span class="agent-title">Senior Support Agent</span>
+                                <span class="message-time"><i class="fas fa-clock"></i> Nov 15, 2024, 10:28 AM</span>
+                            </div>
+                            <div class="message-body">
+                                <p>Hi John! 👋</p>
+                                <p>Thank you for reaching out to us. I'm Sarah and I'll be happy to help you resolve this Bitcoin payment issue.</p>
+                                <p>I can see your transaction in our system. Let me check the blockchain status for you right now.</p>
+                                <p>Please give me 2-3 minutes to investigate this.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Typing Indicator (hidden by default) -->
+                    <div class="typing-indicator" id="typingIndicator" style="display: none;">
+                        <div class="message-avatar">
+                            <img src="https://ui-avatars.com/api/?name=Sarah+Johnson&background=10B981&color=fff&size=80" alt="Sarah Johnson">
+                        </div>
+                        <div class="typing-dots">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                        <span class="typing-text">Sarah is typing...</span>
+                    </div>
+
+                    <!-- Agent Response 2 -->
+                    <div class="message-item agent-message">
+                        <div class="message-avatar">
+                            <img src="https://ui-avatars.com/api/?name=Sarah+Johnson&background=10B981&color=fff&size=80" alt="Sarah Johnson">
+                            <span class="agent-badge">
+                                <i class="fas fa-shield-alt"></i>
+                            </span>
+                        </div>
+                        <div class="message-content">
+                            <div class="message-header">
+                                <span class="message-author">Sarah Johnson</span>
+                                <span class="agent-title">Senior Support Agent</span>
+                                <span class="message-time"><i class="fas fa-clock"></i> Nov 15, 2024, 10:31 AM</span>
+                            </div>
+                            <div class="message-body">
+                                <p>Good news! ✅ I've found your transaction on the blockchain.</p>
+                                <div class="info-box success">
+                                    <div class="info-box-icon"><i class="fas fa-check-circle"></i></div>
+                                    <div class="info-box-content">
+                                        <div class="info-box-title">Transaction Confirmed</div>
+                                        <div class="info-box-text">
+                                            <strong>Amount:</strong> 0.0015 BTC ($65.00)<br>
+                                            <strong>Confirmations:</strong> 3/3<br>
+                                            <strong>Status:</strong> Confirmed
+                                        </div>
+                                    </div>
+                                </div>
+                                <p>The issue was on our end - there was a temporary delay in our payment processor syncing with the blockchain. I've manually credited your account with <strong>1,000 credits</strong> (the amount you were purchasing).</p>
+                                <p>As an apology for the inconvenience, I've also added an extra <strong>100 bonus credits</strong> to your account. 🎁</p>
+                                <p>You should see the credits in your dashboard now. Can you please refresh your page and confirm?</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- User Response -->
+                    <div class="message-item user-message">
+                        <div class="message-avatar">
+                            <img src="https://ui-avatars.com/api/?name=John+Doe&background=667eea&color=fff&size=80" alt="John Doe">
+                        </div>
+                        <div class="message-content">
+                            <div class="message-header">
+                                <span class="message-author">You</span>
+                                <span class="message-time"><i class="fas fa-clock"></i> Nov 15, 2024, 10:35 AM</span>
+                            </div>
+                            <div class="message-body">
+                                <p>Wow, that was fast! 🚀</p>
+                                <p>Yes, I can confirm the credits are now showing in my account. I see 1,100 credits total.</p>
+                                <p>Thank you so much for the quick resolution and the bonus credits! Really appreciate it. You guys have excellent support!</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Agent Final Response -->
+                    <div class="message-item agent-message">
+                        <div class="message-avatar">
+                            <img src="https://ui-avatars.com/api/?name=Sarah+Johnson&background=10B981&color=fff&size=80" alt="Sarah Johnson">
+                            <span class="agent-badge">
+                                <i class="fas fa-shield-alt"></i>
+                            </span>
+                        </div>
+                        <div class="message-content">
+                            <div class="message-header">
+                                <span class="message-author">Sarah Johnson</span>
+                                <span class="agent-title">Senior Support Agent</span>
+                                <span class="message-time"><i class="fas fa-clock"></i> Nov 15, 2024, 10:37 AM</span>
+                            </div>
+                            <div class="message-body">
+                                <p>You're very welcome, John! 😊</p>
+                                <p>I'm glad we could resolve this quickly for you. If you encounter any other issues or have any questions, please don't hesitate to reach out.</p>
+                                <p>We've also made improvements to our payment processor to prevent this from happening in the future.</p>
+                                <p>Good luck with your project! 🎯</p>
+                                <p>Feel free to close this ticket when you're satisfied, or let me know if you need anything else.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Reply Box -->
+                <div class="conversation-reply-box">
+                    <div class="reply-box-header">
+                        <div class="attachment-options">
+                            <button class="attachment-btn" title="Attach file">
+                                <i class="fas fa-paperclip"></i> Attach File
+                            </button>
+                            <button class="attachment-btn" title="Add screenshot">
+                                <i class="fas fa-image"></i> Screenshot
+                            </button>
+                        </div>
+                        <div class="formatting-options">
+                            <button class="format-btn" title="Bold"><i class="fas fa-bold"></i></button>
+                            <button class="format-btn" title="Italic"><i class="fas fa-italic"></i></button>
+                            <button class="format-btn" title="Link"><i class="fas fa-link"></i></button>
+                            <button class="format-btn" title="Code"><i class="fas fa-code"></i></button>
+                        </div>
+                    </div>
+                    <textarea 
+                        class="reply-textarea" 
+                        id="replyTextarea" 
+                        placeholder="Type your message here..." 
+                        rows="4"
+                    ></textarea>
+                    <div class="reply-box-footer">
+                        <div class="reply-info">
+                            <i class="fas fa-info-circle"></i>
+                            <span>Press <kbd>Enter</kbd> to send, <kbd>Shift + Enter</kbd> for new line</span>
+                        </div>
+                        <div class="reply-actions">
+                            <button class="btn btn-secondary" onclick="clearReply()">
+                                <i class="fas fa-times"></i> Clear
+                            </button>
+                            <button class="btn btn-primary" onclick="sendReply()">
+                                <i class="fas fa-paper-plane"></i> Send Reply
+                            </button>
+                        </div>
                     </div>
                 </div>
-                
-                <form class="support-form">
-                    <div class="form-group">
-                        <label><i class="fas fa-tag"></i> Subject</label>
-                        <input type="text" class="form-input" placeholder="Brief description of your issue">
-                    </div>
-                    <div class="form-group">
-                        <label><i class="fas fa-list"></i> Category</label>
-                        <select class="form-select">
-                            <option>Technical Issue</option>
-                            <option>Billing Question</option>
-                            <option>Feature Request</option>
-                            <option>Account Help</option>
-                            <option>Other</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label><i class="fas fa-comment"></i> Description</label>
-                        <textarea class="form-input" rows="6" placeholder="Provide detailed information about your request..."></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary">
-                        <i class="fas fa-paper-plane"></i> Submit Ticket
-                    </button>
-                </form>
             </section>
 
-            <!-- FAQ -->
+            <!-- Quick Actions -->
             <section class="card">
                 <div class="card-header">
-                    <h3><i class="fas fa-question-circle"></i> Frequently Asked Questions</h3>
+                    <h3><i class="fas fa-bolt"></i> Quick Actions</h3>
                 </div>
-                
-                <div class="faq-list">
-                    <div class="faq-item">
-                        <h4>How do I start a new extraction?</h4>
-                        <p>Click on "New Extraction" in the sidebar, enter the target URL, select extraction type and depth level, then click "Start Extraction".</p>
-                    </div>
-                    <div class="faq-item">
-                        <h4>How are credits calculated?</h4>
-                        <p>Credits are based on extraction depth and type. Level 1 (Homepage) costs 5 credits, Level 2 costs 10 credits, and Level 3 costs 20 credits.</p>
-                    </div>
-                    <div class="faq-item">
-                        <h4>Can I export my data?</h4>
-                        <p>Yes! All extracted data can be exported to CSV format from the Email Lists and Phone Lists pages.</p>
-                    </div>
-                    <div class="faq-item">
-                        <h4>How do I upgrade my plan?</h4>
-                        <p>Go to Credits & Billing page and select the plan that fits your needs. Changes take effect immediately.</p>
-                    </div>
+                <div class="quick-actions-grid">
+                    <button class="quick-action-btn" onclick="showCloseTicketModal()">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Mark as Resolved</span>
+                    </button>
+                    <button class="quick-action-btn" onclick="alert('📧 Email transcript will be sent to your email')">
+                        <i class="fas fa-envelope"></i>
+                        <span>Email Transcript</span>
+                    </button>
+                    <button class="quick-action-btn" onclick="alert('⭐ Thank you for your feedback!')">
+                        <i class="fas fa-star"></i>
+                        <span>Rate Support</span>
+                    </button>
+                    <button class="quick-action-btn" onclick="window.location.href='dashboard-support-list.html'">
+                        <i class="fas fa-list"></i>
+                        <span>View All Tickets</span>
+                    </button>
                 </div>
             </section>
         </main>
@@ -305,14 +330,17 @@
         <footer class="dashboard-footer">
             <div class="footer-content">
                 <div class="footer-copyright">
-                    &copy; <span id="currentYear"></span> <strong>Leadbunker</strong>. All rights reserved.
+                    &copy; <span id="currentYear"></span> <strong>Leadbunker</strong>. All rights reserved. <span style="opacity: 0.7;">v1.0.0</span>
                 </div>
             </div>
         </footer>
     </div>
+
+    <script src="js/modals.js"></script>
+    <script src="js/dashboard.js"></script>
     <script>
         // Set current year in footer
-        document.getElementById(\'currentYear\').textContent = new Date().getFullYear();
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
         
         // Mobile Menu Toggle
         function toggleSidebar() {
@@ -321,8 +349,188 @@
             sidebar.classList.toggle('active');
             overlay.classList.toggle('active');
         }
+
+        // Send Reply Function
+        function sendReply() {
+            const textarea = document.getElementById('replyTextarea');
+            const message = textarea.value.trim();
+            
+            if (message === '') {
+                alert('⚠️ Please type a message before sending.');
+                return;
+            }
+            
+            // Show typing indicator
+            const typingIndicator = document.getElementById('typingIndicator');
+            typingIndicator.style.display = 'flex';
+            
+            // Scroll to bottom
+            const thread = document.getElementById('conversationThread');
+            thread.scrollTop = thread.scrollHeight;
+            
+            // Simulate sending (in production, this would be an AJAX call)
+            setTimeout(() => {
+                typingIndicator.style.display = 'none';
+                
+                // Add message to conversation
+                const now = new Date();
+                const timeStr = now.toLocaleString('en-US', { 
+                    month: 'short', 
+                    day: 'numeric', 
+                    year: 'numeric', 
+                    hour: 'numeric', 
+                    minute: '2-digit', 
+                    hour12: true 
+                });
+                
+                const messageHTML = `
+                    <div class="message-item user-message">
+                        <div class="message-avatar">
+                            <img src="https://ui-avatars.com/api/?name=John+Doe&background=667eea&color=fff&size=80" alt="John Doe">
+                        </div>
+                        <div class="message-content">
+                            <div class="message-header">
+                                <span class="message-author">You</span>
+                                <span class="message-time"><i class="fas fa-clock"></i> ${timeStr}</span>
+                            </div>
+                            <div class="message-body">
+                                <p>${message.replace(/\n/g, '<br>')}</p>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                
+                thread.insertAdjacentHTML('beforeend', messageHTML);
+                
+                // Clear textarea
+                textarea.value = '';
+                
+                // Scroll to bottom
+                thread.scrollTop = thread.scrollHeight;
+                
+                // Success notification
+                alert('✅ Message sent successfully!');
+            }, 1000);
+        }
+
+        // Clear Reply
+        function clearReply() {
+            document.getElementById('replyTextarea').value = '';
+        }
+
+        // Close Ticket Modal
+        function showCloseTicketModal() {
+            const modalId = 'closeTicketModal';
+            
+            const content = `
+                <div class="modal-container">
+                    <div class="modal-header" style="background: linear-gradient(135deg, #10B981 0%, #059669 100%);">
+                        <h2 style="color: white;"><i class="fas fa-check-circle"></i> Close Support Ticket</h2>
+                        <p style="color: rgba(255,255,255,0.9);">Mark this ticket as resolved</p>
+                        <button class="modal-close" onclick="ModalSystem.close('${modalId}')" style="color: white;">×</button>
+                    </div>
+                    
+                    <div class="modal-body">
+                        <div class="modal-alert success">
+                            <div class="modal-alert-icon"><i class="fas fa-check-circle"></i></div>
+                            <div class="modal-alert-content">
+                                <div class="modal-alert-title">Ticket Resolution</div>
+                                <div class="modal-alert-text">Closing this ticket will mark it as resolved. You can always reopen it later if needed.</div>
+                            </div>
+                        </div>
+                        
+                        <div class="modal-section">
+                            <label style="display: block; font-weight: 600; margin-bottom: 8px; color: #374151;">
+                                <i class="fas fa-star"></i> How satisfied are you with this support?
+                            </label>
+                            <div style="display: flex; gap: 10px; justify-content: center; margin: 20px 0;">
+                                <button class="rating-btn" onclick="selectRating(1)" data-rating="1">⭐</button>
+                                <button class="rating-btn" onclick="selectRating(2)" data-rating="2">⭐</button>
+                                <button class="rating-btn" onclick="selectRating(3)" data-rating="3">⭐</button>
+                                <button class="rating-btn" onclick="selectRating(4)" data-rating="4">⭐</button>
+                                <button class="rating-btn" onclick="selectRating(5)" data-rating="5">⭐</button>
+                            </div>
+                        </div>
+                        
+                        <div class="modal-section">
+                            <label style="display: block; font-weight: 600; margin-bottom: 8px; color: #374151;">
+                                Additional Feedback (Optional)
+                            </label>
+                            <textarea id="feedbackText" placeholder="Share your experience with us..." style="width: 100%; padding: 12px; border: 2px solid #E5E7EB; border-radius: 10px; font-size: 14px; outline: none; resize: vertical; min-height: 80px;"></textarea>
+                        </div>
+                    </div>
+                    
+                    <div class="modal-actions">
+                        <button class="modal-btn modal-btn-secondary" onclick="ModalSystem.close('${modalId}')">
+                            <i class="fas fa-times"></i> Cancel
+                        </button>
+                        <button class="modal-btn modal-btn-success" onclick="confirmCloseTicket()">
+                            <i class="fas fa-check-circle"></i> Close Ticket
+                        </button>
+                    </div>
+                </div>
+            `;
+            
+            ModalSystem.create(modalId, content);
+            ModalSystem.open(modalId);
+        }
+
+        function selectRating(rating) {
+            const buttons = document.querySelectorAll('.rating-btn');
+            buttons.forEach((btn, index) => {
+                if (index < rating) {
+                    btn.style.opacity = '1';
+                    btn.style.transform = 'scale(1.2)';
+                } else {
+                    btn.style.opacity = '0.3';
+                    btn.style.transform = 'scale(1)';
+                }
+            });
+        }
+
+        function confirmCloseTicket() {
+            ModalSystem.close('closeTicketModal');
+            alert('✅ Ticket Closed!\n\nThank you for your feedback. The ticket has been marked as resolved.');
+            setTimeout(() => {
+                window.location.href = 'dashboard.html';
+            }, 2000);
+        }
+
+        // Enter to send
+        document.addEventListener('DOMContentLoaded', () => {
+            const textarea = document.getElementById('replyTextarea');
+            textarea.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' && !e.shiftKey) {
+                    e.preventDefault();
+                    sendReply();
+                }
+            });
+        });
     </script>
-    <script src="js/modals.js"></script>
-    <script src="js/dashboard.js"></script>
+    
+    <style>
+        .rating-btn {
+            font-size: 32px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            opacity: 0.3;
+        }
+        
+        .rating-btn:hover {
+            transform: scale(1.3);
+            opacity: 1;
+        }
+        
+        kbd {
+            background: #F3F4F6;
+            border: 1px solid #D1D5DB;
+            border-radius: 4px;
+            padding: 2px 6px;
+            font-size: 12px;
+            font-family: monospace;
+        }
+    </style>
 </body>
 </html>
