@@ -1145,6 +1145,38 @@ div[style*="overflow: auto"]::-webkit-scrollbar {
         align-items: center;
     }
     
+    /* Team Members responsive */
+    .team-member-item {
+        flex-direction: column;
+        align-items: flex-start !important;
+        gap: 12px;
+        padding: 16px;
+    }
+    
+    .member-avatar {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .member-info {
+        width: 100%;
+    }
+    
+    .team-member-item .badge {
+        align-self: flex-start;
+    }
+    
+    .member-actions {
+        width: 100%;
+        display: flex;
+        gap: 8px;
+    }
+    
+    .member-actions .btn-sm {
+        flex: 1;
+        justify-content: center;
+    }
+    
     .pagination {
         flex-direction: column;
         gap: 12px;
@@ -3217,6 +3249,28 @@ div[style*="overflow: auto"]::-webkit-scrollbar {
     .key-actions .btn-sm {
         width: 100%;
         flex: none;
+    }
+    
+    /* Team Members - Stack buttons vertically */
+    .member-actions {
+        flex-direction: column;
+    }
+    
+    .member-actions .btn-sm {
+        width: 100%;
+    }
+    
+    .member-avatar {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .member-email {
+        font-size: 11px;
+    }
+    
+    .member-meta {
+        font-size: 10px;
     }
     
     /* Stats cards */

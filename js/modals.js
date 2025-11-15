@@ -700,6 +700,167 @@ function copyAPIKeyToClipboard() {
     }
 }
 
+// Edit API Key Modal
+function showEditAPIKeyModal(keyId, keyName) {
+    const modalId = 'editAPIKeyModal';
+    
+    const content = `
+        <div class="modal-container">
+            <div class="modal-header">
+                <h2><i class="fas fa-edit"></i> Edit API Key</h2>
+                <p>Update API key settings and permissions</p>
+                <button class="modal-close" onclick="ModalSystem.close('${modalId}')">×</button>
+            </div>
+            
+            <div class="modal-body">
+                <div class="modal-section">
+                    <label style="display: block; font-weight: 600; margin-bottom: 8px; color: #374151;">Key Name</label>
+                    <input type="text" id="editKeyName" value="${keyName}" style="width: 100%; padding: 12px; border: 2px solid #E5E7EB; border-radius: 10px; font-size: 14px; outline: none; transition: border 0.2s;" onfocus="this.style.borderColor='#667eea'" onblur="this.style.borderColor='#E5E7EB'">
+                </div>
+                
+                <div class="modal-section">
+                    <label style="display: block; font-weight: 600; margin-bottom: 8px; color: #374151;">Status</label>
+                    <select id="editKeyStatus" style="width: 100%; padding: 12px; border: 2px solid #E5E7EB; border-radius: 10px; font-size: 14px; outline: none;">
+                        <option value="active" selected>Active</option>
+                        <option value="inactive">Inactive</option>
+                    </select>
+                </div>
+                
+                <div class="modal-section">
+                    <label style="display: block; font-weight: 600; margin-bottom: 8px; color: #374151;">Permissions</label>
+                    <div style="display: flex; flex-direction: column; gap: 10px;">
+                        <label style="display: flex; align-items: center; gap: 10px; padding: 12px; background: #F9FAFB; border-radius: 8px; cursor: pointer;">
+                            <input type="checkbox" checked style="width: 18px; height: 18px;">
+                            <span style="font-size: 14px;">Read Access</span>
+                        </label>
+                        <label style="display: flex; align-items: center; gap: 10px; padding: 12px; background: #F9FAFB; border-radius: 8px; cursor: pointer;">
+                            <input type="checkbox" checked style="width: 18px; height: 18px;">
+                            <span style="font-size: 14px;">Write Access</span>
+                        </label>
+                        <label style="display: flex; align-items: center; gap: 10px; padding: 12px; background: #F9FAFB; border-radius: 8px; cursor: pointer;">
+                            <input type="checkbox" style="width: 18px; height: 18px;">
+                            <span style="font-size: 14px;">Admin Access</span>
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="modal-alert info">
+                    <div class="modal-alert-icon"><i class="fas fa-info-circle"></i></div>
+                    <div class="modal-alert-content">
+                        <div class="modal-alert-title">Note</div>
+                        <div class="modal-alert-text">Changes will take effect immediately. Your applications using this key may need to be restarted.</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="modal-actions">
+                <button class="modal-btn modal-btn-secondary" onclick="ModalSystem.close('${modalId}')">
+                    <i class="fas fa-times"></i> Cancel
+                </button>
+                <button class="modal-btn modal-btn-primary" onclick="confirmEditAPIKey('${keyId}')">
+                    <i class="fas fa-save"></i> Save Changes
+                </button>
+            </div>
+        </div>
+    `;
+    
+    ModalSystem.create(modalId, content);
+    ModalSystem.open(modalId);
+}
+
+function confirmEditAPIKey(keyId) {
+    const keyName = document.getElementById('editKeyName').value;
+    ModalSystem.close('editAPIKeyModal');
+    alert(`✅ API Key Updated!\n\nKey ID: ${keyId}\nNew Name: ${keyName}\n\nChanges have been saved successfully.`);
+}
+
+// Revoke API Key Modal
+function showRevokeAPIKeyModal(keyId, keyName) {
+    const modalId = 'revokeAPIKeyModal';
+    
+    const content = `
+        <div class="modal-container">
+            <div class="modal-header" style="background: linear-gradient(135deg, #EF4444 0%, #DC2626 100%);">
+                <h2 style="color: white;"><i class="fas fa-exclamation-triangle"></i> Revoke API Key</h2>
+                <p style="color: rgba(255,255,255,0.9);">This action cannot be undone</p>
+                <button class="modal-close" onclick="ModalSystem.close('${modalId}')" style="color: white;">×</button>
+            </div>
+            
+            <div class="modal-body">
+                <div class="modal-alert danger">
+                    <div class="modal-alert-icon"><i class="fas fa-ban"></i></div>
+                    <div class="modal-alert-content">
+                        <div class="modal-alert-title">Warning: Permanent Action</div>
+                        <div class="modal-alert-text">Revoking this API key will immediately revoke access for all applications using it. This action is permanent and cannot be reversed.</div>
+                    </div>
+                </div>
+                
+                <div class="modal-section">
+                    <div class="modal-info-grid">
+                        <div class="modal-info-item">
+                            <div class="modal-info-label">Key Name</div>
+                            <div class="modal-info-value">${keyName}</div>
+                        </div>
+                        <div class="modal-info-item">
+                            <div class="modal-info-label">Key ID</div>
+                            <div class="modal-info-value">${keyId}</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="modal-section">
+                    <label style="display: block; font-weight: 600; margin-bottom: 8px; color: #374151;">
+                        Type "REVOKE" to confirm
+                    </label>
+                    <input type="text" id="revokeConfirmText" placeholder="Type REVOKE to confirm" style="width: 100%; padding: 12px; border: 2px solid #E5E7EB; border-radius: 10px; font-size: 14px; outline: none; transition: border 0.2s;" onfocus="this.style.borderColor='#EF4444'" onblur="this.style.borderColor='#E5E7EB'">
+                </div>
+                
+                <div class="modal-alert warning">
+                    <div class="modal-alert-icon"><i class="fas fa-exclamation-circle"></i></div>
+                    <div class="modal-alert-content">
+                        <div class="modal-alert-title">What happens next?</div>
+                        <div class="modal-alert-text">
+                            • All API requests using this key will fail immediately<br>
+                            • Applications using this key will lose access<br>
+                            • The key will be archived in your account history<br>
+                            • You can generate a new key at any time
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="modal-actions">
+                <button class="modal-btn modal-btn-secondary" onclick="ModalSystem.close('${modalId}')">
+                    <i class="fas fa-times"></i> Cancel
+                </button>
+                <button class="modal-btn modal-btn-danger" onclick="confirmRevokeAPIKey('${keyId}', '${keyName}')">
+                    <i class="fas fa-ban"></i> Revoke API Key
+                </button>
+            </div>
+        </div>
+    `;
+    
+    ModalSystem.create(modalId, content);
+    ModalSystem.open(modalId);
+}
+
+function confirmRevokeAPIKey(keyId, keyName) {
+    const confirmText = document.getElementById('revokeConfirmText').value;
+    
+    if (confirmText !== 'REVOKE') {
+        alert('❌ Please type "REVOKE" to confirm this action.');
+        return;
+    }
+    
+    ModalSystem.close('revokeAPIKeyModal');
+    alert(`✅ API Key Revoked!\n\nKey: ${keyName}\nID: ${keyId}\n\nThe key has been permanently revoked and can no longer be used.`);
+    
+    // In production, you would refresh the page or update the UI
+    setTimeout(() => {
+        window.location.reload();
+    }, 2000);
+}
+
 // View Transaction Modal
 function showViewTransactionModal(txnId) {
     const modalId = 'viewTransactionModal';
