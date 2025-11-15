@@ -414,9 +414,14 @@
                                 <td>2m 34s</td>
                                 <td>10 mins ago</td>
                                 <td>
-                                    <button class="btn-sm btn-primary" onclick="viewJobDetails('8466')">
-                                        <i class="fas fa-eye"></i>
-                                    </button>
+                                    <div style="display: flex; gap: 6px;">
+                                        <button class="btn-sm btn-primary" onclick="viewJobDetails('8466')">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                        <button class="btn-sm btn-success" onclick="downloadResults('8466')">
+                                            <i class="fas fa-download"></i>
+                                        </button>
+                                    </div>
                                 </td>
                             </tr>
                             <tr>
@@ -434,9 +439,14 @@
                                 <td>1m 52s</td>
                                 <td>25 mins ago</td>
                                 <td>
-                                    <button class="btn-sm btn-primary" onclick="viewJobDetails('8465')">
-                                        <i class="fas fa-eye"></i>
-                                    </button>
+                                    <div style="display: flex; gap: 6px;">
+                                        <button class="btn-sm btn-primary" onclick="viewJobDetails('8465')">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                        <button class="btn-sm btn-success" onclick="downloadResults('8465')">
+                                            <i class="fas fa-download"></i>
+                                        </button>
+                                    </div>
                                 </td>
                             </tr>
                         </tbody>
@@ -572,6 +582,10 @@
             if (confirm('Delete job #JOB-' + id + '? This cannot be undone.')) {
                 alert('Job deleted! (Demo)');
             }
+        }
+
+        function downloadResults(id) {
+            alert('📥 Downloading results for job #JOB-' + id + '...\n\nIn production, this would download a CSV/JSON file with all extracted data.');
         }
     </script>
 </body>
