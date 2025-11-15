@@ -1124,6 +1124,27 @@ div[style*="overflow: auto"]::-webkit-scrollbar {
         width: 100%;
     }
     
+    /* API Keys responsive */
+    .api-key-item {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 16px;
+    }
+    
+    .key-actions {
+        width: 100%;
+        justify-content: center;
+        gap: 12px;
+    }
+    
+    .key-actions .btn-sm {
+        flex: 1;
+        min-width: 0;
+        justify-content: center;
+        display: flex;
+        align-items: center;
+    }
+    
     .pagination {
         flex-direction: column;
         gap: 12px;
@@ -3114,6 +3135,45 @@ div[style*="overflow: auto"]::-webkit-scrollbar {
     .footer-copyright {
         font-size: 10px;
     }
+    
+    /* API Keys - Fix overlapping */
+    .api-key-item {
+        padding: 16px;
+    }
+    
+    .key-value {
+        flex-direction: column;
+        align-items: flex-start !important;
+        gap: 8px;
+    }
+    
+    .key-value code {
+        font-size: 11px;
+        word-break: break-all;
+        width: 100%;
+    }
+    
+    .key-actions {
+        width: 100%;
+        gap: 10px;
+    }
+    
+    .key-actions .btn-sm {
+        flex: 1;
+        padding: 10px 12px;
+        font-size: 12px;
+        white-space: nowrap;
+    }
+    
+    .key-meta {
+        flex-direction: column;
+        align-items: flex-start !important;
+        gap: 6px;
+    }
+    
+    .key-meta span {
+        font-size: 11px;
+    }
 }
 
 /* Extra small mobile - 375px and below */
@@ -3146,6 +3206,17 @@ div[style*="overflow: auto"]::-webkit-scrollbar {
     /* Header */
     .main-header h1 {
         font-size: 16px;
+    }
+    
+    /* API Keys - Stack buttons vertically on very small screens */
+    .key-actions {
+        flex-direction: column;
+        gap: 8px;
+    }
+    
+    .key-actions .btn-sm {
+        width: 100%;
+        flex: none;
     }
     
     /* Stats cards */
