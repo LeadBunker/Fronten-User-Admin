@@ -480,12 +480,16 @@
         <footer class="dashboard-footer">
             <div class="footer-content">
                 <div class="footer-copyright">
-                    &copy; 2025 <strong>Leadbunker Admin</strong>. All rights reserved.
+                    &copy; <span id="currentYear"></span> <strong>Leadbunker Admin</strong>. All rights reserved.
                 </div>
             </div>
         </footer>
     </div>
 
+    <script>
+        // Set current year in footer
+        document.getElementById(\'currentYear\').textContent = new Date().getFullYear();
+    </script>
     <script>
         // Mobile menu toggle
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');

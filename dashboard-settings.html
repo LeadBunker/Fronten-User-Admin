@@ -311,11 +311,15 @@
         <footer class="dashboard-footer">
             <div class="footer-content">
                 <div class="footer-copyright">
-                    &copy; 2024 <strong>Leadbunker</strong>. All rights reserved.
+                    &copy; <span id="currentYear"></span> <strong>Leadbunker</strong>. All rights reserved.
                 </div>
             </div>
         </footer>
     </div>
+    <script>
+        // Set current year in footer
+        document.getElementById(\'currentYear\').textContent = new Date().getFullYear();
+    </script>
     <script src="js/modals.js"></script>
     <script src="js/dashboard.js"></script>
 </body>
