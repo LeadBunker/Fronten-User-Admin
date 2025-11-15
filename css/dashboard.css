@@ -60,9 +60,11 @@ body {
     display: flex;
     flex-direction: column;
     border-right: 1px solid var(--border-color);
-    height: 100vh;
+    min-height: 100vh;
+    height: 100%;
     position: sticky;
     top: 0;
+    align-self: flex-start;
 }
 
 .sidebar-header {
@@ -93,6 +95,21 @@ body {
     font-weight: 700;
     font-size: 18px;
     color: var(--text-dark);
+}
+
+.sidebar-nav {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    margin-right: -16px;
+    padding-right: 16px;
+    /* Hide scrollbar but keep scrolling */
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+}
+
+.sidebar-nav::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
 }
 
 .sidebar-nav ul,
@@ -153,6 +170,11 @@ body {
     margin-top: auto;
     padding-top: var(--spacing);
     border-top: 1px solid var(--border-color);
+    flex-shrink: 0;
+    position: sticky;
+    bottom: 0;
+    background-color: var(--bg-sidebar);
+    z-index: 10;
 }
 
 .sidebar-footer li {
