@@ -229,88 +229,38 @@
                 </div>
             </section>
 
-            <!-- Pricing Plans -->
-            <section class="card">
-                <div class="card-header">
-                    <h2><i class="fas fa-shopping-cart"></i> Buy Credits</h2>
-                    <p class="card-subtitle">Choose a plan that fits your needs</p>
-                </div>
-                
-                <div class="pricing-grid">
-                    <div class="price-card">
-                        <h3>Starter</h3>
-                        <div class="price">
-                            <span class="currency">$</span>
-                            <span class="amount">19</span>
-                            <span class="period">/month</span>
-                        </div>
-                        <ul class="features-list">
-                            <li><i class="fas fa-check"></i> 500 Credits/month</li>
-                            <li><i class="fas fa-check"></i> Email extraction</li>
-                            <li><i class="fas fa-check"></i> Phone extraction</li>
-                            <li><i class="fas fa-check"></i> Basic support</li>
-                            <li><i class="fas fa-check"></i> CSV export</li>
-                        </ul>
-                        <button class="btn btn-secondary btn-block" onclick="buyCredits('Starter', '500', '19')">Select Plan</button>
-                    </div>
-
-                    <div class="price-card featured">
-                        <div class="popular-badge">Most Popular</div>
-                        <h3>Pro</h3>
-                        <div class="price">
-                            <span class="currency">$</span>
-                            <span class="amount">49</span>
-                            <span class="period">/month</span>
-                        </div>
-                        <ul class="features-list">
-                            <li><i class="fas fa-check"></i> 2,000 Credits/month</li>
-                            <li><i class="fas fa-check"></i> Email extraction</li>
-                            <li><i class="fas fa-check"></i> Phone extraction</li>
-                            <li><i class="fas fa-check"></i> Priority support</li>
-                            <li><i class="fas fa-check"></i> Advanced filters</li>
-                            <li><i class="fas fa-check"></i> API access</li>
-                            <li><i class="fas fa-check"></i> Team collaboration</li>
-                        </ul>
-                        <button class="btn btn-primary btn-block" onclick="buyCredits('Pro', '2000', '49')">Select Plan</button>
-                    </div>
-
-                    <div class="price-card">
-                        <h3>Enterprise</h3>
-                        <div class="price">
-                            <span class="currency">$</span>
-                            <span class="amount">199</span>
-                            <span class="period">/month</span>
-                        </div>
-                        <ul class="features-list">
-                            <li><i class="fas fa-check"></i> 10,000 Credits/month</li>
-                            <li><i class="fas fa-check"></i> Everything in Pro</li>
-                            <li><i class="fas fa-check"></i> Dedicated account manager</li>
-                            <li><i class="fas fa-check"></i> Custom integrations</li>
-                            <li><i class="fas fa-check"></i> SLA guarantee</li>
-                            <li><i class="fas fa-check"></i> White-label option</li>
-                        </ul>
-                        <button class="btn btn-secondary btn-block" onclick="alert('📞 Contact Sales\n\nFor Enterprise plans, please contact our sales team:\n\n📧 Email: sales@leadbunker.com\n📞 Phone: +1 (555) 123-4567\n\nWe\'ll create a custom plan for your needs!')">Contact Sales</button>
-                    </div>
-                </div>
-            </section>
-
             <!-- One-Time Credit Packs -->
             <section class="card">
                 <div class="card-header">
-                    <h3><i class="fas fa-bolt"></i> One-Time Credit Packs</h3>
-                    <p class="card-subtitle">No subscription required</p>
+                    <h2><i class="fas fa-bolt"></i> One-Time Credit Packs</h2>
+                    <p class="card-subtitle">No subscription required - Pay once, use anytime</p>
                 </div>
                 
                 <div class="credit-packs-grid">
                     <div class="credit-pack">
+                        <div class="pack-credits">50 Credits</div>
+                        <div class="pack-price">$8</div>
+                        <div class="pack-per-credit">$0.16/credit</div>
+                        <button class="btn btn-sm btn-primary" onclick="buyCredits('50 Credit Pack', '50', '8')">Buy Now</button>
+                    </div>
+                    <div class="credit-pack">
                         <div class="pack-credits">100 Credits</div>
                         <div class="pack-price">$15</div>
+                        <div class="pack-per-credit">$0.15/credit</div>
                         <button class="btn btn-sm btn-primary" onclick="buyCredits('100 Credit Pack', '100', '15')">Buy Now</button>
+                    </div>
+                    <div class="credit-pack">
+                        <div class="pack-credits">250 Credits</div>
+                        <div class="pack-price">$35</div>
+                        <div class="pack-savings">Save $5</div>
+                        <div class="pack-per-credit">$0.14/credit</div>
+                        <button class="btn btn-sm btn-primary" onclick="buyCredits('250 Credit Pack', '250', '35')">Buy Now</button>
                     </div>
                     <div class="credit-pack">
                         <div class="pack-credits">500 Credits</div>
                         <div class="pack-price">$65</div>
                         <div class="pack-savings">Save $10</div>
+                        <div class="pack-per-credit">$0.13/credit</div>
                         <button class="btn btn-sm btn-primary" onclick="buyCredits('500 Credit Pack', '500', '65')">Buy Now</button>
                     </div>
                     <div class="credit-pack popular">
@@ -318,13 +268,29 @@
                         <div class="pack-credits">1,000 Credits</div>
                         <div class="pack-price">$120</div>
                         <div class="pack-savings">Save $30</div>
+                        <div class="pack-per-credit">$0.12/credit</div>
                         <button class="btn btn-sm btn-primary" onclick="buyCredits('1000 Credit Pack', '1000', '120')">Buy Now</button>
+                    </div>
+                    <div class="credit-pack">
+                        <div class="pack-credits">2,500 Credits</div>
+                        <div class="pack-price">$275</div>
+                        <div class="pack-savings">Save $100</div>
+                        <div class="pack-per-credit">$0.11/credit</div>
+                        <button class="btn btn-sm btn-primary" onclick="buyCredits('2500 Credit Pack', '2500', '275')">Buy Now</button>
                     </div>
                     <div class="credit-pack">
                         <div class="pack-credits">5,000 Credits</div>
                         <div class="pack-price">$500</div>
                         <div class="pack-savings">Save $250</div>
+                        <div class="pack-per-credit">$0.10/credit</div>
                         <button class="btn btn-sm btn-primary" onclick="buyCredits('5000 Credit Pack', '5000', '500')">Buy Now</button>
+                    </div>
+                    <div class="credit-pack">
+                        <div class="pack-credits">10,000 Credits</div>
+                        <div class="pack-price">$900</div>
+                        <div class="pack-savings">Save $700</div>
+                        <div class="pack-per-credit">$0.09/credit</div>
+                        <button class="btn btn-sm btn-primary" onclick="buyCredits('10000 Credit Pack', '10000', '900')">Buy Now</button>
                     </div>
                 </div>
             </section>

@@ -1864,7 +1864,14 @@ div[style*="overflow: auto"]::-webkit-scrollbar {
 .pack-savings {
     font-size: 12px;
     color: #4ade80;
+    margin-bottom: 8px;
+}
+
+.pack-per-credit {
+    font-size: 11px;
+    color: var(--text-light);
     margin-bottom: 16px;
+    opacity: 0.8;
 }
 
 /* Payment Methods */
