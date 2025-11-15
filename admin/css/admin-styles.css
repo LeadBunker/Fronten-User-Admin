@@ -785,11 +785,32 @@ input[type="file"]:hover {
         width: 95% !important;
         padding: 20px !important;
     }
-    
-    /* Header actions */
-    .header-actions {
-        gap: 8px;
-    }
+}
+
+/* ============================================
+   MODAL SCROLLBAR HIDING (ALL MODALS)
+============================================ */
+
+/* Hide scrollbar for modal overlays and containers */
+[id$="Modal"],
+[id*="modal"],
+.modal,
+.modal-overlay,
+.modal-container,
+div[style*="overflow-y: auto"] {
+    scrollbar-width: none !important; /* Firefox */
+    -ms-overflow-style: none !important; /* IE and Edge */
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+[id$="Modal"]::-webkit-scrollbar,
+[id*="modal"]::-webkit-scrollbar,
+.modal::-webkit-scrollbar,
+.modal-overlay::-webkit-scrollbar,
+.modal-container::-webkit-scrollbar,
+div[style*="overflow-y: auto"]::-webkit-scrollbar {
+    display: none !important;
+}
     
     .user-info {
         display: none !important;

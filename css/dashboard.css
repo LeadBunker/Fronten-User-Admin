@@ -973,6 +973,35 @@ body {
     }
 }
 
+/* ============================================
+   MODAL SCROLLBAR HIDING (ALL MODALS)
+============================================ */
+
+/* Hide scrollbar for all modal elements */
+[id$="Modal"],
+[id*="modal"],
+.modal,
+.modal-overlay,
+.modal-container,
+div[style*="overflow-y: auto"],
+div[style*="overflow: auto"] {
+    scrollbar-width: none !important; /* Firefox */
+    -ms-overflow-style: none !important; /* IE and Edge */
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+[id$="Modal"]::-webkit-scrollbar,
+[id*="modal"]::-webkit-scrollbar,
+.modal::-webkit-scrollbar,
+.modal-overlay::-webkit-scrollbar,
+.modal-container::-webkit-scrollbar,
+div[style*="overflow-y: auto"]::-webkit-scrollbar,
+div[style*="overflow: auto"]::-webkit-scrollbar {
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
+}
+
 @media (max-width: 768px) {
     /* Show mobile header */
     .mobile-header {
