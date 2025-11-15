@@ -274,7 +274,8 @@
                 </div>
                 
                 <div class="table-responsive">
-                    <table class="tasks-table">
+                    <!-- Desktop Table View -->
+                    <table class="tasks-table desktop-lists-table">
                         <thead>
                             <tr>
                                 <th><input type="checkbox"></th>
@@ -361,6 +362,63 @@
                             </tr>
                         </tbody>
                     </table>
+                    
+                    <!-- Mobile Card View -->
+                    <div class="mobile-lists-container">
+                        <div class="mobile-list-card">
+                            <div class="mobile-list-header">
+                                <span class="mobile-list-phone">+1 (555) 123-4567</span>
+                                <span class="badge badge-success mobile-list-status"><i class="fas fa-check-circle"></i> Verified</span>
+                            </div>
+                            <div class="mobile-list-source">🇺🇸 United States • Mobile</div>
+                            <div class="mobile-list-source">Source: techstartup.io</div>
+                            <div class="mobile-list-time"><i class="fas fa-clock"></i> 2 hours ago</div>
+                            <div class="mobile-list-footer">
+                                <button class="btn-sm btn-primary" onclick="alert('📋 Copied!\\n\\nList copied to clipboard.')">
+                                    <i class="fas fa-copy"></i> Copy
+                                </button>
+                                <button class="btn-sm btn-secondary" onclick="viewList('LIST-ID', 'Phone')">
+                                    <i class="fas fa-eye"></i> View
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="mobile-list-card">
+                            <div class="mobile-list-header">
+                                <span class="mobile-list-phone">+1 (416) 789-0123</span>
+                                <span class="badge badge-success mobile-list-status"><i class="fas fa-check-circle"></i> Verified</span>
+                            </div>
+                            <div class="mobile-list-source">🇨🇦 Canada • Mobile</div>
+                            <div class="mobile-list-source">Source: marketplace-hub.net</div>
+                            <div class="mobile-list-time"><i class="fas fa-clock"></i> 1 day ago</div>
+                            <div class="mobile-list-footer">
+                                <button class="btn-sm btn-primary" onclick="alert('📋 Copied!\\n\\nList copied to clipboard.')">
+                                    <i class="fas fa-copy"></i> Copy
+                                </button>
+                                <button class="btn-sm btn-secondary" onclick="viewList('LIST-ID', 'Phone')">
+                                    <i class="fas fa-eye"></i> View
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="mobile-list-card">
+                            <div class="mobile-list-header">
+                                <span class="mobile-list-phone">+1 (555) 987-6543</span>
+                                <span class="badge badge-warning mobile-list-status"><i class="fas fa-phone-volume"></i> VoIP</span>
+                            </div>
+                            <div class="mobile-list-source">🇺🇸 United States • VoIP</div>
+                            <div class="mobile-list-source">Source: global-contacts.com</div>
+                            <div class="mobile-list-time"><i class="fas fa-clock"></i> 2 days ago</div>
+                            <div class="mobile-list-footer">
+                                <button class="btn-sm btn-primary" onclick="alert('📋 Copied!\\n\\nList copied to clipboard.')">
+                                    <i class="fas fa-copy"></i> Copy
+                                </button>
+                                <button class="btn-sm btn-secondary" onclick="viewList('LIST-ID', 'Phone')">
+                                    <i class="fas fa-eye"></i> View
+                                </button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- Pagination -->
@@ -387,9 +445,95 @@
             </div>
         </footer>
     </div>
+    <style>
+        /* Mobile Responsive - Lists Table */
+        @media (max-width: 768px) {
+            /* Hide desktop table on mobile */
+            .desktop-lists-table {
+                display: none;
+            }
+            
+            /* Mobile List Cards */
+            .mobile-lists-container {
+                display: flex;
+                flex-direction: column;
+                gap: 12px;
+            }
+            
+            .mobile-list-card {
+                background: white;
+                border: 1px solid #E5E7EB;
+                border-radius: 12px;
+                padding: 16px;
+                transition: all 0.2s ease;
+            }
+            
+            .mobile-list-card:hover {
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+                transform: translateY(-2px);
+            }
+            
+            .mobile-list-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: flex-start;
+                margin-bottom: 12px;
+                gap: 10px;
+            }
+            
+            .mobile-list-email,
+            .mobile-list-phone {
+                font-weight: 700;
+                font-size: 14px;
+                color: #111827;
+                word-break: break-all;
+                flex: 1;
+            }
+            
+            .mobile-list-status {
+                flex-shrink: 0;
+            }
+            
+            .mobile-list-source {
+                font-size: 13px;
+                color: #6B7280;
+                margin-bottom: 6px;
+            }
+            
+            .mobile-list-time {
+                font-size: 12px;
+                color: #9CA3AF;
+                margin-bottom: 12px;
+            }
+            
+            .mobile-list-time i {
+                margin-right: 4px;
+            }
+            
+            .mobile-list-footer {
+                display: flex;
+                gap: 8px;
+                padding-top: 12px;
+                border-top: 1px solid #F3F4F6;
+            }
+            
+            .mobile-list-footer .btn-sm {
+                flex: 1;
+                justify-content: center;
+            }
+        }
+        
+        /* Desktop - Hide mobile cards */
+        @media (min-width: 769px) {
+            .mobile-lists-container {
+                display: none;
+            }
+        }
+    </style>
+    
     <script>
         // Set current year in footer
-        document.getElementById(\'currentYear\').textContent = new Date().getFullYear();
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
         
         // Mobile Menu Toggle
         function toggleSidebar() {
