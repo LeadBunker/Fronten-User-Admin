@@ -665,3 +665,172 @@ input[type="file"]:hover {
     border-color: #667eea;
 }
 
+/* ============================================
+   COMPREHENSIVE MOBILE RESPONSIVENESS
+   ============================================ */
+
+/* Tablet - 768px and below */
+@media (max-width: 768px) {
+    /* Tables - Make responsive */
+    table {
+        font-size: 12px;
+    }
+    
+    table th,
+    table td {
+        padding: 10px 8px;
+    }
+    
+    /* Button groups */
+    .btn-sm {
+        padding: 6px 10px;
+        font-size: 11px;
+    }
+    
+    /* Quick Actions Grid */
+    .btn-block {
+        font-size: 12px;
+        padding: 12px;
+    }
+    
+    /* Cards */
+    .card {
+        padding: 16px;
+    }
+    
+    .card-header {
+        padding: 14px 16px;
+    }
+    
+    /* Stats Cards */
+    .stat-card {
+        padding: 16px;
+    }
+    
+    /* Form Elements */
+    .form-group label {
+        font-size: 12px;
+    }
+    
+    .form-input,
+    .form-select {
+        font-size: 13px;
+        padding: 10px 12px;
+    }
+}
+
+/* Mobile - 480px and below */
+@media (max-width: 480px) {
+    /* Tables - Stack on mobile */
+    table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+        -webkit-overflow-scrolling: touch;
+        font-size: 11px;
+    }
+    
+    table th,
+    table td {
+        padding: 8px 6px;
+    }
+    
+    /* Hide less important columns on mobile */
+    table td:nth-child(5),
+    table th:nth-child(5),
+    table td:nth-child(6),
+    table th:nth-child(6) {
+        display: none;
+    }
+    
+    /* Buttons */
+    .btn {
+        font-size: 12px;
+        padding: 10px 14px;
+    }
+    
+    .btn-sm {
+        padding: 5px 8px;
+        font-size: 10px;
+    }
+    
+    .btn i {
+        font-size: 12px;
+    }
+    
+    /* Badge */
+    .badge {
+        font-size: 9px;
+        padding: 3px 7px;
+    }
+    
+    /* Quick Actions - Stack on mobile */
+    .card:has(.btn-block) > div {
+        grid-template-columns: 1fr !important;
+        gap: 10px !important;
+    }
+    
+    /* Stats cards - Stack on mobile */
+    .stats-row {
+        grid-template-columns: 1fr !important;
+    }
+    
+    /* Form Row - Stack on mobile */
+    .form-row {
+        flex-direction: column;
+    }
+    
+    /* Modal adjustments */
+    .modal-content {
+        width: 95% !important;
+        padding: 20px !important;
+    }
+    
+    /* Header actions */
+    .header-actions {
+        gap: 8px;
+    }
+    
+    .user-info {
+        display: none !important;
+    }
+    
+    /* Icon buttons */
+    .icon-btn {
+        width: 36px;
+        height: 36px;
+        font-size: 14px;
+    }
+}
+
+/* Extra small mobile - 375px and below */
+@media (max-width: 375px) {
+    .notification-dropdown {
+        right: -160px !important;
+    }
+    
+    .notification-item {
+        padding: 10px !important;
+        flex-direction: column;
+        align-items: flex-start !important;
+    }
+    
+    .notification-icon {
+        width: 32px !important;
+        height: 32px !important;
+        font-size: 12px !important;
+    }
+    
+    .notification-title {
+        font-size: 11px !important;
+    }
+    
+    .notification-desc {
+        font-size: 9px !important;
+    }
+    
+    table {
+        font-size: 10px;
+    }
+}
+

@@ -462,7 +462,9 @@
                                 <td><span class="badge badge-success">Completed</span></td>
                                 <td>10 mins ago</td>
                                 <td>
-                                    <button class="btn-sm btn-secondary"><i class="fas fa-eye"></i></button>
+                                    <button class="btn-sm btn-secondary" onclick="viewTransaction('TXN-00847')" title="View Details">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
                                 </td>
                             </tr>
                             <tr>
@@ -474,7 +476,9 @@
                                 <td><span class="badge badge-warning">Pending</span></td>
                                 <td>1 hour ago</td>
                                 <td>
-                                    <button class="btn-sm btn-primary"><i class="fas fa-check"></i></button>
+                                    <button class="btn-sm btn-primary" onclick="approveTransaction('TXN-00846')" title="Approve Transaction">
+                                        <i class="fas fa-check"></i>
+                                    </button>
                                 </td>
                             </tr>
                             <tr>
@@ -486,7 +490,9 @@
                                 <td><span class="badge badge-success">Completed</span></td>
                                 <td>3 hours ago</td>
                                 <td>
-                                    <button class="btn-sm btn-secondary"><i class="fas fa-eye"></i></button>
+                                    <button class="btn-sm btn-secondary" onclick="viewTransaction('TXN-00845')" title="View Details">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
                                 </td>
                             </tr>
                             <tr>
@@ -498,7 +504,9 @@
                                 <td><span class="badge badge-success">Completed</span></td>
                                 <td>5 hours ago</td>
                                 <td>
-                                    <button class="btn-sm btn-secondary"><i class="fas fa-eye"></i></button>
+                                    <button class="btn-sm btn-secondary" onclick="viewTransaction('TXN-00844')" title="View Details">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
                                 </td>
                             </tr>
                             <tr>
@@ -510,7 +518,9 @@
                                 <td><span class="badge badge-danger">Failed</span></td>
                                 <td>6 hours ago</td>
                                 <td>
-                                    <button class="btn-sm btn-primary"><i class="fas fa-redo"></i></button>
+                                    <button class="btn-sm btn-primary" onclick="retryTransaction('TXN-00843')" title="Retry Transaction">
+                                        <i class="fas fa-redo"></i>
+                                    </button>
                                 </td>
                             </tr>
                         </tbody>
@@ -687,6 +697,27 @@
         document.addEventListener('DOMContentLoaded', () => {
             updateNotificationBadge();
         });
+
+        // Transaction Action Buttons
+        function viewTransaction(txnId) {
+            alert(`📋 Transaction Details\n\nTransaction ID: ${txnId}\n\nIn production, this would open a modal with:\n• Full transaction details\n• User information\n• Payment method\n• Transaction history\n• Download invoice option`);
+        }
+
+        function approveTransaction(txnId) {
+            if (confirm(`✅ Approve Transaction?\n\nTransaction ID: ${txnId}\n\nThis will:\n• Mark the transaction as completed\n• Credit the user's account\n• Send confirmation email to user\n\nProceed?`)) {
+                alert(`✅ Transaction ${txnId} approved successfully!\n\nUser account has been credited.`);
+                // In production, this would update the UI and database
+                location.reload();
+            }
+        }
+
+        function retryTransaction(txnId) {
+            if (confirm(`🔄 Retry Failed Transaction?\n\nTransaction ID: ${txnId}\n\nThis will:\n• Attempt to re-process the payment\n• Notify the user via email\n• Update transaction status\n\nProceed?`)) {
+                alert(`🔄 Retrying transaction ${txnId}...\n\nUser will be notified of the retry attempt.`);
+                // In production, this would trigger the payment retry
+                location.reload();
+            }
+        }
     </script>
 </body>
 </html>
