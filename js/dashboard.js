@@ -1,6 +1,7 @@
 // Dashboard interactivity
 document.addEventListener('DOMContentLoaded', () => {
-    console.log('Dashboard JS Loaded');
+    console.log('✅ Dashboard JS Loaded Successfully!');
+    console.log('📋 All functions available: buyCredits, changePassword, generateAPIKey, etc.');
     initializeNotifications();
 });
 
@@ -194,6 +195,7 @@ function showQR(type) {
 // ============================================
 
 function buyCredits(planName, credits, price) {
+    console.log(`🛒 buyCredits called: ${planName}, ${credits} credits, $${price}`);
     if (confirm(`💎 Purchase Credits?\n\nPlan: ${planName}\nCredits: ${credits}\nPrice: $${price}\n\nProceed to checkout?`)) {
         alert(`✅ Redirecting to checkout...\n\nPlan: ${planName}\nAmount: $${price}\n\nIn production, this would redirect to the payment gateway.`);
         // window.location.href = 'checkout.html?plan=' + planName;

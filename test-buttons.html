@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Button Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 40px;
+            background: #f5f5f5;
+        }
+        .btn {
+            padding: 12px 24px;
+            font-size: 14px;
+            margin: 10px;
+            cursor: pointer;
+            border: none;
+            border-radius: 8px;
+            background: #667eea;
+            color: white;
+            font-weight: 600;
+        }
+        .btn:hover {
+            background: #5568d3;
+        }
+        .test-section {
+            background: white;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <h1>🧪 Button Functionality Test</h1>
+    
+    <div class="test-section">
+        <h2>Test 1: Inline onclick</h2>
+        <button class="btn" onclick="alert('✅ Inline onclick works!')">Click Me - Inline</button>
+    </div>
+    
+    <div class="test-section">
+        <h2>Test 2: Function from dashboard.js</h2>
+        <button class="btn" onclick="buyCredits('Test Plan', '100', '19')">Buy Credits Test</button>
+        <button class="btn" onclick="changePassword()">Change Password Test</button>
+        <button class="btn" onclick="generateAPIKey()">Generate API Key Test</button>
+    </div>
+    
+    <div class="test-section">
+        <h2>Test 3: Check if dashboard.js loaded</h2>
+        <button class="btn" onclick="checkJSLoaded()">Check JavaScript Status</button>
+    </div>
+    
+    <div class="test-section" id="status">
+        <h3>Status:</h3>
+        <p id="statusText">Click "Check JavaScript Status" button above</p>
+    </div>
+    
+    <script src="js/dashboard.js"></script>
+    <script>
+        function checkJSLoaded() {
+            const statusText = document.getElementById('statusText');
+            let status = '<strong>JavaScript Loading Test Results:</strong><br><br>';
+            
+            // Check if functions exist
+            if (typeof buyCredits === 'function') {
+                status += '✅ buyCredits() function loaded<br>';
+            } else {
+                status += '❌ buyCredits() function NOT found<br>';
+            }
+            
+            if (typeof changePassword === 'function') {
+                status += '✅ changePassword() function loaded<br>';
+            } else {
+                status += '❌ changePassword() function NOT found<br>';
+            }
+            
+            if (typeof generateAPIKey === 'function') {
+                status += '✅ generateAPIKey() function loaded<br>';
+            } else {
+                status += '❌ generateAPIKey() function NOT found<br>';
+            }
+            
+            if (typeof toggleSearch === 'function') {
+                status += '✅ toggleSearch() function loaded<br>';
+            } else {
+                status += '❌ toggleSearch() function NOT found<br>';
+            }
+            
+            status += '<br><strong>dashboard.js path:</strong> js/dashboard.js<br>';
+            status += '<strong>Current page:</strong> ' + window.location.href;
+            
+            statusText.innerHTML = status;
+        }
+        
+        // Auto-check on load
+        window.addEventListener('load', function() {
+            console.log('🧪 Test page loaded');
+            console.log('✅ Checking if dashboard.js functions are available...');
+            
+            if (typeof buyCredits === 'function') {
+                console.log('✅ buyCredits is defined');
+            } else {
+                console.error('❌ buyCredits is NOT defined');
+            }
+            
+            if (typeof changePassword === 'function') {
+                console.log('✅ changePassword is defined');
+            } else {
+                console.error('❌ changePassword is NOT defined');
+            }
+        });
+    </script>
+</body>
+</html>
+
