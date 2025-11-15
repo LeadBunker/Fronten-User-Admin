@@ -267,7 +267,7 @@
                 <div class="card-header">
                     <h2><i class="fas fa-envelope"></i> Email Addresses</h2>
                     <div class="header-right">
-                        <button class="btn btn-secondary btn-sm">
+                        <button class="btn btn-secondary btn-sm" onclick="showAdvancedFilter()">
                             <i class="fas fa-filter"></i> Advanced Filter
                         </button>
                     </div>
@@ -369,13 +369,13 @@
 
                 <!-- Pagination -->
                 <div class="pagination">
-                    <button class="btn btn-sm btn-secondary" disabled>
+                    <button class="btn btn-sm btn-secondary" id="prevBtn" onclick="changePage('prev')" disabled>
                         <i class="fas fa-chevron-left"></i> Previous
                     </button>
                     <div class="pagination-info">
-                        <span>Showing <strong>1-20</strong> of <strong>12,847</strong> emails</span>
+                        <span>Showing <strong id="itemRange">1-20</strong> of <strong id="totalItems">12,847</strong> emails</span>
                     </div>
-                    <button class="btn btn-sm btn-secondary">
+                    <button class="btn btn-sm btn-secondary" id="nextBtn" onclick="changePage('next')">
                         Next <i class="fas fa-chevron-right"></i>
                     </button>
                 </div>

@@ -237,7 +237,7 @@
                 <div class="card-header">
                     <h2><i class="fas fa-tasks"></i> Extraction Tasks</h2>
                     <div class="header-right">
-                        <button class="btn btn-secondary btn-sm">
+                        <button class="btn btn-secondary btn-sm" onclick="exportAllTasks()">
                             <i class="fas fa-download"></i> Export All
                         </button>
                     </div>
@@ -280,7 +280,7 @@
                                 <td>10</td>
                                 <td>4 hours ago</td>
                                 <td>
-                                    <button class="btn-sm btn-secondary">View Progress</button>
+                                    <button class="btn-sm btn-secondary" onclick="viewTask('TASK-1243')">View Progress</button>
                                 </td>
                             </tr>
                             <tr>
@@ -305,8 +305,8 @@
                                 <td>0</td>
                                 <td>1 day ago</td>
                                 <td>
-                                    <button class="btn-sm btn-warning">Retry</button>
-                                    <button class="btn-sm btn-secondary">Details</button>
+                                    <button class="btn-sm btn-warning" onclick="retryTask('TASK-1242')">Retry</button>
+                                    <button class="btn-sm btn-secondary" onclick="viewTask('TASK-1242')">Details</button>
                                 </td>
                             </tr>
                             <tr>
@@ -344,7 +344,7 @@
                                 <td>20</td>
                                 <td>3 days ago</td>
                                 <td>
-                                    <button class="btn-sm btn-danger">Cancel</button>
+                                    <button class="btn-sm btn-danger" onclick="cancelTask('TASK-1239')">Cancel</button>
                                 </td>
                             </tr>
                         </tbody>
@@ -353,13 +353,13 @@
 
                 <!-- Pagination -->
                 <div class="pagination">
-                    <button class="btn btn-sm btn-secondary" disabled>
+                    <button class="btn btn-sm btn-secondary" id="prevBtn" onclick="changePage('prev')" disabled>
                         <i class="fas fa-chevron-left"></i> Previous
                     </button>
                     <div class="pagination-info">
-                        <span>Page <strong>1</strong> of <strong>12</strong></span>
+                        <span>Page <strong id="currentPage">1</strong> of <strong id="totalPages">12</strong></span>
                     </div>
-                    <button class="btn btn-sm btn-secondary">
+                    <button class="btn btn-sm btn-secondary" id="nextBtn" onclick="changePage('next')">
                         Next <i class="fas fa-chevron-right"></i>
                     </button>
                 </div>

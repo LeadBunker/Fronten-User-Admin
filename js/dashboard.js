@@ -359,3 +359,72 @@ function pauseTask(taskId) {
 function resumeTask(taskId) {
     alert(`▶️ Resume Task\n\nTask ID: ${taskId}\n\nTask has been resumed and will continue processing.`);
 }
+
+function exportAllTasks() {
+    alert('📥 Exporting All Tasks...\n\nDownloading CSV file with all your extraction tasks.\n\nIn production, this would generate and download a comprehensive report of all your tasks.');
+}
+
+function retryTask(taskId) {
+    if (confirm(`🔄 Retry Failed Task?\n\nTask ID: ${taskId}\n\nThis will restart the extraction process.\n\nProceed?`)) {
+        alert(`✅ Task ${taskId} queued for retry!\n\nYou'll receive a notification when it starts.`);
+    }
+}
+
+function cancelTask(taskId) {
+    if (confirm(`❌ Cancel Pending Task?\n\nTask ID: ${taskId}\n\nThis will remove the task from the queue. Credits will be refunded.\n\nProceed?`)) {
+        alert(`✅ Task ${taskId} cancelled!\n\nCredits have been refunded to your account.`);
+    }
+}
+
+// ============================================
+// ADVANCED FILTER FUNCTION
+// ============================================
+
+function showAdvancedFilter() {
+    alert('🔍 Advanced Filter\n\nIn production, this would open a modal with:\n• Date range filter\n• Status filter\n• Source filter\n• Domain filter\n• Sort options\n• Custom tags filter');
+}
+
+// ============================================
+// PAGINATION FUNCTION
+// ============================================
+
+let currentPageNum = 1;
+let totalPagesNum = 12;
+
+function changePage(direction) {
+    const currentPageEl = document.getElementById('currentPage');
+    const totalPagesEl = document.getElementById('totalPages');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const itemRangeEl = document.getElementById('itemRange');
+    
+    if (direction === 'next' && currentPageNum < totalPagesNum) {
+        currentPageNum++;
+    } else if (direction === 'prev' && currentPageNum > 1) {
+        currentPageNum--;
+    }
+    
+    // Update display
+    if (currentPageEl) {
+        currentPageEl.textContent = currentPageNum;
+    }
+    
+    // Update buttons
+    if (prevBtn) {
+        prevBtn.disabled = currentPageNum === 1;
+    }
+    if (nextBtn) {
+        nextBtn.disabled = currentPageNum === totalPagesNum;
+    }
+    
+    // Update item range for list pages
+    if (itemRangeEl) {
+        const itemsPerPage = 20;
+        const startItem = (currentPageNum - 1) * itemsPerPage + 1;
+        const endItem = Math.min(currentPageNum * itemsPerPage, 12847);
+        itemRangeEl.textContent = `${startItem}-${endItem}`;
+    }
+    
+    // Simulate loading
+    alert(`📄 Loading Page ${currentPageNum}...\n\nIn production, this would load the actual data from the server.`);
+}
