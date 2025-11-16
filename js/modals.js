@@ -415,6 +415,58 @@ function showPaymentConfirmationModal() {
 function showViewTaskModal(taskId) {
     const modalId = 'viewTaskModal';
     
+    // Sample task data - in real app, fetch from backend
+    const taskData = {
+        'TASK-1245': {
+            id: 'TASK-1245',
+            status: 'Completed',
+            statusClass: 'completed',
+            domain: 'techstartup.io',
+            type: 'Full Extraction',
+            emails: '234 emails',
+            phones: '145 phones',
+            duration: '3m 45s',
+            credits: '20 credits',
+            alertType: 'success',
+            alertIcon: 'check-circle',
+            alertTitle: 'Extraction Complete',
+            alertText: 'Your data is ready to download. Results are available in CSV, JSON, and Excel formats.'
+        },
+        'TASK-1242': {
+            id: 'TASK-1242',
+            status: 'Failed',
+            statusClass: 'failed',
+            domain: 'company-leads.org',
+            type: 'Phones Only',
+            emails: '0 emails',
+            phones: '0 phones',
+            duration: '12s',
+            credits: '0 credits',
+            errorReason: 'Invalid URL',
+            alertType: 'danger',
+            alertIcon: 'times-circle',
+            alertTitle: 'Extraction Failed',
+            alertText: 'The extraction could not be completed due to an invalid URL. Please verify the domain and try again. No credits were charged.'
+        },
+        'TASK-1244': {
+            id: 'TASK-1244',
+            status: 'Processing',
+            statusClass: 'processing',
+            domain: 'business-directory.com',
+            type: 'Emails Only',
+            emails: 'Processing...',
+            phones: 'N/A',
+            duration: 'In progress',
+            credits: '10 credits (reserved)',
+            alertType: 'info',
+            alertIcon: 'info-circle',
+            alertTitle: 'Extraction In Progress',
+            alertText: 'Your extraction is currently running. This may take a few minutes depending on the site size. You will be notified when complete.'
+        }
+    };
+    
+    const data = taskData[taskId] || taskData['TASK-1245'];
+    
     const content = `
         <div class="modal-container">
             <div class="modal-header">
@@ -425,55 +477,62 @@ function showViewTaskModal(taskId) {
             
             <div class="modal-body">
                 <div class="modal-section">
-                    <div class="modal-info-grid">
-                        <div class="modal-info-item">
-                            <div class="modal-info-label">Task ID</div>
-                            <div class="modal-info-value">#${taskId}</div>
-                        </div>
-                        <div class="modal-info-item">
-                            <div class="modal-info-label">Status</div>
-                            <div class="modal-info-value">
-                                <span class="modal-status-badge completed">Completed</span>
-                            </div>
-                        </div>
-                        <div class="modal-info-item">
-                            <div class="modal-info-label">Domain</div>
-                            <div class="modal-info-value">example.com</div>
-                        </div>
-                        <div class="modal-info-item">
-                            <div class="modal-info-label">Type</div>
-                            <div class="modal-info-value">Full Extraction</div>
+                    <div class="modal-info-item">
+                        <div class="modal-info-label">Task ID</div>
+                        <div class="modal-info-value">#${data.id}</div>
+                    </div>
+                </div>
+                
+                <div class="modal-section">
+                    <div class="modal-info-item">
+                        <div class="modal-info-label">Status</div>
+                        <div class="modal-info-value">
+                            <span class="modal-status-badge ${data.statusClass}">${data.status}</span>
                         </div>
                     </div>
                 </div>
                 
                 <div class="modal-section">
-                    <div class="modal-section-title">Extraction Results</div>
+                    <div class="modal-info-item">
+                        <div class="modal-info-label">Domain</div>
+                        <div class="modal-info-value">${data.domain}</div>
+                    </div>
+                </div>
+                
+                <div class="modal-section">
+                    <div class="modal-info-item">
+                        <div class="modal-info-label">Type</div>
+                        <div class="modal-info-value">${data.type}</div>
+                    </div>
+                </div>
+                
+                <div class="modal-section">
+                    <div class="modal-section-title">EXTRACTION RESULTS</div>
                     <div class="modal-details-box">
                         <div class="modal-detail-row">
                             <div class="modal-detail-label"><i class="fas fa-envelope"></i> Emails Extracted</div>
-                            <div class="modal-detail-value">89 emails</div>
+                            <div class="modal-detail-value">${data.emails}</div>
                         </div>
                         <div class="modal-detail-row">
                             <div class="modal-detail-label"><i class="fas fa-phone"></i> Phone Numbers</div>
-                            <div class="modal-detail-value">23 phones</div>
+                            <div class="modal-detail-value">${data.phones}</div>
                         </div>
                         <div class="modal-detail-row">
                             <div class="modal-detail-label"><i class="fas fa-clock"></i> Duration</div>
-                            <div class="modal-detail-value">2m 34s</div>
+                            <div class="modal-detail-value">${data.duration}</div>
                         </div>
                         <div class="modal-detail-row">
                             <div class="modal-detail-label"><i class="fas fa-gem"></i> Credits Used</div>
-                            <div class="modal-detail-value">15 credits</div>
+                            <div class="modal-detail-value">${data.credits}</div>
                         </div>
                     </div>
                 </div>
                 
-                <div class="modal-alert success">
-                    <div class="modal-alert-icon"><i class="fas fa-check-circle"></i></div>
-                    <div class="modal-alert-content">
-                        <div class="modal-alert-title">Extraction Complete</div>
-                        <div class="modal-alert-text">Your data is ready to download. Results are available in CSV, JSON, and Excel formats.</div>
+                <div class="modal-alert modal-alert-${data.alertType}">
+                    <i class="fas fa-${data.alertIcon}"></i>
+                    <div>
+                        <strong>${data.alertTitle}</strong><br>
+                        ${data.alertText}
                     </div>
                 </div>
             </div>
@@ -482,9 +541,16 @@ function showViewTaskModal(taskId) {
                 <button class="modal-btn modal-btn-secondary" onclick="ModalSystem.close('${modalId}')">
                     <i class="fas fa-times"></i> Close
                 </button>
+                ${data.statusClass === 'completed' ? `
                 <button class="modal-btn modal-btn-success" onclick="downloadTaskResults('${taskId}')">
                     <i class="fas fa-download"></i> Download Results
                 </button>
+                ` : ''}
+                ${data.statusClass === 'failed' ? `
+                <button class="modal-btn modal-btn-primary" onclick="retryTask('${taskId}')">
+                    <i class="fas fa-redo"></i> Retry Extraction
+                </button>
+                ` : ''}
             </div>
         </div>
     `;
