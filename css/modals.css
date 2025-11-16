@@ -260,6 +260,11 @@
     color: #991B1B;
 }
 
+.modal-status-badge.refunded {
+    background: #FEF3C7;
+    color: #92400E;
+}
+
 /* Modal Actions */
 .modal-actions {
     display: flex;
