@@ -413,6 +413,7 @@ function showPaymentConfirmationModal() {
 
 // View Task Modal
 function showViewTaskModal(taskId) {
+    console.log('showViewTaskModal called with taskId:', taskId);
     const modalId = 'viewTaskModal';
     
     // Sample task data - in real app, fetch from backend
