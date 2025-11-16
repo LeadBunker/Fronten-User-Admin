@@ -666,7 +666,8 @@
                     subtotal: '$120.00',
                     discount: '-$0.00',
                     tax: '$0.00',
-                    total: '$120.00'
+                    total: '$120.00',
+                    status: 'paid'
                 },
                 'TXN-4520': {
                     receiptNumber: '#RCP-4520',
@@ -678,11 +679,33 @@
                     subtotal: '$49.00',
                     discount: '-$0.00',
                     tax: '$0.00',
-                    total: '$49.00'
+                    total: '$49.00',
+                    status: 'paid'
+                },
+                'TXN-4518': {
+                    receiptNumber: '#RCP-4518',
+                    txnId: '#TXN-4518',
+                    date: 'Oct 28, 2024 11:30',
+                    method: '<i class="fab fa-bitcoin" style="color: #f7931a;"></i> Bitcoin',
+                    itemName: 'Refund - Failed Extraction',
+                    itemDesc: 'Refund for extraction task that failed due to invalid URL',
+                    subtotal: '-$10.00',
+                    discount: '$0.00',
+                    tax: '$0.00',
+                    total: '-$10.00',
+                    status: 'refund'
                 }
             };
             
             const data = transactionData[txnId] || transactionData['TXN-4521'];
+            
+            // Update receipt status badge based on transaction type
+            const statusBadge = document.querySelector('.receipt-status');
+            if (data.status === 'refund') {
+                statusBadge.innerHTML = '<span class="badge badge-warning"><i class="fas fa-undo"></i> Refunded</span>';
+            } else {
+                statusBadge.innerHTML = '<span class="badge badge-success"><i class="fas fa-check-circle"></i> Paid</span>';
+            }
             
             // Populate modal with data
             document.getElementById('receiptNumber').textContent = data.receiptNumber;
@@ -695,6 +718,24 @@
             document.getElementById('receiptDiscount').textContent = data.discount;
             document.getElementById('receiptTax').textContent = data.tax;
             document.getElementById('receiptTotal').textContent = data.total;
+            
+            // Update item price display
+            const itemPrice = document.getElementById('receiptItemPrice');
+            if (data.status === 'refund') {
+                itemPrice.textContent = data.total;
+                itemPrice.style.color = '#F59E0B'; // Orange for refunds
+            } else {
+                itemPrice.textContent = data.total;
+                itemPrice.style.color = '#667eea'; // Purple for payments
+            }
+            
+            // Update total amount color
+            const totalElement = document.getElementById('receiptTotal');
+            if (data.status === 'refund') {
+                totalElement.style.color = '#F59E0B'; // Orange for refunds
+            } else {
+                totalElement.style.color = '#111827'; // Default dark for payments
+            }
             
             // Show modal
             document.getElementById('receiptModal').style.display = 'flex';
