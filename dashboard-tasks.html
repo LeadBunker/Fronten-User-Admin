@@ -510,28 +510,20 @@
         </main>
 
         <!-- Footer -->
-        <footer class="dashboard-footer" style="padding: 10px 20px; margin: 0; height: auto; min-height: auto; text-align: center;">
-            <div class="footer-content" style="padding: 0; margin: 0; text-align: center;">
-                <div class="footer-copyright" style="padding: 0; margin: 0; line-height: 1.4; text-align: center;">
-                    &copy; <span id="currentYear"></span> <strong>Leadbunker</strong>. All rights reserved. <span style="opacity: 0.7;">v1.0.0</span>
+        <footer class="dashboard-footer">
+            <div class="footer-content">
+                <div class="footer-copyright">
+                    &copy; <span id="currentYear"></span> <strong>Leadbunker</strong>. All rights reserved.
                 </div>
             </div>
         </footer>
     </div>
     <style>
-        /* Force footer to be compact like other pages */
-        footer.dashboard-footer {
+        /* Fix footer height for task page */
+        .dashboard-footer {
+            min-height: auto !important;
+            height: auto !important;
             padding: 10px 20px !important;
-        }
-        
-        footer.dashboard-footer .footer-content {
-            padding: 0 !important;
-        }
-        
-        footer.dashboard-footer .footer-copyright {
-            padding: 0 !important;
-            margin: 0 !important;
-            line-height: 1.4 !important;
         }
         
         /* Mobile Responsive - Tasks Table */
