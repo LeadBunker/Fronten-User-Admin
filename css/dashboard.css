@@ -957,6 +957,10 @@ body {
 
 /* Mobile notification dropdown adjustments */
 @media (max-width: 768px) {
+    .notification-wrapper {
+        position: static;
+    }
+    
     .notification-dropdown {
         position: fixed !important;
         top: 65px !important;
@@ -964,6 +968,13 @@ body {
         left: 10px !important;
         width: auto !important;
         max-height: calc(100vh - 80px) !important;
+        transform: translateY(0) !important;
+    }
+    
+    .notification-dropdown.active {
+        opacity: 1 !important;
+        visibility: visible !important;
+        transform: translateY(0) !important;
     }
 }
 
