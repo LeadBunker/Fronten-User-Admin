@@ -516,9 +516,128 @@
             </div>
         </footer>
     </div>
+    
+    <!-- Receipt Modal -->
+    <div id="receiptModal" class="modal-overlay" style="display: none;">
+        <div class="modal-container" style="max-width: 600px;">
+            <!-- Receipt Content -->
+            <div class="receipt-modal">
+                <!-- Receipt Header -->
+                <div class="receipt-header">
+                    <div class="receipt-logo">
+                        <i class="fas fa-bolt" style="font-size: 32px; color: #667eea;"></i>
+                        <h2 style="margin: 8px 0 0 0; color: #667eea;">Leadbunker</h2>
+                    </div>
+                    <button class="modal-close" onclick="closeReceiptModal()">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                
+                <!-- Receipt Title -->
+                <div class="receipt-title">
+                    <h3>Payment Receipt</h3>
+                    <div class="receipt-status">
+                        <span class="badge badge-success"><i class="fas fa-check-circle"></i> Paid</span>
+                    </div>
+                </div>
+                
+                <!-- Receipt Info Grid -->
+                <div class="receipt-info-grid">
+                    <div class="receipt-info-item">
+                        <div class="receipt-info-label">Receipt Number</div>
+                        <div class="receipt-info-value" id="receiptNumber">#RCP-4521</div>
+                    </div>
+                    <div class="receipt-info-item">
+                        <div class="receipt-info-label">Transaction ID</div>
+                        <div class="receipt-info-value" id="receiptTxnId">#TXN-4521</div>
+                    </div>
+                    <div class="receipt-info-item">
+                        <div class="receipt-info-label">Date</div>
+                        <div class="receipt-info-value" id="receiptDate">Nov 14, 2024 14:23</div>
+                    </div>
+                    <div class="receipt-info-item">
+                        <div class="receipt-info-label">Payment Method</div>
+                        <div class="receipt-info-value" id="receiptMethod">
+                            <i class="fab fa-bitcoin" style="color: #f7931a;"></i> Bitcoin
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Divider -->
+                <div style="border-top: 2px solid #E5E7EB; margin: 24px 0;"></div>
+                
+                <!-- Bill To Section -->
+                <div class="receipt-section">
+                    <div class="receipt-section-title">Bill To:</div>
+                    <div class="receipt-section-content">
+                        <div style="font-weight: 600; color: #111827;">John Doe</div>
+                        <div style="color: #6B7280; font-size: 14px;">john.doe@example.com</div>
+                        <div style="color: #6B7280; font-size: 14px;">User ID: #USER-12345</div>
+                    </div>
+                </div>
+                
+                <!-- Divider -->
+                <div style="border-top: 1px solid #E5E7EB; margin: 20px 0;"></div>
+                
+                <!-- Item Details -->
+                <div class="receipt-section">
+                    <div class="receipt-section-title">Item Details:</div>
+                    <div class="receipt-items">
+                        <div class="receipt-item">
+                            <div class="receipt-item-details">
+                                <div class="receipt-item-name" id="receiptItemName">1,000 Credits Pack</div>
+                                <div class="receipt-item-desc" id="receiptItemDesc">Email & Phone extraction credits</div>
+                            </div>
+                            <div class="receipt-item-price" id="receiptItemPrice">$120.00</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Divider -->
+                <div style="border-top: 1px solid #E5E7EB; margin: 20px 0;"></div>
+                
+                <!-- Payment Summary -->
+                <div class="receipt-summary">
+                    <div class="receipt-summary-row">
+                        <span>Subtotal:</span>
+                        <span id="receiptSubtotal">$120.00</span>
+                    </div>
+                    <div class="receipt-summary-row">
+                        <span>Discount:</span>
+                        <span id="receiptDiscount" style="color: #10B981;">-$0.00</span>
+                    </div>
+                    <div class="receipt-summary-row">
+                        <span>Tax (0%):</span>
+                        <span id="receiptTax">$0.00</span>
+                    </div>
+                    <div class="receipt-summary-row receipt-total">
+                        <span>Total Amount:</span>
+                        <span id="receiptTotal">$120.00</span>
+                    </div>
+                </div>
+                
+                <!-- Footer Note -->
+                <div class="receipt-note">
+                    <i class="fas fa-info-circle"></i>
+                    <span>This is a computer-generated receipt and does not require a signature. Credits have been added to your account.</span>
+                </div>
+                
+                <!-- Action Buttons -->
+                <div class="receipt-actions">
+                    <button class="btn btn-secondary" onclick="printReceipt()">
+                        <i class="fas fa-print"></i> Print Receipt
+                    </button>
+                    <button class="btn btn-primary" onclick="downloadReceiptPDF()">
+                        <i class="fas fa-download"></i> Download PDF
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
     <script>
         // Set current year in footer
-        document.getElementById(\'currentYear\').textContent = new Date().getFullYear();
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
         
         // Mobile Menu Toggle
         function toggleSidebar() {
@@ -527,6 +646,78 @@
             sidebar.classList.toggle('active');
             overlay.classList.toggle('active');
         }
+        
+        // Receipt Modal Functions
+        function downloadInvoice(txnId) {
+            // Open receipt modal with transaction data
+            showReceiptModal(txnId);
+        }
+        
+        function showReceiptModal(txnId) {
+            // Sample data - in real app, fetch from backend
+            const transactionData = {
+                'TXN-4521': {
+                    receiptNumber: '#RCP-4521',
+                    txnId: '#TXN-4521',
+                    date: 'Nov 14, 2024 14:23',
+                    method: '<i class="fab fa-bitcoin" style="color: #f7931a;"></i> Bitcoin',
+                    itemName: '1,000 Credits Pack',
+                    itemDesc: 'Email & Phone extraction credits',
+                    subtotal: '$120.00',
+                    discount: '-$0.00',
+                    tax: '$0.00',
+                    total: '$120.00'
+                },
+                'TXN-4520': {
+                    receiptNumber: '#RCP-4520',
+                    txnId: '#TXN-4520',
+                    date: 'Nov 10, 2024 09:15',
+                    method: '<i class="fab fa-ethereum" style="color: #627eea;"></i> Ethereum',
+                    itemName: 'Pro Plan - Monthly',
+                    itemDesc: 'Monthly subscription for Pro tier',
+                    subtotal: '$49.00',
+                    discount: '-$0.00',
+                    tax: '$0.00',
+                    total: '$49.00'
+                }
+            };
+            
+            const data = transactionData[txnId] || transactionData['TXN-4521'];
+            
+            // Populate modal with data
+            document.getElementById('receiptNumber').textContent = data.receiptNumber;
+            document.getElementById('receiptTxnId').textContent = data.txnId;
+            document.getElementById('receiptDate').textContent = data.date;
+            document.getElementById('receiptMethod').innerHTML = data.method;
+            document.getElementById('receiptItemName').textContent = data.itemName;
+            document.getElementById('receiptItemDesc').textContent = data.itemDesc;
+            document.getElementById('receiptSubtotal').textContent = data.subtotal;
+            document.getElementById('receiptDiscount').textContent = data.discount;
+            document.getElementById('receiptTax').textContent = data.tax;
+            document.getElementById('receiptTotal').textContent = data.total;
+            
+            // Show modal
+            document.getElementById('receiptModal').style.display = 'flex';
+        }
+        
+        function closeReceiptModal() {
+            document.getElementById('receiptModal').style.display = 'none';
+        }
+        
+        function printReceipt() {
+            window.print();
+        }
+        
+        function downloadReceiptPDF() {
+            alert('📄 Receipt Downloaded!\n\nYour receipt has been saved as PDF.');
+        }
+        
+        // Close modal on outside click
+        document.getElementById('receiptModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeReceiptModal();
+            }
+        });
     </script>
     <script src="js/modals.js"></script>
     <script src="js/dashboard.js"></script>
