@@ -3301,10 +3301,11 @@ div[style*="overflow: auto"]::-webkit-scrollbar {
         display: none !important;
     }
     
-    /* Mobile Task & List & Transaction Cards */
+    /* Mobile Task & List & Transaction & Analytics Cards */
     .mobile-tasks-container,
     .mobile-lists-container,
-    .mobile-transactions-container {
+    .mobile-transactions-container,
+    .mobile-analytics-container {
         display: flex;
         flex-direction: column;
         gap: 12px;
@@ -3312,7 +3313,8 @@ div[style*="overflow: auto"]::-webkit-scrollbar {
     
     .mobile-task-card,
     .mobile-list-card,
-    .mobile-transaction-card {
+    .mobile-transaction-card,
+    .mobile-analytics-card {
         background: white;
         border: 1px solid #E5E7EB;
         border-radius: 12px;
@@ -3322,7 +3324,8 @@ div[style*="overflow: auto"]::-webkit-scrollbar {
     
     .mobile-task-card:hover,
     .mobile-list-card:hover,
-    .mobile-transaction-card:hover {
+    .mobile-transaction-card:hover,
+    .mobile-analytics-card:hover {
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         transform: translateY(-2px);
     }
@@ -3508,13 +3511,73 @@ div[style*="overflow: auto"]::-webkit-scrollbar {
         border-left: 4px solid #F59E0B;
         background: #FFFBEB;
     }
+    
+    /* Analytics-specific styles */
+    .mobile-analytics-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 16px;
+        padding-bottom: 12px;
+        border-bottom: 2px solid #F3F4F6;
+    }
+    
+    .mobile-analytics-website {
+        font-weight: 700;
+        font-size: 14px;
+        color: #111827;
+        word-break: break-all;
+        flex: 1;
+    }
+    
+    .mobile-analytics-rate {
+        flex-shrink: 0;
+        margin-left: 10px;
+    }
+    
+    .mobile-analytics-stats {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 12px;
+    }
+    
+    .mobile-analytics-stat {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 12px 8px;
+        background: #F9FAFB;
+        border-radius: 8px;
+    }
+    
+    .mobile-analytics-stat i {
+        font-size: 20px;
+        color: #667eea;
+        margin-bottom: 8px;
+    }
+    
+    .mobile-analytics-stat .stat-value {
+        font-size: 16px;
+        font-weight: 700;
+        color: #111827;
+        margin-bottom: 2px;
+    }
+    
+    .mobile-analytics-stat .stat-label {
+        font-size: 10px;
+        color: #6B7280;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
 }
 
 /* Desktop - Hide mobile cards */
 @media (min-width: 769px) {
     .mobile-tasks-container,
     .mobile-lists-container,
-    .mobile-transactions-container {
+    .mobile-transactions-container,
+    .mobile-analytics-container {
         display: none !important;
     }
 }
