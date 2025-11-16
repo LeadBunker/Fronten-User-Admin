@@ -858,6 +858,13 @@ body {
     justify-content: space-between;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     border-radius: 0 0 16px 16px;
+    gap: 12px;
+}
+
+.mobile-header-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
 }
 
 .mobile-menu-btn {
@@ -910,6 +917,54 @@ body {
     height: 100%;
     object-fit: cover;
     border-radius: 50%;
+}
+
+/* Mobile Notification Bell */
+.mobile-notification-btn {
+    position: relative;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    transition: background 0.2s ease;
+}
+
+.mobile-notification-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.mobile-notification-btn .notification-badge {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    background: #ef4444;
+    color: white;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 2px 5px;
+    border-radius: 10px;
+    min-width: 18px;
+    text-align: center;
+}
+
+/* Mobile notification dropdown adjustments */
+@media (max-width: 768px) {
+    .notification-dropdown {
+        position: fixed !important;
+        top: 65px !important;
+        right: 10px !important;
+        left: 10px !important;
+        width: auto !important;
+        max-height: calc(100vh - 80px) !important;
+    }
 }
 
 /* Sidebar Overlay */

@@ -31,20 +31,33 @@ let currentNotificationTab = 'all';
 
 function initializeNotifications() {
     const userNotificationBell = document.getElementById('userNotificationBell');
+    const mobileNotificationBell = document.getElementById('mobileNotificationBell');
     const userNotificationDropdown = document.getElementById('userNotificationDropdown');
     
-    if (!userNotificationBell || !userNotificationDropdown) return;
+    if (!userNotificationDropdown) return;
     
-    // Toggle notification dropdown
-    userNotificationBell.addEventListener('click', (e) => {
+    // Function to toggle dropdown
+    const toggleDropdown = (e) => {
         e.stopPropagation();
         userNotificationDropdown.classList.toggle('active');
-    });
+    };
+    
+    // Add click listeners to both desktop and mobile bells
+    if (userNotificationBell) {
+        userNotificationBell.addEventListener('click', toggleDropdown);
+    }
+    
+    if (mobileNotificationBell) {
+        mobileNotificationBell.addEventListener('click', toggleDropdown);
+    }
     
     // Close dropdown when clicking outside
     document.addEventListener('click', (e) => {
-        if (userNotificationDropdown && !userNotificationDropdown.contains(e.target) && 
-            !userNotificationBell.contains(e.target)) {
+        const isClickInsideDropdown = userNotificationDropdown.contains(e.target);
+        const isClickOnDesktopBell = userNotificationBell && userNotificationBell.contains(e.target);
+        const isClickOnMobileBell = mobileNotificationBell && mobileNotificationBell.contains(e.target);
+        
+        if (!isClickInsideDropdown && !isClickOnDesktopBell && !isClickOnMobileBell) {
             userNotificationDropdown.classList.remove('active');
         }
     });
