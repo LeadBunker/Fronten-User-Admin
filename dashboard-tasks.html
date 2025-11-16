@@ -523,7 +523,31 @@
         .main-content {
             min-height: auto !important;
         }
-        
+
+        /* Task page footer override */
+        .dashboard-footer {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 50px !important;
+            height: 50px !important;
+            padding: 0 20px !important;
+        }
+
+        .dashboard-footer .footer-content {
+            padding: 0 !important;
+            margin: 0 !important;
+            width: 100%;
+        }
+
+        .dashboard-footer .footer-copyright {
+            line-height: normal !important;
+            text-align: center;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
         /* Mobile Responsive - Tasks Table */
         @media (max-width: 768px) {
             /* Hide desktop table on mobile */
