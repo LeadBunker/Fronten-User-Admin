@@ -510,28 +510,31 @@
         </main>
 
         <!-- Footer -->
-        <footer class="dashboard-footer" style="padding: 8px 20px;">
-            <div class="footer-content">
-                <div class="footer-copyright">
+        <footer class="dashboard-footer" style="padding: 6px 20px !important;">
+            <div class="footer-content" style="padding: 0 !important;">
+                <div class="footer-copyright" style="padding: 0 !important; margin: 0 !important; line-height: 1.2;">
                     &copy; <span id="currentYear"></span> <strong>Leadbunker</strong>. All rights reserved.
                 </div>
             </div>
         </footer>
     </div>
     <style>
-        /* Task Page Footer - Reduce padding */
+        /* Task Page Footer - Match other pages (compact) */
         .dashboard-footer {
-            padding: 8px 20px !important;
+            padding: 6px 20px !important;
             line-height: 1.2 !important;
+            min-height: auto !important;
         }
         
         .footer-content {
             padding: 0 !important;
+            margin: 0 !important;
         }
         
         .footer-copyright {
             padding: 0 !important;
             margin: 0 !important;
+            line-height: 1.2 !important;
         }
         
         /* Mobile Responsive - Tasks Table */
