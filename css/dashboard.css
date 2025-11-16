@@ -3289,3 +3289,166 @@ div[style*="overflow: auto"]::-webkit-scrollbar {
         font-size: 18px !important;
     }
 }
+
+/* ============================================
+   MOBILE RESPONSIVE - TASK & LIST CARDS
+   ============================================ */
+
+@media (max-width: 768px) {
+    /* Hide desktop tables on mobile */
+    .desktop-tasks-table,
+    .desktop-lists-table {
+        display: none !important;
+    }
+    
+    /* Mobile Task Cards */
+    .mobile-tasks-container,
+    .mobile-lists-container {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+    
+    .mobile-task-card,
+    .mobile-list-card {
+        background: white;
+        border: 1px solid #E5E7EB;
+        border-radius: 12px;
+        padding: 16px;
+        transition: all 0.2s ease;
+    }
+    
+    .mobile-task-card:hover,
+    .mobile-list-card:hover {
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        transform: translateY(-2px);
+    }
+    
+    .mobile-task-failed {
+        border-left: 4px solid #EF4444;
+        background: #FEF2F2;
+    }
+    
+    .mobile-task-header,
+    .mobile-list-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 12px;
+        gap: 10px;
+    }
+    
+    .mobile-task-id,
+    .mobile-list-email,
+    .mobile-list-phone {
+        font-weight: 700;
+        font-size: 14px;
+        color: #667eea;
+    }
+    
+    .mobile-list-email,
+    .mobile-list-phone {
+        color: #111827;
+        word-break: break-all;
+        flex: 1;
+    }
+    
+    .mobile-task-status,
+    .mobile-list-status {
+        flex-shrink: 0;
+    }
+    
+    .mobile-task-domain {
+        font-weight: 600;
+        font-size: 14px;
+        color: #111827;
+        margin-bottom: 10px;
+        line-height: 1.4;
+    }
+    
+    .mobile-task-meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-bottom: 12px;
+        align-items: center;
+    }
+    
+    .mobile-task-meta .badge {
+        font-size: 11px;
+        padding: 4px 8px;
+    }
+    
+    .mobile-task-results {
+        font-size: 12px;
+        color: #6B7280;
+        font-weight: 500;
+    }
+    
+    .mobile-task-error {
+        font-size: 12px;
+        color: #DC2626;
+        font-weight: 600;
+    }
+    
+    .mobile-task-info {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 12px;
+        padding: 8px 12px;
+        background: #F9FAFB;
+        border-radius: 8px;
+        font-size: 12px;
+        color: #6B7280;
+    }
+    
+    .mobile-task-credits,
+    .mobile-task-time {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+    }
+    
+    .mobile-task-credits i {
+        color: #F59E0B;
+    }
+    
+    .mobile-list-source {
+        font-size: 13px;
+        color: #6B7280;
+        margin-bottom: 6px;
+    }
+    
+    .mobile-list-time {
+        font-size: 12px;
+        color: #9CA3AF;
+        margin-bottom: 12px;
+    }
+    
+    .mobile-list-time i {
+        margin-right: 4px;
+    }
+    
+    .mobile-task-footer,
+    .mobile-list-footer {
+        display: flex;
+        gap: 8px;
+        padding-top: 12px;
+        border-top: 1px solid #F3F4F6;
+    }
+    
+    .mobile-task-footer .btn-sm,
+    .mobile-list-footer .btn-sm {
+        flex: 1;
+        justify-content: center;
+    }
+}
+
+/* Desktop - Hide mobile cards */
+@media (min-width: 769px) {
+    .mobile-tasks-container,
+    .mobile-lists-container {
+        display: none !important;
+    }
+}
