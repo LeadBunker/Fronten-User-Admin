@@ -3301,16 +3301,18 @@ div[style*="overflow: auto"]::-webkit-scrollbar {
         display: none !important;
     }
     
-    /* Mobile Task Cards */
+    /* Mobile Task & List & Transaction Cards */
     .mobile-tasks-container,
-    .mobile-lists-container {
+    .mobile-lists-container,
+    .mobile-transactions-container {
         display: flex;
         flex-direction: column;
         gap: 12px;
     }
     
     .mobile-task-card,
-    .mobile-list-card {
+    .mobile-list-card,
+    .mobile-transaction-card {
         background: white;
         border: 1px solid #E5E7EB;
         border-radius: 12px;
@@ -3319,7 +3321,8 @@ div[style*="overflow: auto"]::-webkit-scrollbar {
     }
     
     .mobile-task-card:hover,
-    .mobile-list-card:hover {
+    .mobile-list-card:hover,
+    .mobile-transaction-card:hover {
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         transform: translateY(-2px);
     }
@@ -3431,7 +3434,8 @@ div[style*="overflow: auto"]::-webkit-scrollbar {
     }
     
     .mobile-task-footer,
-    .mobile-list-footer {
+    .mobile-list-footer,
+    .mobile-transaction-footer {
         display: flex;
         gap: 8px;
         padding-top: 12px;
@@ -3439,16 +3443,78 @@ div[style*="overflow: auto"]::-webkit-scrollbar {
     }
     
     .mobile-task-footer .btn-sm,
-    .mobile-list-footer .btn-sm {
+    .mobile-list-footer .btn-sm,
+    .mobile-transaction-footer .btn-sm {
         flex: 1;
         justify-content: center;
+    }
+    
+    /* Transaction-specific styles */
+    .mobile-transaction-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 12px;
+        gap: 10px;
+    }
+    
+    .mobile-transaction-id {
+        font-weight: 700;
+        font-size: 14px;
+        color: #667eea;
+    }
+    
+    .mobile-transaction-status {
+        flex-shrink: 0;
+    }
+    
+    .mobile-transaction-description {
+        font-weight: 600;
+        font-size: 14px;
+        color: #111827;
+        margin-bottom: 10px;
+        line-height: 1.4;
+    }
+    
+    .mobile-transaction-meta {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 8px;
+        gap: 8px;
+    }
+    
+    .mobile-transaction-amount {
+        font-size: 16px;
+        font-weight: 700;
+        color: #10B981;
+    }
+    
+    .mobile-transaction-amount.refund {
+        color: #F59E0B;
+    }
+    
+    .mobile-transaction-date {
+        font-size: 12px;
+        color: #9CA3AF;
+        margin-bottom: 12px;
+    }
+    
+    .mobile-transaction-date i {
+        margin-right: 4px;
+    }
+    
+    .mobile-transaction-refund {
+        border-left: 4px solid #F59E0B;
+        background: #FFFBEB;
     }
 }
 
 /* Desktop - Hide mobile cards */
 @media (min-width: 769px) {
     .mobile-tasks-container,
-    .mobile-lists-container {
+    .mobile-lists-container,
+    .mobile-transactions-container {
         display: none !important;
     }
 }

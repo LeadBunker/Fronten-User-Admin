@@ -272,7 +272,7 @@
                 </div>
                 
                 <div class="table-responsive">
-                    <table class="tasks-table">
+                    <table class="tasks-table desktop-tasks-table">
                         <thead>
                             <tr>
                                 <th>Transaction ID</th>
@@ -364,6 +364,132 @@
                             </tr>
                         </tbody>
                     </table>
+                    
+                    <!-- Mobile Card View -->
+                    <div class="mobile-transactions-container">
+                        <div class="mobile-transaction-card">
+                            <div class="mobile-transaction-header">
+                                <span class="mobile-transaction-id">#TXN-4521</span>
+                                <span class="badge badge-success mobile-transaction-status"><i class="fas fa-check-circle"></i> Completed</span>
+                            </div>
+                            <div class="mobile-transaction-description">1,000 Credits Pack</div>
+                            <div class="mobile-transaction-meta">
+                                <span class="badge badge-info">Credit Purchase</span>
+                                <span class="mobile-transaction-amount">$120.00</span>
+                            </div>
+                            <div class="mobile-transaction-date"><i class="fas fa-calendar"></i> Nov 14, 2024 14:23</div>
+                            <div class="mobile-transaction-footer">
+                                <button class="btn-sm btn-secondary" onclick="downloadInvoice('TXN-4521')">
+                                    <i class="fas fa-receipt"></i> Receipt
+                                </button>
+                                <button class="btn-sm btn-primary" onclick="viewTransactionDetails('TXN-4521')">
+                                    <i class="fas fa-eye"></i> View
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="mobile-transaction-card">
+                            <div class="mobile-transaction-header">
+                                <span class="mobile-transaction-id">#TXN-4520</span>
+                                <span class="badge badge-success mobile-transaction-status"><i class="fas fa-check-circle"></i> Completed</span>
+                            </div>
+                            <div class="mobile-transaction-description">Pro Plan - Monthly</div>
+                            <div class="mobile-transaction-meta">
+                                <span class="badge badge-primary">Subscription</span>
+                                <span class="mobile-transaction-amount">$49.00</span>
+                            </div>
+                            <div class="mobile-transaction-date"><i class="fas fa-calendar"></i> Nov 10, 2024 09:15</div>
+                            <div class="mobile-transaction-footer">
+                                <button class="btn-sm btn-secondary" onclick="downloadInvoice('TXN-4520')">
+                                    <i class="fas fa-receipt"></i> Receipt
+                                </button>
+                                <button class="btn-sm btn-primary" onclick="viewTransactionDetails('TXN-4520')">
+                                    <i class="fas fa-eye"></i> View
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="mobile-transaction-card">
+                            <div class="mobile-transaction-header">
+                                <span class="mobile-transaction-id">#TXN-4519</span>
+                                <span class="badge badge-success mobile-transaction-status"><i class="fas fa-check-circle"></i> Completed</span>
+                            </div>
+                            <div class="mobile-transaction-description">500 Credits Pack</div>
+                            <div class="mobile-transaction-meta">
+                                <span class="badge badge-info">Credit Purchase</span>
+                                <span class="mobile-transaction-amount">$65.00</span>
+                            </div>
+                            <div class="mobile-transaction-date"><i class="fas fa-calendar"></i> Nov 5, 2024 16:42</div>
+                            <div class="mobile-transaction-footer">
+                                <button class="btn-sm btn-secondary" onclick="downloadInvoice('TXN-4519')">
+                                    <i class="fas fa-receipt"></i> Receipt
+                                </button>
+                                <button class="btn-sm btn-primary" onclick="viewTransactionDetails('TXN-4519')">
+                                    <i class="fas fa-eye"></i> View
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="mobile-transaction-card mobile-transaction-refund">
+                            <div class="mobile-transaction-header">
+                                <span class="mobile-transaction-id">#TXN-4518</span>
+                                <span class="badge badge-warning mobile-transaction-status"><i class="fas fa-undo"></i> Refund</span>
+                            </div>
+                            <div class="mobile-transaction-description">Refund - Failed Extraction</div>
+                            <div class="mobile-transaction-meta">
+                                <span class="badge badge-warning">Refund</span>
+                                <span class="mobile-transaction-amount refund">-$10.00</span>
+                            </div>
+                            <div class="mobile-transaction-date"><i class="fas fa-calendar"></i> Oct 28, 2024 11:30</div>
+                            <div class="mobile-transaction-footer">
+                                <button class="btn-sm btn-secondary" onclick="downloadInvoice('TXN-4518')">
+                                    <i class="fas fa-receipt"></i> Receipt
+                                </button>
+                                <button class="btn-sm btn-primary" onclick="viewTransactionDetails('TXN-4518')">
+                                    <i class="fas fa-eye"></i> View
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="mobile-transaction-card">
+                            <div class="mobile-transaction-header">
+                                <span class="mobile-transaction-id">#TXN-4517</span>
+                                <span class="badge badge-success mobile-transaction-status"><i class="fas fa-check-circle"></i> Completed</span>
+                            </div>
+                            <div class="mobile-transaction-description">100 Credits Pack</div>
+                            <div class="mobile-transaction-meta">
+                                <span class="badge badge-info">Credit Purchase</span>
+                                <span class="mobile-transaction-amount">$15.00</span>
+                            </div>
+                            <div class="mobile-transaction-date"><i class="fas fa-calendar"></i> Oct 25, 2024 08:12</div>
+                            <div class="mobile-transaction-footer">
+                                <button class="btn-sm btn-secondary" onclick="downloadInvoice('TXN-4517')">
+                                    <i class="fas fa-receipt"></i> Receipt
+                                </button>
+                                <button class="btn-sm btn-primary" onclick="viewTransactionDetails('TXN-4517')">
+                                    <i class="fas fa-eye"></i> View
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="mobile-transaction-card">
+                            <div class="mobile-transaction-header">
+                                <span class="mobile-transaction-id">#TXN-4515</span>
+                                <span class="badge badge-warning mobile-transaction-status"><i class="fas fa-clock"></i> Pending</span>
+                            </div>
+                            <div class="mobile-transaction-description">Payment Processing</div>
+                            <div class="mobile-transaction-meta">
+                                <span class="badge badge-info">Credit Purchase</span>
+                                <span class="mobile-transaction-amount">$120.00</span>
+                            </div>
+                            <div class="mobile-transaction-date"><i class="fas fa-calendar"></i> Oct 3, 2024 15:45</div>
+                            <div class="mobile-transaction-footer">
+                                <button class="btn-sm btn-primary" onclick="viewTransactionDetails('TXN-4515')">
+                                    <i class="fas fa-eye"></i> View
+                                </button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- Pagination -->
