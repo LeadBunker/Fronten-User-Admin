@@ -17,9 +17,15 @@
             <i class="fas fa-bars"></i>
         </button>
         <h1 class="mobile-page-title">Transactions</h1>
-        <a href="#" class="mobile-profile-link">
-            <img src="https://ui-avatars.com/api/?name=Admin&background=667eea&color=fff" alt="Admin" class="mobile-profile-img">
-        </a>
+        <div class="mobile-header-right">
+            <button class="mobile-notification-btn" id="mobileNotificationBell">
+                <i class="fas fa-bell"></i>
+                <span class="notification-badge">4</span>
+            </button>
+            <a href="#" class="mobile-profile-link">
+                <img src="https://ui-avatars.com/api/?name=Admin&background=667eea&color=fff" alt="Admin" class="mobile-profile-img">
+            </a>
+        </div>
     </div>
 
     <!-- Sidebar Overlay -->
@@ -70,6 +76,119 @@
                     <p style="color: var(--text-light); margin: 0; font-size: 14px;">View and manage all transactions</p>
                 </div>
                 <div class="header-actions">
+                    <!-- Notification Bell -->
+                    <div class="notification-wrapper">
+                        <button class="icon-btn notification-bell" id="userNotificationBell">
+                            <i class="fas fa-bell"></i>
+                            <span class="notification-badge">4</span>
+                        </button>
+                        
+                        <!-- Notification Dropdown -->
+                        <div class="notification-dropdown" id="userNotificationDropdown">
+                            <div class="notification-header">
+                                <h3>Notifications</h3>
+                                <div class="notification-actions">
+                                    <button class="mark-all-read" onclick="markAllNotificationsRead()">
+                                        <i class="fas fa-check-double"></i> Mark all read
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <!-- Notification Tabs -->
+                            <div class="notification-tabs">
+                                <button class="tab-btn active" data-tab="all" onclick="switchNotificationTab('all')">
+                                    All <span class="tab-count">4</span>
+                                </button>
+                                <button class="tab-btn" data-tab="important" onclick="switchNotificationTab('important')">
+                                    Important <span class="tab-count urgent">1</span>
+                                </button>
+                                <button class="tab-btn" data-tab="unread" onclick="switchNotificationTab('unread')">
+                                    Unread <span class="tab-count">4</span>
+                                </button>
+                            </div>
+                            
+                            <!-- Notifications List -->
+                            <div class="notifications-list" id="userNotificationsList">
+                                
+                                <!-- Important Notification -->
+                                <div class="notification-item unread urgent" data-priority="important">
+                                    <div class="notification-icon urgent">
+                                        <i class="fas fa-exclamation-circle"></i>
+                                    </div>
+                                    <div class="notification-content">
+                                        <div class="notification-title">Payment Processing Error</div>
+                                        <div class="notification-desc">Multiple transaction failures detected - requires attention</div>
+                                        <div class="notification-meta">
+                                            <span class="notification-time"><i class="fas fa-clock"></i> 20 mins ago</span>
+                                            <a href="transactions.html" class="notification-link">View Details →</a>
+                                        </div>
+                                    </div>
+                                    <button class="notification-mark-read" onclick="markNotificationRead(this)" title="Mark as read">
+                                        <i class="fas fa-check"></i>
+                                    </button>
+                                </div>
+                                
+                                <!-- Regular Notifications -->
+                                <div class="notification-item unread" data-priority="normal">
+                                    <div class="notification-icon medium">
+                                        <i class="fas fa-money-bill-wave"></i>
+                                    </div>
+                                    <div class="notification-content">
+                                        <div class="notification-title">Large Transaction Completed</div>
+                                        <div class="notification-desc">$2,500 payment received from user#12847</div>
+                                        <div class="notification-meta">
+                                            <span class="notification-time"><i class="fas fa-clock"></i> 1 hour ago</span>
+                                            <a href="transactions.html" class="notification-link">View Transaction →</a>
+                                        </div>
+                                    </div>
+                                    <button class="notification-mark-read" onclick="markNotificationRead(this)" title="Mark as read">
+                                        <i class="fas fa-check"></i>
+                                    </button>
+                                </div>
+                                
+                                <div class="notification-item unread" data-priority="normal">
+                                    <div class="notification-icon low">
+                                        <i class="fas fa-undo"></i>
+                                    </div>
+                                    <div class="notification-content">
+                                        <div class="notification-title">Refund Processed</div>
+                                        <div class="notification-desc">$120 refunded to user#9876</div>
+                                        <div class="notification-meta">
+                                            <span class="notification-time"><i class="fas fa-clock"></i> 3 hours ago</span>
+                                            <a href="transactions.html" class="notification-link">View Details →</a>
+                                        </div>
+                                    </div>
+                                    <button class="notification-mark-read" onclick="markNotificationRead(this)" title="Mark as read">
+                                        <i class="fas fa-check"></i>
+                                    </button>
+                                </div>
+                                
+                                <div class="notification-item unread" data-priority="normal">
+                                    <div class="notification-icon low">
+                                        <i class="fas fa-bitcoin"></i>
+                                    </div>
+                                    <div class="notification-content">
+                                        <div class="notification-title">Crypto Payment Confirmed</div>
+                                        <div class="notification-desc">0.02 BTC payment confirmed with 6 confirmations</div>
+                                        <div class="notification-meta">
+                                            <span class="notification-time"><i class="fas fa-clock"></i> 5 hours ago</span>
+                                            <a href="crypto-payments.html" class="notification-link">View Details →</a>
+                                        </div>
+                                    </div>
+                                    <button class="notification-mark-read" onclick="markNotificationRead(this)" title="Mark as read">
+                                        <i class="fas fa-check"></i>
+                                    </button>
+                                </div>
+                                
+                            </div>
+                            
+                            <!-- Notification Footer -->
+                            <div class="notification-footer">
+                                <a href="notifications.html" class="view-all-notifications">View All Notifications</a>
+                            </div>
+                        </div>
+                    </div>
+                    
                     <button class="btn btn-secondary">
                         <i class="fas fa-download"></i> Export
                     </button>
@@ -511,6 +630,7 @@
             }
         }
     </script>
+    <script src="../js/dashboard.js"></script>
 </body>
 </html>
 

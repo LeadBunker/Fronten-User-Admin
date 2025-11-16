@@ -17,9 +17,15 @@
             <i class="fas fa-bars"></i>
         </button>
         <h1 class="mobile-page-title">Credits & Coupons</h1>
-        <a href="../dashboard.html" class="mobile-profile-link">
-            <img src="https://ui-avatars.com/api/?name=Admin&background=667eea&color=fff&size=80" alt="Profile" class="mobile-profile-img">
-        </a>
+        <div class="mobile-header-right">
+            <button class="mobile-notification-btn" id="mobileNotificationBell">
+                <i class="fas fa-bell"></i>
+                <span class="notification-badge">3</span>
+            </button>
+            <a href="../dashboard.html" class="mobile-profile-link">
+                <img src="https://ui-avatars.com/api/?name=Admin&background=667eea&color=fff&size=80" alt="Profile" class="mobile-profile-img">
+            </a>
+        </div>
     </header>
 
     <div class="sidebar-overlay" onclick="toggleSidebar()"></div>
@@ -58,6 +64,54 @@
             <header class="main-header">
                 <h1>Credits & Coupon Management</h1>
                 <div class="header-actions">
+                    <div class="notification-wrapper">
+                        <button class="icon-btn notification-bell" id="userNotificationBell">
+                            <i class="fas fa-bell"></i>
+                            <span class="notification-badge">3</span>
+                        </button>
+                        <div class="notification-dropdown" id="userNotificationDropdown">
+                            <div class="notification-header">
+                                <h3>Notifications</h3>
+                                <div class="notification-actions">
+                                    <button class="mark-all-read" onclick="markAllNotificationsRead()"><i class="fas fa-check-double"></i> Mark all read</button>
+                                </div>
+                            </div>
+                            <div class="notification-tabs">
+                                <button class="tab-btn active" data-tab="all" onclick="switchNotificationTab('all')">All <span class="tab-count">3</span></button>
+                                <button class="tab-btn" data-tab="important" onclick="switchNotificationTab('important')">Important <span class="tab-count urgent">1</span></button>
+                                <button class="tab-btn" data-tab="unread" onclick="switchNotificationTab('unread')">Unread <span class="tab-count">3</span></button>
+                            </div>
+                            <div class="notifications-list" id="userNotificationsList">
+                                <div class="notification-item unread urgent" data-priority="important">
+                                    <div class="notification-icon urgent"><i class="fas fa-exclamation-circle"></i></div>
+                                    <div class="notification-content">
+                                        <div class="notification-title">Credit Adjustment Needed</div>
+                                        <div class="notification-desc">User reported incorrect credit balance - review required</div>
+                                        <div class="notification-meta">
+                                            <span class="notification-time"><i class="fas fa-clock"></i> 15 mins ago</span>
+                                            <a href="credits.html" class="notification-link">Review Now →</a>
+                                        </div>
+                                    </div>
+                                    <button class="notification-mark-read" onclick="markNotificationRead(this)" title="Mark as read"><i class="fas fa-check"></i></button>
+                                </div>
+                                <div class="notification-item unread" data-priority="normal">
+                                    <div class="notification-icon medium"><i class="fas fa-gem"></i></div>
+                                    <div class="notification-content">
+                                        <div class="notification-title">Bulk Credit Purchase</div>
+                                        <div class="notification-desc">Enterprise customer purchased 1M credits</div>
+                                        <div class="notification-meta">
+                                            <span class="notification-time"><i class="fas fa-clock"></i> 2 hours ago</span>
+                                            <a href="transactions.html" class="notification-link">View Transaction →</a>
+                                        </div>
+                                    </div>
+                                    <button class="notification-mark-read" onclick="markNotificationRead(this)" title="Mark as read"><i class="fas fa-check"></i></button>
+                                </div>
+                            </div>
+                            <div class="notification-footer">
+                                <a href="notifications.html" class="view-all-notifications">View All Notifications</a>
+                            </div>
+                        </div>
+                    </div>
                     <button class="icon-btn"><i class="fas fa-plus"></i></button>
                     <button class="icon-btn"><i class="fas fa-file-import"></i></button>
                 </div>

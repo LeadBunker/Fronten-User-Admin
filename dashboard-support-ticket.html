@@ -73,6 +73,54 @@
                         <i class="fas fa-arrow-left"></i> Back to Tickets
                     </button>
                     <div class="ticket-actions">
+                        <div class="notification-wrapper">
+                            <button class="icon-btn notification-bell" id="userNotificationBell">
+                                <i class="fas fa-bell"></i>
+                                <span class="notification-badge">5</span>
+                            </button>
+                            <div class="notification-dropdown" id="userNotificationDropdown">
+                                <div class="notification-header">
+                                    <h3>Notifications</h3>
+                                    <div class="notification-actions">
+                                        <button class="mark-all-read" onclick="markAllNotificationsRead()"><i class="fas fa-check-double"></i> Mark all read</button>
+                                    </div>
+                                </div>
+                                <div class="notification-tabs">
+                                    <button class="tab-btn active" data-tab="all" onclick="switchNotificationTab('all')">All <span class="tab-count">5</span></button>
+                                    <button class="tab-btn" data-tab="important" onclick="switchNotificationTab('important')">Important <span class="tab-count urgent">2</span></button>
+                                    <button class="tab-btn" data-tab="unread" onclick="switchNotificationTab('unread')">Unread <span class="tab-count">5</span></button>
+                                </div>
+                                <div class="notifications-list" id="userNotificationsList">
+                                    <div class="notification-item unread urgent" data-priority="important">
+                                        <div class="notification-icon urgent"><i class="fas fa-exclamation-circle"></i></div>
+                                        <div class="notification-content">
+                                            <div class="notification-title">Support Ticket Updated</div>
+                                            <div class="notification-desc">Admin replied to your ticket #2847</div>
+                                            <div class="notification-meta">
+                                                <span class="notification-time"><i class="fas fa-clock"></i> 2 mins ago</span>
+                                                <a href="dashboard-support-ticket.html" class="notification-link">View Reply →</a>
+                                            </div>
+                                        </div>
+                                        <button class="notification-mark-read" onclick="markNotificationRead(this)" title="Mark as read"><i class="fas fa-check"></i></button>
+                                    </div>
+                                    <div class="notification-item unread" data-priority="normal">
+                                        <div class="notification-icon medium"><i class="fas fa-gem"></i></div>
+                                        <div class="notification-content">
+                                            <div class="notification-title">Credits Added</div>
+                                            <div class="notification-desc">Your account has been credited 500 credits</div>
+                                            <div class="notification-meta">
+                                                <span class="notification-time"><i class="fas fa-clock"></i> 1 hour ago</span>
+                                                <a href="dashboard-credits.html" class="notification-link">View Balance →</a>
+                                            </div>
+                                        </div>
+                                        <button class="notification-mark-read" onclick="markNotificationRead(this)" title="Mark as read"><i class="fas fa-check"></i></button>
+                                    </div>
+                                </div>
+                                <div class="notification-footer">
+                                    <a href="notifications.html" class="view-all-notifications">View All Notifications</a>
+                                </div>
+                            </div>
+                        </div>
                         <button class="btn-sm btn-secondary" onclick="showCloseTicketModal()">
                             <i class="fas fa-check-circle"></i> Close Ticket
                         </button>

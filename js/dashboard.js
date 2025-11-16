@@ -34,21 +34,33 @@ function initializeNotifications() {
     const mobileNotificationBell = document.getElementById('mobileNotificationBell');
     const userNotificationDropdown = document.getElementById('userNotificationDropdown');
     
-    if (!userNotificationDropdown) return;
+    console.log('🔔 Initializing notifications...');
+    console.log('Desktop bell:', userNotificationBell);
+    console.log('Mobile bell:', mobileNotificationBell);
+    console.log('Dropdown:', userNotificationDropdown);
+    
+    if (!userNotificationDropdown) {
+        console.warn('⚠️ Notification dropdown not found!');
+        return;
+    }
     
     // Function to toggle dropdown
     const toggleDropdown = (e) => {
         e.stopPropagation();
+        console.log('🔔 Toggling notification dropdown');
         userNotificationDropdown.classList.toggle('active');
+        console.log('Dropdown active?', userNotificationDropdown.classList.contains('active'));
     };
     
     // Add click listeners to both desktop and mobile bells
     if (userNotificationBell) {
         userNotificationBell.addEventListener('click', toggleDropdown);
+        console.log('✅ Desktop bell listener attached');
     }
     
     if (mobileNotificationBell) {
         mobileNotificationBell.addEventListener('click', toggleDropdown);
+        console.log('✅ Mobile bell listener attached');
     }
     
     // Close dropdown when clicking outside

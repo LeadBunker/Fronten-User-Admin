@@ -17,9 +17,15 @@
             <i class="fas fa-bars"></i>
         </button>
         <h1 class="mobile-page-title">Admin Dashboard</h1>
-        <a href="#" class="mobile-profile-link">
-            <img src="https://ui-avatars.com/api/?name=Admin&background=667eea&color=fff" alt="Admin" class="mobile-profile-img">
-        </a>
+        <div class="mobile-header-right">
+            <button class="mobile-notification-btn" id="mobileNotificationBell">
+                <i class="fas fa-bell"></i>
+                <span class="notification-badge">8</span>
+            </button>
+            <a href="#" class="mobile-profile-link">
+                <img src="https://ui-avatars.com/api/?name=Admin&background=667eea&color=fff" alt="Admin" class="mobile-profile-img">
+            </a>
+        </div>
     </div>
 
     <!-- Sidebar Overlay -->
@@ -71,17 +77,17 @@
                 </div>
                 <div class="header-actions">
                     <div class="notification-wrapper">
-                        <button class="icon-btn notification-bell" id="notificationBell">
+                        <button class="icon-btn notification-bell" id="userNotificationBell">
                             <i class="fas fa-bell"></i>
                             <span class="notification-badge">8</span>
                         </button>
                         
                         <!-- Notification Dropdown -->
-                        <div class="notification-dropdown" id="notificationDropdown">
+                        <div class="notification-dropdown" id="userNotificationDropdown">
                             <div class="notification-header">
                                 <h3>Notifications</h3>
                                 <div class="notification-actions">
-                                    <button class="mark-all-read" onclick="markAllAsRead()">
+                                    <button class="mark-all-read" onclick="markAllNotificationsRead()">
                                         <i class="fas fa-check-double"></i> Mark all read
                                     </button>
                                 </div>
@@ -116,7 +122,7 @@
                                             <a href="crypto-payments.html" class="notification-link">Review Now →</a>
                                         </div>
                                     </div>
-                                    <button class="notification-mark-read" onclick="markAsRead(this)" title="Mark as read">
+                                    <button class="notification-mark-read" onclick="markNotificationRead(this)" title="Mark as read">
                                         <i class="fas fa-check"></i>
                                     </button>
                                 </div>
@@ -133,7 +139,7 @@
                                             <a href="settings.html" class="notification-link">Manage Storage →</a>
                                         </div>
                                     </div>
-                                    <button class="notification-mark-read" onclick="markAsRead(this)" title="Mark as read">
+                                    <button class="notification-mark-read" onclick="markNotificationRead(this)" title="Mark as read">
                                         <i class="fas fa-check"></i>
                                     </button>
                                 </div>
@@ -150,7 +156,7 @@
                                             <a href="support.html" class="notification-link">View Tickets →</a>
                                         </div>
                                     </div>
-                                    <button class="notification-mark-read" onclick="markAsRead(this)" title="Mark as read">
+                                    <button class="notification-mark-read" onclick="markNotificationRead(this)" title="Mark as read">
                                         <i class="fas fa-check"></i>
                                     </button>
                                 </div>
@@ -168,7 +174,7 @@
                                             <a href="scraping.html" class="notification-link">Resolve Issues →</a>
                                         </div>
                                     </div>
-                                    <button class="notification-mark-read" onclick="markAsRead(this)" title="Mark as read">
+                                    <button class="notification-mark-read" onclick="markNotificationRead(this)" title="Mark as read">
                                         <i class="fas fa-check"></i>
                                     </button>
                                 </div>
@@ -185,7 +191,7 @@
                                             <a href="users.html" class="notification-link">View Users →</a>
                                         </div>
                                     </div>
-                                    <button class="notification-mark-read" onclick="markAsRead(this)" title="Mark as read">
+                                    <button class="notification-mark-read" onclick="markNotificationRead(this)" title="Mark as read">
                                         <i class="fas fa-check"></i>
                                     </button>
                                 </div>
@@ -202,7 +208,7 @@
                                             <a href="transactions.html" class="notification-link">View Details →</a>
                                         </div>
                                     </div>
-                                    <button class="notification-mark-read" onclick="markAsRead(this)" title="Mark as read">
+                                    <button class="notification-mark-read" onclick="markNotificationRead(this)" title="Mark as read">
                                         <i class="fas fa-check"></i>
                                     </button>
                                 </div>
@@ -220,7 +226,7 @@
                                             <a href="coupons.html" class="notification-link">Manage Coupons →</a>
                                         </div>
                                     </div>
-                                    <button class="notification-mark-read" onclick="markAsRead(this)" title="Mark as read">
+                                    <button class="notification-mark-read" onclick="markNotificationRead(this)" title="Mark as read">
                                         <i class="fas fa-check"></i>
                                     </button>
                                 </div>
@@ -237,7 +243,7 @@
                                             <a href="analytics.html" class="notification-link">View Report →</a>
                                         </div>
                                     </div>
-                                    <button class="notification-mark-read" onclick="markAsRead(this)" title="Mark as read">
+                                    <button class="notification-mark-read" onclick="markNotificationRead(this)" title="Mark as read">
                                         <i class="fas fa-check"></i>
                                     </button>
                                 </div>
@@ -246,7 +252,7 @@
                             
                             <!-- Notification Footer -->
                             <div class="notification-footer">
-                                <a href="#" class="view-all-notifications">View All Notifications</a>
+                                <a href="notifications.html" class="view-all-notifications">View All Notifications</a>
                             </div>
                         </div>
                     </div>
@@ -733,6 +739,7 @@
             }
         }
     </script>
+    <script src="../js/dashboard.js"></script>
 </body>
 </html>
 

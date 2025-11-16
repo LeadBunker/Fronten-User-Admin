@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Notifications - Leadbunker</title>
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <header class="mobile-header">
+        <button class="mobile-menu-btn" onclick="toggleSidebar()">
+            <i class="fas fa-bars"></i>
+        </button>
+        <h1 class="mobile-page-title">Notifications</h1>
+        <div class="mobile-header-right">
+        <button class="mobile-notification-btn" id="mobileNotificationBell">
+            <i class="fas fa-bell"></i>
+            <span class="notification-badge">5</span>
+        </button>
+        <a href="dashboard-profile.html" class="mobile-profile-link">
+            <img src="https://ui-avatars.com/api/?name=John+Doe&background=667eea&color=fff&size=80" alt="Profile" class="mobile-profile-img">
+        </a>
+        </div>
+    </header>
+
+    <div class="sidebar-overlay" onclick="toggleSidebar()"></div>
+
+    <div class="dashboard-container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <a href="dashboard.html" class="logo">
+                    <div class="logo-icon">LB</div>
+                    <span>Leadbunker</span>
+                </a>
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li><a href="dashboard.html"><i class="fas fa-home"></i> Dashboard</a></li>
+                    <li><a href="dashboard-email-lists.html"><i class="fas fa-envelope"></i> Email Lists</a></li>
+                    <li><a href="dashboard-phone-lists.html"><i class="fas fa-phone"></i> Phone Lists</a></li>
+                    <li><a href="dashboard-tasks.html"><i class="fas fa-tasks"></i> My Tasks</a></li>
+                    <li><a href="dashboard-credits.html"><i class="fas fa-gem"></i> Credits & Billing</a></li>
+                    <li><a href="dashboard-transactions.html"><i class="fas fa-credit-card"></i> Transactions</a></li>
+                    <li><a href="dashboard-analytics.html"><i class="fas fa-chart-bar"></i> Analytics</a></li>
+                    <li><a href="dashboard-api-keys.html"><i class="fas fa-key"></i> API Keys</a></li>
+                    <li><a href="dashboard-team.html"><i class="fas fa-users"></i> Team</a></li>
+                    <li><a href="dashboard-settings.html"><i class="fas fa-cog"></i> Settings</a></li>
+                </ul>
+            </nav>
+            <div class="sidebar-footer">
+                <ul>
+                    <li><a href="dashboard-support.html"><i class="fas fa-life-ring"></i> Support</a></li>
+                    <li><a href="dashboard-profile.html"><i class="fas fa-user"></i> Profile</a></li>
+                    <li><a href="index.html"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                </ul>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="main-header">
+                <div>
+                    <h1>All Notifications</h1>
+                    <p style="color: var(--text-light); margin: 0; font-size: 14px;">Stay updated with all your activity</p>
+                </div>
+                <div class="header-actions">
+                    <div class="notification-wrapper">
+                        <button class="icon-btn notification-bell" id="userNotificationBell">
+                            <i class="fas fa-bell"></i>
+                            <span class="notification-badge">5</span>
+                        </button>
+                        <div class="notification-dropdown" id="userNotificationDropdown">
+                            <div class="notification-header">
+                                <h3>Notifications</h3>
+                                <div class="notification-actions">
+                                    <button class="mark-all-read" onclick="markAllNotificationsRead()"><i class="fas fa-check-double"></i> Mark all read</button>
+                                </div>
+                            </div>
+                            <div class="notification-tabs">
+                                <button class="tab-btn active" data-tab="all" onclick="switchNotificationTab('all')">All <span class="tab-count">5</span></button>
+                                <button class="tab-btn" data-tab="important" onclick="switchNotificationTab('important')">Important <span class="tab-count urgent">2</span></button>
+                                <button class="tab-btn" data-tab="unread" onclick="switchNotificationTab('unread')">Unread <span class="tab-count">5</span></button>
+                            </div>
+                            <div class="notifications-list" id="userNotificationsList">
+                                <div class="notification-item unread urgent" data-priority="important">
+                                    <div class="notification-icon urgent"><i class="fas fa-exclamation-circle"></i></div>
+                                    <div class="notification-content">
+                                        <div class="notification-title">Extraction Failed</div>
+                                        <div class="notification-desc">Task #1847 failed - please review and retry</div>
+                                        <div class="notification-meta">
+                                            <span class="notification-time"><i class="fas fa-clock"></i> 5 mins ago</span>
+                                            <a href="dashboard-tasks.html" class="notification-link">View Task →</a>
+                                        </div>
+                                    </div>
+                                    <button class="notification-mark-read" onclick="markNotificationRead(this)" title="Mark as read"><i class="fas fa-check"></i></button>
+                                </div>
+                                <div class="notification-item unread" data-priority="normal">
+                                    <div class="notification-icon medium"><i class="fas fa-check-circle"></i></div>
+                                    <div class="notification-content">
+                                        <div class="notification-title">Extraction Complete</div>
+                                        <div class="notification-desc">Task #1846 completed - 2,847 emails extracted</div>
+                                        <div class="notification-meta">
+                                            <span class="notification-time"><i class="fas fa-clock"></i> 1 hour ago</span>
+                                            <a href="dashboard-tasks.html" class="notification-link">Download Results →</a>
+                                        </div>
+                                    </div>
+                                    <button class="notification-mark-read" onclick="markNotificationRead(this)" title="Mark as read"><i class="fas fa-check"></i></button>
+                                </div>
+                            </div>
+                            <div class="notification-footer">
+                                <a href="notifications.html" class="view-all-notifications">View All Notifications</a>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="btn btn-secondary" onclick="markAllAsRead()">
+                        <i class="fas fa-check-double"></i> Mark All Read
+                    </button>
+                </div>
+            </header>
+
+            <!-- Notification Filter Tabs -->
+            <div class="card" style="margin-bottom: 24px;">
+                <div class="notification-tabs" style="border-bottom: 1px solid #EFEFEF; padding-bottom: 16px; margin-bottom: 0;">
+                    <button class="tab-btn active" data-tab="all" onclick="filterNotifications('all')" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
+                        All <span class="tab-count" style="background: rgba(255,255,255,0.3); color: white;">24</span>
+                    </button>
+                    <button class="tab-btn" data-tab="important" onclick="filterNotifications('important')" style="background: transparent; color: #333;">
+                        Important <span class="tab-count urgent">6</span>
+                    </button>
+                    <button class="tab-btn" data-tab="tasks" onclick="filterNotifications('tasks')" style="background: transparent; color: #333;">
+                        Tasks <span class="tab-count" style="background: #f3f4f6; color: #666;">8</span>
+                    </button>
+                    <button class="tab-btn" data-tab="credits" onclick="filterNotifications('credits')" style="background: transparent; color: #333;">
+                        Credits <span class="tab-count" style="background: #f3f4f6; color: #666;">4</span>
+                    </button>
+                    <button class="tab-btn" data-tab="system" onclick="filterNotifications('system')" style="background: transparent; color: #333;">
+                        System <span class="tab-count" style="background: #f3f4f6; color: #666;">6</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- All Notifications List -->
+            <div class="card">
+                <div class="notifications-list" style="display: flex; flex-direction: column; gap: 0;">
+                    
+                    <!-- Urgent Notification -->
+                    <div class="notification-item unread urgent" data-priority="important" data-category="tasks" style="border-bottom: 1px solid #EFEFEF; padding: 20px;">
+                        <div class="notification-icon urgent"><i class="fas fa-exclamation-circle"></i></div>
+                        <div class="notification-content">
+                            <div class="notification-title">Extraction Failed</div>
+                            <div class="notification-desc">Task #1847 failed due to network timeout - please review and retry</div>
+                            <div class="notification-meta">
+                                <span class="notification-time"><i class="fas fa-clock"></i> 5 minutes ago</span>
+                                <a href="dashboard-tasks.html" class="notification-link">View Task →</a>
+                            </div>
+                        </div>
+                        <button class="notification-mark-read" onclick="markNotificationRead(this)" title="Mark as read"><i class="fas fa-check"></i></button>
+                    </div>
+
+                    <!-- Important Notification -->
+                    <div class="notification-item unread urgent" data-priority="important" data-category="credits" style="border-bottom: 1px solid #EFEFEF; padding: 20px;">
+                        <div class="notification-icon urgent"><i class="fas fa-exclamation-triangle"></i></div>
+                        <div class="notification-content">
+                            <div class="notification-title">Low Credit Balance</div>
+                            <div class="notification-desc">Your credit balance is running low. Only 50 credits remaining.</div>
+                            <div class="notification-meta">
+                                <span class="notification-time"><i class="fas fa-clock"></i> 15 minutes ago</span>
+                                <a href="dashboard-credits.html" class="notification-link">Buy Credits →</a>
+                            </div>
+                        </div>
+                        <button class="notification-mark-read" onclick="markNotificationRead(this)" title="Mark as read"><i class="fas fa-check"></i></button>
+                    </div>
+
+                    <!-- Success Notification -->
+                    <div class="notification-item unread" data-priority="normal" data-category="tasks" style="border-bottom: 1px solid #EFEFEF; padding: 20px;">
+                        <div class="notification-icon medium"><i class="fas fa-check-circle"></i></div>
+                        <div class="notification-content">
+                            <div class="notification-title">Extraction Complete</div>
+                            <div class="notification-desc">Task #1846 completed successfully - 2,847 emails extracted from example.com</div>
+                            <div class="notification-meta">
+                                <span class="notification-time"><i class="fas fa-clock"></i> 1 hour ago</span>
+                                <a href="dashboard-tasks.html" class="notification-link">Download Results →</a>
+                            </div>
+                        </div>
+                        <button class="notification-mark-read" onclick="markNotificationRead(this)" title="Mark as read"><i class="fas fa-check"></i></button>
+                    </div>
+
+                    <!-- Payment Notification -->
+                    <div class="notification-item unread" data-priority="normal" data-category="credits" style="border-bottom: 1px solid #EFEFEF; padding: 20px;">
+                        <div class="notification-icon medium"><i class="fas fa-gem"></i></div>
+                        <div class="notification-content">
+                            <div class="notification-title">Credits Added</div>
+                            <div class="notification-desc">1,000 credits have been added to your account via Bitcoin payment</div>
+                            <div class="notification-meta">
+                                <span class="notification-time"><i class="fas fa-clock"></i> 2 hours ago</span>
+                                <a href="dashboard-transactions.html" class="notification-link">View Transaction →</a>
+                            </div>
+                        </div>
+                        <button class="notification-mark-read" onclick="markNotificationRead(this)" title="Mark as read"><i class="fas fa-check"></i></button>
+                    </div>
+
+                    <!-- Validation Notification -->
+                    <div class="notification-item unread" data-priority="normal" data-category="tasks" style="border-bottom: 1px solid #EFEFEF; padding: 20px;">
+                        <div class="notification-icon medium"><i class="fas fa-envelope-circle-check"></i></div>
+                        <div class="notification-content">
+                            <div class="notification-title">Email Validation Complete</div>
+                            <div class="notification-desc">List "Marketing Q4 2024" validated - 87% valid emails (2,478 out of 2,847)</div>
+                            <div class="notification-meta">
+                                <span class="notification-time"><i class="fas fa-clock"></i> 3 hours ago</span>
+                                <a href="dashboard-email-lists.html" class="notification-link">View List →</a>
+                            </div>
+                        </div>
+                        <button class="notification-mark-read" onclick="markNotificationRead(this)" title="Mark as read"><i class="fas fa-check"></i></button>
+                    </div>
+
+                    <!-- System Notification -->
+                    <div class="notification-item read" data-priority="normal" data-category="system" style="border-bottom: 1px solid #EFEFEF; padding: 20px; opacity: 0.7;">
+                        <div class="notification-icon low"><i class="fas fa-info-circle"></i></div>
+                        <div class="notification-content">
+                            <div class="notification-title">API Rate Limit Increased</div>
+                            <div class="notification-desc">Your API rate limit has been increased to 1,000 requests/hour</div>
+                            <div class="notification-meta">
+                                <span class="notification-time"><i class="fas fa-clock"></i> Yesterday at 3:24 PM</span>
+                                <a href="dashboard-api-keys.html" class="notification-link">View API Keys →</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Team Notification -->
+                    <div class="notification-item read" data-priority="normal" data-category="system" style="border-bottom: 1px solid #EFEFEF; padding: 20px; opacity: 0.7;">
+                        <div class="notification-icon low"><i class="fas fa-user-plus"></i></div>
+                        <div class="notification-content">
+                            <div class="notification-title">New Team Member Added</div>
+                            <div class="notification-desc">Sarah Johnson (sarah@company.com) has joined your team</div>
+                            <div class="notification-meta">
+                                <span class="notification-time"><i class="fas fa-clock"></i> Yesterday at 2:15 PM</span>
+                                <a href="dashboard-team.html" class="notification-link">View Team →</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Warning Notification -->
+                    <div class="notification-item read urgent" data-priority="important" data-category="system" style="border-bottom: 1px solid #EFEFEF; padding: 20px; opacity: 0.7;">
+                        <div class="notification-icon urgent"><i class="fas fa-shield-halved"></i></div>
+                        <div class="notification-content">
+                            <div class="notification-title">Security Alert</div>
+                            <div class="notification-desc">New login from unknown device (Chrome on Windows, New York, US)</div>
+                            <div class="notification-meta">
+                                <span class="notification-time"><i class="fas fa-clock"></i> 2 days ago</span>
+                                <a href="dashboard-settings.html" class="notification-link">Review Security →</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Feature Notification -->
+                    <div class="notification-item read" data-priority="normal" data-category="system" style="border-bottom: 1px solid #EFEFEF; padding: 20px; opacity: 0.7;">
+                        <div class="notification-icon low"><i class="fas fa-sparkles"></i></div>
+                        <div class="notification-content">
+                            <div class="notification-title">New Feature: Phone Number Extraction</div>
+                            <div class="notification-desc">We've added phone number extraction! Extract phone numbers from any website.</div>
+                            <div class="notification-meta">
+                                <span class="notification-time"><i class="fas fa-clock"></i> 3 days ago</span>
+                                <a href="dashboard-new-extraction.html" class="notification-link">Try It Now →</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Maintenance Notification -->
+                    <div class="notification-item read" data-priority="normal" data-category="system" style="border-bottom: 1px solid #EFEFEF; padding: 20px; opacity: 0.7;">
+                        <div class="notification-icon low"><i class="fas fa-wrench"></i></div>
+                        <div class="notification-content">
+                            <div class="notification-title">Scheduled Maintenance Complete</div>
+                            <div class="notification-desc">Our scheduled maintenance has been completed. All systems are now operational.</div>
+                            <div class="notification-meta">
+                                <span class="notification-time"><i class="fas fa-clock"></i> 4 days ago</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Billing Notification -->
+                    <div class="notification-item read" data-priority="normal" data-category="credits" style="border-bottom: 1px solid #EFEFEF; padding: 20px; opacity: 0.7;">
+                        <div class="notification-icon low"><i class="fas fa-credit-card"></i></div>
+                        <div class="notification-content">
+                            <div class="notification-title">Payment Received</div>
+                            <div class="notification-desc">Your payment of $49.99 has been received and processed</div>
+                            <div class="notification-meta">
+                                <span class="notification-time"><i class="fas fa-clock"></i> 5 days ago</span>
+                                <a href="dashboard-transactions.html" class="notification-link">View Invoice →</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Support Notification -->
+                    <div class="notification-item read" data-priority="normal" data-category="system" style="border-bottom: 1px solid #EFEFEF; padding: 20px; opacity: 0.7;">
+                        <div class="notification-icon low"><i class="fas fa-message"></i></div>
+                        <div class="notification-content">
+                            <div class="notification-title">Support Ticket Resolved</div>
+                            <div class="notification-desc">Your support ticket #2847 has been resolved by our team</div>
+                            <div class="notification-meta">
+                                <span class="notification-time"><i class="fas fa-clock"></i> 1 week ago</span>
+                                <a href="dashboard-support.html" class="notification-link">View Ticket →</a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Pagination -->
+                <div style="display: flex; justify-content: space-between; align-items: center; padding: 20px; border-top: 1px solid #EFEFEF; margin-top: 0;">
+                    <div style="color: #666; font-size: 14px;">
+                        Showing <span id="itemRange">1-12</span> of 24 notifications
+                    </div>
+                    <div class="pagination-controls" style="display: flex; gap: 12px; align-items: center;">
+                        <button id="prevBtn" onclick="changePage('prev')" class="btn-sm btn-secondary" disabled>
+                            <i class="fas fa-chevron-left"></i> Previous
+                        </button>
+                        <span style="color: #666; font-size: 14px;">
+                            Page <span id="currentPage">1</span> of <span id="totalPages">2</span>
+                        </span>
+                        <button id="nextBtn" onclick="changePage('next')" class="btn-sm btn-secondary">
+                            Next <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    
+        <!-- Footer -->
+        <footer class="dashboard-footer">
+            <div class="footer-content">
+                <div class="footer-copyright">
+                    &copy; <span id="currentYear"></span> <strong>Leadbunker</strong>. All rights reserved.
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Set current year in footer
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+        
+        // Mobile menu toggle
+        function toggleSidebar() {
+            const sidebar = document.querySelector('.sidebar');
+            const overlay = document.querySelector('.sidebar-overlay');
+            
+            if (sidebar && overlay) {
+                sidebar.classList.toggle('active');
+                overlay.classList.toggle('active');
+                
+                if (sidebar.classList.contains('active')) {
+                    document.body.style.overflow = 'hidden';
+                } else {
+                    document.body.style.overflow = '';
+                }
+            }
+        }
+        
+        // Notification Bell Setup
+        document.addEventListener('DOMContentLoaded', () => {
+            const userNotificationBell = document.getElementById('userNotificationBell');
+            const mobileNotificationBell = document.getElementById('mobileNotificationBell');
+            const userNotificationDropdown = document.getElementById('userNotificationDropdown');
+            
+            const toggleNotificationDropdown = (e) => {
+                e.stopPropagation();
+                if (userNotificationDropdown) {
+                    userNotificationDropdown.classList.toggle('active');
+                    console.log('📱 Notification toggled:', userNotificationDropdown.classList.contains('active'));
+                }
+            };
+            
+            if (userNotificationBell) {
+                userNotificationBell.addEventListener('click', toggleNotificationDropdown);
+            }
+            
+            if (mobileNotificationBell) {
+                mobileNotificationBell.addEventListener('click', toggleNotificationDropdown);
+                console.log('✅ Mobile bell listener attached');
+            }
+            
+            document.addEventListener('click', (e) => {
+                const isClickOnDesktopBell = userNotificationBell && userNotificationBell.contains(e.target);
+                const isClickOnMobileBell = mobileNotificationBell && mobileNotificationBell.contains(e.target);
+                
+                if (userNotificationDropdown && !userNotificationDropdown.contains(e.target) && 
+                    !isClickOnDesktopBell && !isClickOnMobileBell) {
+                    userNotificationDropdown.classList.remove('active');
+                }
+            });
+            
+            if (userNotificationDropdown) {
+                userNotificationDropdown.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                });
+            }
+        });
+        
+        // Pagination
+        let currentPageNum = 1;
+        let totalPagesNum = 2;
+        
+        // Filter notifications by category
+        function filterNotifications(category) {
+            const tabBtns = document.querySelectorAll('.card .notification-tabs .tab-btn');
+            const notifications = document.querySelectorAll('.notifications-list .notification-item');
+            
+            // Update tab styles
+            tabBtns.forEach(btn => {
+                if (btn.dataset.tab === category) {
+                    btn.style.background = 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)';
+                    btn.style.color = 'white';
+                    const tabCount = btn.querySelector('.tab-count');
+                    if (tabCount) {
+                        tabCount.style.background = 'rgba(255,255,255,0.3)';
+                        tabCount.style.color = 'white';
+                    }
+                } else {
+                    btn.style.background = 'transparent';
+                    btn.style.color = '#333';
+                    const tabCount = btn.querySelector('.tab-count');
+                    if (tabCount && !tabCount.classList.contains('urgent')) {
+                        tabCount.style.background = '#f3f4f6';
+                        tabCount.style.color = '#666';
+                    }
+                }
+            });
+            
+            // Filter notifications
+            notifications.forEach(notification => {
+                if (category === 'all') {
+                    notification.style.display = 'flex';
+                } else if (category === 'important') {
+                    notification.style.display = notification.dataset.priority === 'important' ? 'flex' : 'none';
+                } else {
+                    notification.style.display = notification.dataset.category === category ? 'flex' : 'none';
+                }
+            });
+        }
+        
+        // Mark all as read
+        function markAllAsRead() {
+            const unreadNotifications = document.querySelectorAll('.notification-item.unread');
+            unreadNotifications.forEach(notification => {
+                notification.classList.remove('unread');
+                notification.classList.add('read');
+                notification.style.opacity = '0.7';
+                const markReadBtn = notification.querySelector('.notification-mark-read');
+                if (markReadBtn) {
+                    markReadBtn.style.display = 'none';
+                }
+            });
+            
+            // Update badge
+            const badges = document.querySelectorAll('.notification-badge');
+            badges.forEach(badge => {
+                badge.style.display = 'none';
+            });
+            
+            alert('✅ All notifications marked as read');
+        }
+    </script>
+    <script src="js/dashboard.js"></script>
+</body>
+</html>
+

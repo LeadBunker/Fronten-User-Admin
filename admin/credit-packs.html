@@ -17,9 +17,15 @@
             <i class="fas fa-bars"></i>
         </button>
         <h1 class="mobile-page-title">Credit Packs</h1>
-        <a href="#" class="mobile-profile-link">
-            <img src="https://ui-avatars.com/api/?name=Admin&background=667eea&color=fff" alt="Admin" class="mobile-profile-img">
-        </a>
+        <div class="mobile-header-right">
+            <button class="mobile-notification-btn" id="mobileNotificationBell">
+                <i class="fas fa-bell"></i>
+                <span class="notification-badge">3</span>
+            </button>
+            <a href="#" class="mobile-profile-link">
+                <img src="https://ui-avatars.com/api/?name=Admin&background=667eea&color=fff" alt="Admin" class="mobile-profile-img">
+            </a>
+        </div>
     </div>
 
     <!-- Sidebar Overlay -->
@@ -69,9 +75,107 @@
                     <h1>Credit Pack Management</h1>
                     <p style="color: var(--text-light); margin: 0; font-size: 14px;">Create and manage one-time credit packs</p>
                 </div>
-                <button class="btn btn-primary" onclick="document.getElementById('createPackModal').style.display='flex'">
-                    <i class="fas fa-plus"></i> Create Credit Pack
-                </button>
+                <div class="header-actions">
+                    <!-- Notification Bell -->
+                    <div class="notification-wrapper">
+                        <button class="icon-btn notification-bell" id="userNotificationBell">
+                            <i class="fas fa-bell"></i>
+                            <span class="notification-badge">3</span>
+                        </button>
+                        
+                        <!-- Notification Dropdown -->
+                        <div class="notification-dropdown" id="userNotificationDropdown">
+                            <div class="notification-header">
+                                <h3>Notifications</h3>
+                                <div class="notification-actions">
+                                    <button class="mark-all-read" onclick="markAllNotificationsRead()">
+                                        <i class="fas fa-check-double"></i> Mark all read
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <!-- Notification Tabs -->
+                            <div class="notification-tabs">
+                                <button class="tab-btn active" data-tab="all" onclick="switchNotificationTab('all')">
+                                    All <span class="tab-count">3</span>
+                                </button>
+                                <button class="tab-btn" data-tab="important" onclick="switchNotificationTab('important')">
+                                    Important <span class="tab-count urgent">1</span>
+                                </button>
+                                <button class="tab-btn" data-tab="unread" onclick="switchNotificationTab('unread')">
+                                    Unread <span class="tab-count">3</span>
+                                </button>
+                            </div>
+                            
+                            <!-- Notifications List -->
+                            <div class="notifications-list" id="userNotificationsList">
+                                
+                                <!-- Important Notification -->
+                                <div class="notification-item unread urgent" data-priority="important">
+                                    <div class="notification-icon urgent">
+                                        <i class="fas fa-exclamation-circle"></i>
+                                    </div>
+                                    <div class="notification-content">
+                                        <div class="notification-title">Low Credit Pack Stock Alert</div>
+                                        <div class="notification-desc">1,000 Credits pack is running low on inventory</div>
+                                        <div class="notification-meta">
+                                            <span class="notification-time"><i class="fas fa-clock"></i> 30 mins ago</span>
+                                            <a href="credit-packs.html" class="notification-link">View Pack →</a>
+                                        </div>
+                                    </div>
+                                    <button class="notification-mark-read" onclick="markNotificationRead(this)" title="Mark as read">
+                                        <i class="fas fa-check"></i>
+                                    </button>
+                                </div>
+                                
+                                <!-- Regular Notifications -->
+                                <div class="notification-item unread" data-priority="normal">
+                                    <div class="notification-icon medium">
+                                        <i class="fas fa-shopping-cart"></i>
+                                    </div>
+                                    <div class="notification-content">
+                                        <div class="notification-title">New Credit Pack Purchase</div>
+                                        <div class="notification-desc">User purchased 500 Credits pack - $65</div>
+                                        <div class="notification-meta">
+                                            <span class="notification-time"><i class="fas fa-clock"></i> 2 hours ago</span>
+                                            <a href="transactions.html" class="notification-link">View Transaction →</a>
+                                        </div>
+                                    </div>
+                                    <button class="notification-mark-read" onclick="markNotificationRead(this)" title="Mark as read">
+                                        <i class="fas fa-check"></i>
+                                    </button>
+                                </div>
+                                
+                                <div class="notification-item unread" data-priority="normal">
+                                    <div class="notification-icon low">
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                    <div class="notification-content">
+                                        <div class="notification-title">Best Seller Updated</div>
+                                        <div class="notification-desc">1,000 Credits pack is now the best seller</div>
+                                        <div class="notification-meta">
+                                            <span class="notification-time"><i class="fas fa-clock"></i> 1 day ago</span>
+                                            <a href="analytics.html" class="notification-link">View Analytics →</a>
+                                        </div>
+                                    </div>
+                                    <button class="notification-mark-read" onclick="markNotificationRead(this)" title="Mark as read">
+                                        <i class="fas fa-check"></i>
+                                    </button>
+                                </div>
+                                
+                            </div>
+                            
+                            <!-- Notification Footer -->
+                            <div class="notification-footer">
+                                <a href="notifications.html" class="view-all-notifications">View All Notifications</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <button class="btn btn-primary" onclick="document.getElementById('createPackModal').style.display='flex'">
+                        <i class="fas fa-plus"></i> Create Credit Pack
+                    </button>
+                </div>
             </div>
 
             <!-- Active Credit Packs -->
@@ -463,6 +567,7 @@
             }
         }
     </script>
+    <script src="../js/dashboard.js"></script>
 </body>
 </html>
 

@@ -17,9 +17,15 @@
             <i class="fas fa-bars"></i>
         </button>
         <h1 class="mobile-page-title">Analytics</h1>
-        <a href="#" class="mobile-profile-link">
-            <img src="https://ui-avatars.com/api/?name=Admin&background=667eea&color=fff" alt="Admin" class="mobile-profile-img">
-        </a>
+        <div class="mobile-header-right">
+            <button class="mobile-notification-btn" id="mobileNotificationBell">
+                <i class="fas fa-bell"></i>
+                <span class="notification-badge">3</span>
+            </button>
+            <a href="#" class="mobile-profile-link">
+                <img src="https://ui-avatars.com/api/?name=Admin&background=667eea&color=fff" alt="Admin" class="mobile-profile-img">
+            </a>
+        </div>
     </div>
 
     <!-- Sidebar Overlay -->
@@ -70,6 +76,54 @@
                     <p style="color: var(--text-light); margin: 0; font-size: 14px;">Comprehensive insights and metrics</p>
                 </div>
                 <div class="header-actions">
+                    <div class="notification-wrapper">
+                        <button class="icon-btn notification-bell" id="userNotificationBell">
+                            <i class="fas fa-bell"></i>
+                            <span class="notification-badge">3</span>
+                        </button>
+                        <div class="notification-dropdown" id="userNotificationDropdown">
+                            <div class="notification-header">
+                                <h3>Notifications</h3>
+                                <div class="notification-actions">
+                                    <button class="mark-all-read" onclick="markAllNotificationsRead()"><i class="fas fa-check-double"></i> Mark all read</button>
+                                </div>
+                            </div>
+                            <div class="notification-tabs">
+                                <button class="tab-btn active" data-tab="all" onclick="switchNotificationTab('all')">All <span class="tab-count">3</span></button>
+                                <button class="tab-btn" data-tab="important" onclick="switchNotificationTab('important')">Important <span class="tab-count urgent">1</span></button>
+                                <button class="tab-btn" data-tab="unread" onclick="switchNotificationTab('unread')">Unread <span class="tab-count">3</span></button>
+                            </div>
+                            <div class="notifications-list" id="userNotificationsList">
+                                <div class="notification-item unread urgent" data-priority="important">
+                                    <div class="notification-icon urgent"><i class="fas fa-chart-line"></i></div>
+                                    <div class="notification-content">
+                                        <div class="notification-title">Revenue Spike Detected</div>
+                                        <div class="notification-desc">Daily revenue increased by 250% - review now</div>
+                                        <div class="notification-meta">
+                                            <span class="notification-time"><i class="fas fa-clock"></i> 30 mins ago</span>
+                                            <a href="analytics.html" class="notification-link">View Analytics →</a>
+                                        </div>
+                                    </div>
+                                    <button class="notification-mark-read" onclick="markNotificationRead(this)" title="Mark as read"><i class="fas fa-check"></i></button>
+                                </div>
+                                <div class="notification-item unread" data-priority="normal">
+                                    <div class="notification-icon medium"><i class="fas fa-file-pdf"></i></div>
+                                    <div class="notification-content">
+                                        <div class="notification-title">Monthly Report Ready</div>
+                                        <div class="notification-desc">October analytics report is ready for download</div>
+                                        <div class="notification-meta">
+                                            <span class="notification-time"><i class="fas fa-clock"></i> 2 hours ago</span>
+                                            <a href="#" class="notification-link">Download PDF →</a>
+                                        </div>
+                                    </div>
+                                    <button class="notification-mark-read" onclick="markNotificationRead(this)" title="Mark as read"><i class="fas fa-check"></i></button>
+                                </div>
+                            </div>
+                            <div class="notification-footer">
+                                <a href="notifications.html" class="view-all-notifications">View All Notifications</a>
+                            </div>
+                        </div>
+                    </div>
                     <select class="form-select" style="width: auto;">
                         <option>Last 7 Days</option>
                         <option>Last 30 Days</option>
@@ -338,6 +392,7 @@
             });
         }
     </script>
+    <script src="../js/dashboard.js"></script>
 </body>
 </html>
 

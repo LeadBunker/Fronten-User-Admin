@@ -193,7 +193,7 @@
                             
                             <!-- Notification Footer -->
                             <div class="notification-footer">
-                                <a href="#" class="view-all-notifications">View All Notifications</a>
+                                <a href="notifications.html" class="view-all-notifications">View All Notifications</a>
                             </div>
                         </div>
                     </div>
@@ -204,7 +204,7 @@
                     </button>
                     
                     <!-- User Profile -->
-                    <div class="user-profile">
+                    <div class="user-profile" onclick="window.location.href='dashboard-profile.html'">
                         <div class="user-info">
                             <span class="welcome-text">Welcome back</span>
                             <span class="user-name">John Doe</span>
@@ -744,21 +744,35 @@
         
         // Notification System
         const userNotificationBell = document.getElementById('userNotificationBell');
+        const mobileNotificationBell = document.getElementById('mobileNotificationBell');
         const userNotificationDropdown = document.getElementById('userNotificationDropdown');
         let currentNotificationTab = 'all';
 
-        // Toggle notification dropdown
-        if (userNotificationBell) {
-            userNotificationBell.addEventListener('click', (e) => {
-                e.stopPropagation();
+        // Toggle notification dropdown function
+        const toggleNotificationDropdown = (e) => {
+            e.stopPropagation();
+            if (userNotificationDropdown) {
                 userNotificationDropdown.classList.toggle('active');
-            });
+                console.log('📱 Notification toggled:', userNotificationDropdown.classList.contains('active'));
+            }
+        };
+
+        // Attach to both desktop and mobile bells
+        if (userNotificationBell) {
+            userNotificationBell.addEventListener('click', toggleNotificationDropdown);
+        }
+        
+        if (mobileNotificationBell) {
+            mobileNotificationBell.addEventListener('click', toggleNotificationDropdown);
         }
 
         // Close dropdown when clicking outside
         document.addEventListener('click', (e) => {
+            const isClickOnDesktopBell = userNotificationBell && userNotificationBell.contains(e.target);
+            const isClickOnMobileBell = mobileNotificationBell && mobileNotificationBell.contains(e.target);
+            
             if (userNotificationDropdown && !userNotificationDropdown.contains(e.target) && 
-                !userNotificationBell.contains(e.target)) {
+                !isClickOnDesktopBell && !isClickOnMobileBell) {
                 userNotificationDropdown.classList.remove('active');
             }
         });

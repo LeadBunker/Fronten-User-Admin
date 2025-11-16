@@ -17,9 +17,15 @@
             <i class="fas fa-bars"></i>
         </button>
         <h1 class="mobile-page-title">User Management</h1>
-        <a href="#" class="mobile-profile-link">
-            <img src="https://ui-avatars.com/api/?name=Admin&background=667eea&color=fff" alt="Admin" class="mobile-profile-img">
-        </a>
+        <div class="mobile-header-right">
+            <button class="mobile-notification-btn" id="mobileNotificationBell">
+                <i class="fas fa-bell"></i>
+                <span class="notification-badge">5</span>
+            </button>
+            <a href="#" class="mobile-profile-link">
+                <img src="https://ui-avatars.com/api/?name=Admin&background=667eea&color=fff" alt="Admin" class="mobile-profile-img">
+            </a>
+        </div>
     </div>
 
     <!-- Sidebar Overlay -->
@@ -70,6 +76,136 @@
                     <p style="color: var(--text-light); margin: 0; font-size: 14px;">Manage all users, credits, and permissions</p>
                 </div>
                 <div class="header-actions">
+                    <!-- Notification Bell -->
+                    <div class="notification-wrapper">
+                        <button class="icon-btn notification-bell" id="userNotificationBell">
+                            <i class="fas fa-bell"></i>
+                            <span class="notification-badge">5</span>
+                        </button>
+                        
+                        <!-- Notification Dropdown -->
+                        <div class="notification-dropdown" id="userNotificationDropdown">
+                            <div class="notification-header">
+                                <h3>Notifications</h3>
+                                <div class="notification-actions">
+                                    <button class="mark-all-read" onclick="markAllNotificationsRead()">
+                                        <i class="fas fa-check-double"></i> Mark all read
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <!-- Notification Tabs -->
+                            <div class="notification-tabs">
+                                <button class="tab-btn active" data-tab="all" onclick="switchNotificationTab('all')">
+                                    All <span class="tab-count">5</span>
+                                </button>
+                                <button class="tab-btn" data-tab="important" onclick="switchNotificationTab('important')">
+                                    Important <span class="tab-count urgent">2</span>
+                                </button>
+                                <button class="tab-btn" data-tab="unread" onclick="switchNotificationTab('unread')">
+                                    Unread <span class="tab-count">5</span>
+                                </button>
+                            </div>
+                            
+                            <!-- Notifications List -->
+                            <div class="notifications-list" id="userNotificationsList">
+                                
+                                <!-- Important Notifications -->
+                                <div class="notification-item unread urgent" data-priority="important">
+                                    <div class="notification-icon urgent">
+                                        <i class="fas fa-user-plus"></i>
+                                    </div>
+                                    <div class="notification-content">
+                                        <div class="notification-title">New User Registration Spike</div>
+                                        <div class="notification-desc">47 new users registered in the last hour</div>
+                                        <div class="notification-meta">
+                                            <span class="notification-time"><i class="fas fa-clock"></i> 15 mins ago</span>
+                                            <a href="users.html" class="notification-link">View Users →</a>
+                                        </div>
+                                    </div>
+                                    <button class="notification-mark-read" onclick="markNotificationRead(this)" title="Mark as read">
+                                        <i class="fas fa-check"></i>
+                                    </button>
+                                </div>
+                                
+                                <div class="notification-item unread urgent" data-priority="important">
+                                    <div class="notification-icon urgent">
+                                        <i class="fas fa-exclamation-triangle"></i>
+                                    </div>
+                                    <div class="notification-content">
+                                        <div class="notification-title">Suspicious Activity Detected</div>
+                                        <div class="notification-desc">User account requires review - Multiple failed logins</div>
+                                        <div class="notification-meta">
+                                            <span class="notification-time"><i class="fas fa-clock"></i> 1 hour ago</span>
+                                            <a href="users.html" class="notification-link">Review Account →</a>
+                                        </div>
+                                    </div>
+                                    <button class="notification-mark-read" onclick="markNotificationRead(this)" title="Mark as read">
+                                        <i class="fas fa-check"></i>
+                                    </button>
+                                </div>
+                                
+                                <!-- Regular Notifications -->
+                                <div class="notification-item unread" data-priority="normal">
+                                    <div class="notification-icon medium">
+                                        <i class="fas fa-crown"></i>
+                                    </div>
+                                    <div class="notification-content">
+                                        <div class="notification-title">Premium User Upgrade</div>
+                                        <div class="notification-desc">john@example.com upgraded to Premium plan</div>
+                                        <div class="notification-meta">
+                                            <span class="notification-time"><i class="fas fa-clock"></i> 3 hours ago</span>
+                                            <a href="transactions.html" class="notification-link">View Details →</a>
+                                        </div>
+                                    </div>
+                                    <button class="notification-mark-read" onclick="markNotificationRead(this)" title="Mark as read">
+                                        <i class="fas fa-check"></i>
+                                    </button>
+                                </div>
+                                
+                                <div class="notification-item unread" data-priority="normal">
+                                    <div class="notification-icon low">
+                                        <i class="fas fa-user-edit"></i>
+                                    </div>
+                                    <div class="notification-content">
+                                        <div class="notification-title">User Profile Updated</div>
+                                        <div class="notification-desc">sarah@example.com updated profile information</div>
+                                        <div class="notification-meta">
+                                            <span class="notification-time"><i class="fas fa-clock"></i> 5 hours ago</span>
+                                            <a href="users.html" class="notification-link">View Profile →</a>
+                                        </div>
+                                    </div>
+                                    <button class="notification-mark-read" onclick="markNotificationRead(this)" title="Mark as read">
+                                        <i class="fas fa-check"></i>
+                                    </button>
+                                </div>
+                                
+                                <div class="notification-item unread" data-priority="normal">
+                                    <div class="notification-icon low">
+                                        <i class="fas fa-envelope"></i>
+                                    </div>
+                                    <div class="notification-content">
+                                        <div class="notification-title">Email Verification Completed</div>
+                                        <div class="notification-desc">mike@example.com verified their email address</div>
+                                        <div class="notification-meta">
+                                            <span class="notification-time"><i class="fas fa-clock"></i> 1 day ago</span>
+                                            <a href="users.html" class="notification-link">View User →</a>
+                                        </div>
+                                    </div>
+                                    <button class="notification-mark-read" onclick="markNotificationRead(this)" title="Mark as read">
+                                        <i class="fas fa-check"></i>
+                                    </button>
+                                </div>
+                                
+                            </div>
+                            
+                            <!-- Notification Footer -->
+                            <div class="notification-footer">
+                                <a href="notifications.html" class="view-all-notifications">View All Notifications</a>
+                            </div>
+                        </div>
+                    </div>
+                    
                     <button class="btn btn-primary" onclick="document.getElementById('addUserModal').style.display='flex'">
                         <i class="fas fa-user-plus"></i> Add User
                     </button>
@@ -598,6 +734,7 @@
             }
         }
     </script>
+    <script src="../js/dashboard.js"></script>
 </body>
 </html>
 

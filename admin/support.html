@@ -17,9 +17,15 @@
             <i class="fas fa-bars"></i>
         </button>
         <h1 class="mobile-page-title">Support Tickets</h1>
-        <a href="#" class="mobile-profile-link">
-            <img src="https://ui-avatars.com/api/?name=Admin&background=667eea&color=fff" alt="Admin" class="mobile-profile-img">
-        </a>
+        <div class="mobile-header-right">
+            <button class="mobile-notification-btn" id="mobileNotificationBell">
+                <i class="fas fa-bell"></i>
+                <span class="notification-badge">12</span>
+            </button>
+            <a href="#" class="mobile-profile-link">
+                <img src="https://ui-avatars.com/api/?name=Admin&background=667eea&color=fff" alt="Admin" class="mobile-profile-img">
+            </a>
+        </div>
     </div>
 
     <!-- Sidebar Overlay -->
@@ -68,6 +74,101 @@
                 <div>
                     <h1>Support Tickets</h1>
                     <p style="color: var(--text-light); margin: 0; font-size: 14px;">Manage customer support requests</p>
+                </div>
+                <div class="header-actions">
+                    <!-- Notification Bell -->
+                    <div class="notification-wrapper">
+                        <button class="icon-btn notification-bell" id="userNotificationBell">
+                            <i class="fas fa-bell"></i>
+                            <span class="notification-badge">12</span>
+                        </button>
+                        
+                        <!-- Notification Dropdown -->
+                        <div class="notification-dropdown" id="userNotificationDropdown">
+                            <div class="notification-header">
+                                <h3>Notifications</h3>
+                                <div class="notification-actions">
+                                    <button class="mark-all-read" onclick="markAllNotificationsRead()">
+                                        <i class="fas fa-check-double"></i> Mark all read
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <!-- Notification Tabs -->
+                            <div class="notification-tabs">
+                                <button class="tab-btn active" data-tab="all" onclick="switchNotificationTab('all')">
+                                    All <span class="tab-count">12</span>
+                                </button>
+                                <button class="tab-btn" data-tab="important" onclick="switchNotificationTab('important')">
+                                    Important <span class="tab-count urgent">3</span>
+                                </button>
+                                <button class="tab-btn" data-tab="unread" onclick="switchNotificationTab('unread')">
+                                    Unread <span class="tab-count">12</span>
+                                </button>
+                            </div>
+                            
+                            <!-- Notifications List -->
+                            <div class="notifications-list" id="userNotificationsList">
+                                
+                                <div class="notification-item unread urgent" data-priority="important">
+                                    <div class="notification-icon urgent">
+                                        <i class="fas fa-exclamation-triangle"></i>
+                                    </div>
+                                    <div class="notification-content">
+                                        <div class="notification-title">Urgent Support Ticket</div>
+                                        <div class="notification-desc">High priority ticket #2847 requires immediate attention</div>
+                                        <div class="notification-meta">
+                                            <span class="notification-time"><i class="fas fa-clock"></i> 5 mins ago</span>
+                                            <a href="support.html" class="notification-link">View Ticket →</a>
+                                        </div>
+                                    </div>
+                                    <button class="notification-mark-read" onclick="markNotificationRead(this)" title="Mark as read">
+                                        <i class="fas fa-check"></i>
+                                    </button>
+                                </div>
+                                
+                                <div class="notification-item unread urgent" data-priority="important">
+                                    <div class="notification-icon urgent">
+                                        <i class="fas fa-clock"></i>
+                                    </div>
+                                    <div class="notification-content">
+                                        <div class="notification-title">SLA Violation Warning</div>
+                                        <div class="notification-desc">3 tickets approaching response time limit</div>
+                                        <div class="notification-meta">
+                                            <span class="notification-time"><i class="fas fa-clock"></i> 30 mins ago</span>
+                                            <a href="support.html" class="notification-link">View Tickets →</a>
+                                        </div>
+                                    </div>
+                                    <button class="notification-mark-read" onclick="markNotificationRead(this)" title="Mark as read">
+                                        <i class="fas fa-check"></i>
+                                    </button>
+                                </div>
+                                
+                                <div class="notification-item unread" data-priority="normal">
+                                    <div class="notification-icon medium">
+                                        <i class="fas fa-ticket-alt"></i>
+                                    </div>
+                                    <div class="notification-content">
+                                        <div class="notification-title">New Support Ticket</div>
+                                        <div class="notification-desc">Ticket #2850 created by user@example.com</div>
+                                        <div class="notification-meta">
+                                            <span class="notification-time"><i class="fas fa-clock"></i> 1 hour ago</span>
+                                            <a href="support.html" class="notification-link">View Ticket →</a>
+                                        </div>
+                                    </div>
+                                    <button class="notification-mark-read" onclick="markNotificationRead(this)" title="Mark as read">
+                                        <i class="fas fa-check"></i>
+                                    </button>
+                                </div>
+                                
+                            </div>
+                            
+                            <!-- Notification Footer -->
+                            <div class="notification-footer">
+                                <a href="notifications.html" class="view-all-notifications">View All Notifications</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -482,6 +583,7 @@
             alert('Add internal note to ticket #TICK-' + id + ' (Demo)');
         }
     </script>
+    <script src="../js/dashboard.js"></script>
 </body>
 </html>
 
