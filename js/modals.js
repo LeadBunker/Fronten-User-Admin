@@ -1291,6 +1291,158 @@ function downloadInvoiceForTransaction(txnId) {
     alert(`📄 Downloading invoice for transaction ${txnId}...\n\nIn production, a PDF invoice would be generated and downloaded.`);
 }
 
+// Edit Profile Modal
+function showEditProfileModal() {
+    const modalId = 'editProfileModal';
+    
+    // Get current profile data (in real app, fetch from backend)
+    const currentData = {
+        fullName: 'Yehor Vasishchev',
+        email: 'yehor@company.com',
+        phone: '+1 (555) 123-4567',
+        company: 'Tech Solutions Inc.',
+        location: 'San Francisco, CA',
+        timezone: 'PST (UTC-8)'
+    };
+    
+    const content = `
+        <div class="modal-container" style="max-width: 700px;">
+            <div class="modal-header">
+                <h2><i class="fas fa-user-edit"></i> Edit Profile</h2>
+                <p>Update your personal information</p>
+                <button class="modal-close" onclick="ModalSystem.close('${modalId}')">×</button>
+            </div>
+            
+            <div class="modal-body">
+                <!-- Profile Picture Section -->
+                <div class="modal-section">
+                    <div class="profile-picture-upload">
+                        <div class="current-picture">
+                            <img src="https://ui-avatars.com/api/?name=Yehor+Vasishchev&background=667eea&color=fff&size=120" alt="Profile Picture" class="profile-pic-preview">
+                        </div>
+                        <div class="picture-upload-actions">
+                            <label for="profilePicUpload" class="btn btn-secondary btn-sm" style="cursor: pointer;">
+                                <i class="fas fa-camera"></i> Change Photo
+                            </label>
+                            <input type="file" id="profilePicUpload" accept="image/*" style="display: none;" onchange="handleProfilePicChange(event)">
+                            <button class="btn btn-sm" style="color: #EF4444;" onclick="removeProfilePic()">
+                                <i class="fas fa-trash"></i> Remove
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Profile Information Form -->
+                <div class="modal-section">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="editFullName">Full Name</label>
+                            <input type="text" id="editFullName" class="form-input" value="${currentData.fullName}" placeholder="Enter your full name">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="editEmail">Email Address</label>
+                            <input type="email" id="editEmail" class="form-input" value="${currentData.email}" placeholder="your.email@example.com">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="editPhone">Phone Number</label>
+                            <input type="tel" id="editPhone" class="form-input" value="${currentData.phone}" placeholder="+1 (555) 123-4567">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="editCompany">Company</label>
+                            <input type="text" id="editCompany" class="form-input" value="${currentData.company}" placeholder="Your company name">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="editLocation">Location</label>
+                            <input type="text" id="editLocation" class="form-input" value="${currentData.location}" placeholder="City, State/Country">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="editTimezone">Timezone</label>
+                            <select id="editTimezone" class="form-input">
+                                <option value="PST (UTC-8)" selected>PST (UTC-8) - Pacific Time</option>
+                                <option value="MST (UTC-7)">MST (UTC-7) - Mountain Time</option>
+                                <option value="CST (UTC-6)">CST (UTC-6) - Central Time</option>
+                                <option value="EST (UTC-5)">EST (UTC-5) - Eastern Time</option>
+                                <option value="UTC (UTC+0)">UTC (UTC+0) - Universal Time</option>
+                                <option value="CET (UTC+1)">CET (UTC+1) - Central European Time</option>
+                                <option value="EET (UTC+2)">EET (UTC+2) - Eastern European Time</option>
+                                <option value="IST (UTC+5:30)">IST (UTC+5:30) - India Standard Time</option>
+                                <option value="CST (UTC+8)">CST (UTC+8) - China Standard Time</option>
+                                <option value="JST (UTC+9)">JST (UTC+9) - Japan Standard Time</option>
+                                <option value="AEST (UTC+10)">AEST (UTC+10) - Australian Eastern Time</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="modal-alert modal-alert-info">
+                    <i class="fas fa-info-circle"></i>
+                    <div>
+                        Changes will be applied immediately and reflected across your account.
+                    </div>
+                </div>
+            </div>
+            
+            <div class="modal-actions">
+                <button class="modal-btn modal-btn-secondary" onclick="ModalSystem.close('${modalId}')">
+                    <i class="fas fa-times"></i> Cancel
+                </button>
+                <button class="modal-btn modal-btn-primary" onclick="saveProfileChanges()">
+                    <i class="fas fa-save"></i> Save Changes
+                </button>
+            </div>
+        </div>
+    `;
+    
+    ModalSystem.create(modalId, content);
+    ModalSystem.open(modalId);
+}
+
+function handleProfilePicChange(event) {
+    const file = event.target.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            document.querySelector('.profile-pic-preview').src = e.target.result;
+        };
+        reader.readAsDataURL(file);
+    }
+}
+
+function removeProfilePic() {
+    if (confirm('Remove profile picture?\n\nYour profile will use the default avatar.')) {
+        document.querySelector('.profile-pic-preview').src = 'https://ui-avatars.com/api/?name=YV&background=667eea&color=fff&size=120';
+    }
+}
+
+function saveProfileChanges() {
+    const fullName = document.getElementById('editFullName').value;
+    const email = document.getElementById('editEmail').value;
+    const phone = document.getElementById('editPhone').value;
+    const company = document.getElementById('editCompany').value;
+    const location = document.getElementById('editLocation').value;
+    const timezone = document.getElementById('editTimezone').value;
+    
+    // Validate required fields
+    if (!fullName || !email) {
+        alert('⚠️ Required Fields\n\nPlease fill in your full name and email address.');
+        return;
+    }
+    
+    // In production, send to backend API
+    alert('✅ Profile Updated!\n\nYour profile information has been successfully updated.');
+    
+    // Close modal and reload page to show changes
+    ModalSystem.close('editProfileModal');
+    setTimeout(() => {
+        window.location.reload();
+    }, 1000);
+}
+
 // Export for use in other files
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = { ModalSystem, showBuyCreditsModal, showViewTaskModal, showDownloadOptionsModal, showGenerateAPIKeyModal, showViewTransactionModal };
