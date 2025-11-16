@@ -1081,6 +1081,57 @@ function confirmRemoveMember(memberId, memberName) {
 function showViewTransactionModal(txnId) {
     const modalId = 'viewTransactionModal';
     
+    // Sample transaction data - in real app, fetch from backend
+    const transactionData = {
+        'TXN-4521': {
+            id: 'TXN-4521',
+            status: 'Completed',
+            statusClass: 'completed',
+            amount: '$120.00',
+            amountColor: '#667eea',
+            method: '<i class="fab fa-bitcoin" style="color: #f7931a;"></i> Bitcoin',
+            item: '1,000 Credits Pack',
+            subtotal: '$120.00',
+            tax: '$0.00',
+            discount: '-$0.00',
+            total: '$120.00',
+            totalColor: '#667eea',
+            date: 'Nov 14, 2024, 14:23'
+        },
+        'TXN-4520': {
+            id: 'TXN-4520',
+            status: 'Completed',
+            statusClass: 'completed',
+            amount: '$49.00',
+            amountColor: '#667eea',
+            method: '<i class="fab fa-ethereum" style="color: #627eea;"></i> Ethereum',
+            item: 'Pro Plan - Monthly',
+            subtotal: '$49.00',
+            tax: '$0.00',
+            discount: '-$0.00',
+            total: '$49.00',
+            totalColor: '#667eea',
+            date: 'Nov 10, 2024, 09:15'
+        },
+        'TXN-4518': {
+            id: 'TXN-4518',
+            status: 'Refunded',
+            statusClass: 'refunded',
+            amount: '-$10.00',
+            amountColor: '#F59E0B',
+            method: '<i class="fab fa-bitcoin" style="color: #f7931a;"></i> Bitcoin',
+            item: 'Refund - Failed Extraction',
+            subtotal: '-$10.00',
+            tax: '$0.00',
+            discount: '$0.00',
+            total: '-$10.00',
+            totalColor: '#F59E0B',
+            date: 'Oct 28, 2024, 11:30'
+        }
+    };
+    
+    const data = transactionData[txnId] || transactionData['TXN-4521'];
+    
     const content = `
         <div class="modal-container">
             <div class="modal-header">
@@ -1094,31 +1145,35 @@ function showViewTransactionModal(txnId) {
                     <div class="modal-info-grid">
                         <div class="modal-info-item">
                             <div class="modal-info-label">Transaction ID</div>
-                            <div class="modal-info-value">${txnId}</div>
+                            <div class="modal-info-value">${data.id}</div>
                         </div>
                         <div class="modal-info-item">
                             <div class="modal-info-label">Status</div>
                             <div class="modal-info-value">
-                                <span class="modal-status-badge completed">Completed</span>
+                                <span class="modal-status-badge ${data.statusClass}">${data.status}</span>
                             </div>
                         </div>
                         <div class="modal-info-item">
                             <div class="modal-info-label">Amount</div>
-                            <div class="modal-info-value large">$49.99</div>
+                            <div class="modal-info-value large" style="color: ${data.amountColor};">${data.amount}</div>
                         </div>
                         <div class="modal-info-item">
                             <div class="modal-info-label">Payment Method</div>
-                            <div class="modal-info-value"><i class="fab fa-cc-visa"></i> Visa ••4242</div>
+                            <div class="modal-info-value">${data.method}</div>
                         </div>
                     </div>
                 </div>
                 
                 <div class="modal-section">
-                    <div class="modal-section-title">Payment Details</div>
+                    <div class="modal-section-title">${data.statusClass === 'refunded' ? 'Refund Details' : 'Payment Details'}</div>
                     <div class="modal-details-box">
                         <div class="modal-detail-row">
+                            <div class="modal-detail-label">Item</div>
+                            <div class="modal-detail-value">${data.item}</div>
+                        </div>
+                        <div class="modal-detail-row">
                             <div class="modal-detail-label">Subtotal</div>
-                            <div class="modal-detail-value">$49.99</div>
+                            <div class="modal-detail-value">${data.subtotal}</div>
                         </div>
                         <div class="modal-detail-row">
                             <div class="modal-detail-label">Tax</div>
@@ -1126,11 +1181,11 @@ function showViewTransactionModal(txnId) {
                         </div>
                         <div class="modal-detail-row">
                             <div class="modal-detail-label">Discount</div>
-                            <div class="modal-detail-value" style="color: #10B981;">-$0.00</div>
+                            <div class="modal-detail-value" style="color: #10B981;">${data.discount}</div>
                         </div>
-                        <div class="modal-detail-row" style="border-top: 2px solid #667eea; padding-top: 12px; margin-top: 8px;">
+                        <div class="modal-detail-row" style="border-top: 2px solid ${data.statusClass === 'refunded' ? '#F59E0B' : '#667eea'}; padding-top: 12px; margin-top: 8px;">
                             <div class="modal-detail-label" style="font-weight: 700;">Total</div>
-                            <div class="modal-detail-value" style="font-size: 18px; font-weight: 700; color: #667eea;">$49.99</div>
+                            <div class="modal-detail-value" style="font-size: 18px; font-weight: 700; color: ${data.totalColor};">${data.total}</div>
                         </div>
                     </div>
                 </div>
@@ -1138,17 +1193,24 @@ function showViewTransactionModal(txnId) {
                 <div class="modal-section">
                     <div class="modal-info-item">
                         <div class="modal-info-label">Date & Time</div>
-                        <div class="modal-info-value">Jan 15, 2025, 10:30 AM</div>
+                        <div class="modal-info-value">${data.date}</div>
                     </div>
                 </div>
+                
+                ${data.statusClass === 'refunded' ? `
+                <div class="modal-alert modal-alert-warning">
+                    <i class="fas fa-info-circle"></i>
+                    <div>
+                        <strong>Refund Processed</strong><br>
+                        This amount has been refunded to your original payment method. Please allow 5-10 business days for the refund to appear.
+                    </div>
+                </div>
+                ` : ''}
             </div>
             
             <div class="modal-actions">
                 <button class="modal-btn modal-btn-secondary" onclick="ModalSystem.close('${modalId}')">
                     <i class="fas fa-times"></i> Close
-                </button>
-                <button class="modal-btn modal-btn-primary" onclick="downloadInvoiceForTransaction('${txnId}')">
-                    <i class="fas fa-file-pdf"></i> Download Invoice
                 </button>
             </div>
         </div>
