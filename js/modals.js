@@ -321,7 +321,7 @@ function copyWalletAddress() {
             copyBtnText.innerHTML = 'Copy';
         }, 2000);
     }).catch(err => {
-        alert('Failed to copy address. Please copy manually.');
+        showModal('error', 'Copy Failed', 'Failed to copy address. Please copy manually.');
     });
 }
 
@@ -636,7 +636,7 @@ function showDownloadOptionsModal(taskId) {
 
 function downloadInFormat(taskId, format) {
     ModalSystem.close('downloadOptionsModal');
-    alert(`⬇️ Downloading Task #${taskId} in ${format} format...\n\nIn production, the download would start automatically.`);
+    showModal('info', 'Downloading Task', `Downloading Task #${taskId} in ${format} format...\n\nIn production, the download would start automatically.`);
 }
 
 // Generate API Key Modal
@@ -762,7 +762,7 @@ function copyAPIKeyToClipboard() {
     if (keyInput) {
         keyInput.select();
         document.execCommand('copy');
-        alert('✅ API Key copied to clipboard!');
+        showModal('success', 'API Key Copied', 'API Key copied to clipboard!');
     }
 }
 
@@ -837,7 +837,7 @@ function showEditAPIKeyModal(keyId, keyName) {
 function confirmEditAPIKey(keyId) {
     const keyName = document.getElementById('editKeyName').value;
     ModalSystem.close('editAPIKeyModal');
-    alert(`✅ API Key Updated!\n\nKey ID: ${keyId}\nNew Name: ${keyName}\n\nChanges have been saved successfully.`);
+    showModal('success', 'API Key Updated!', `Key ID: ${keyId}\nNew Name: ${keyName}\n\nChanges have been saved successfully.`);
 }
 
 // Revoke API Key Modal
@@ -914,12 +914,12 @@ function confirmRevokeAPIKey(keyId, keyName) {
     const confirmText = document.getElementById('revokeConfirmText').value;
     
     if (confirmText !== 'REVOKE') {
-        alert('❌ Please type "REVOKE" to confirm this action.');
+        showModal('error', 'Confirmation Required', 'Please type "REVOKE" to confirm this action.');
         return;
     }
     
     ModalSystem.close('revokeAPIKeyModal');
-    alert(`✅ API Key Revoked!\n\nKey: ${keyName}\nID: ${keyId}\n\nThe key has been permanently revoked and can no longer be used.`);
+    showModal('success', 'API Key Revoked!', `Key: ${keyName}\nID: ${keyId}\n\nThe key has been permanently revoked and can no longer be used.`);
     
     // In production, you would refresh the page or update the UI
     setTimeout(() => {
@@ -1048,7 +1048,7 @@ function confirmEditMember(memberId, memberName) {
     };
     
     ModalSystem.close('editMemberModal');
-    alert(`✅ Team Member Updated!\n\nMember: ${memberName}\nNew Role: ${roleLabels[newRole]}\n\n${memberName} has been notified of their new role.`);
+    showModal('success', 'Team Member Updated!', `Member: ${memberName}\nNew Role: ${roleLabels[newRole]}\n\n${memberName} has been notified of their new role.`);
     
     // In production, you would refresh or update the UI
     setTimeout(() => {
@@ -1130,12 +1130,12 @@ function confirmRemoveMember(memberId, memberName) {
     const confirmText = document.getElementById('removeConfirmText').value;
     
     if (confirmText !== 'REMOVE') {
-        alert('❌ Please type "REMOVE" to confirm this action.');
+        showModal('error', 'Confirmation Required', 'Please type "REMOVE" to confirm this action.');
         return;
     }
     
     ModalSystem.close('removeMemberModal');
-    alert(`✅ Team Member Removed!\n\nMember: ${memberName}\n\n${memberName} has been removed from your team and will receive a notification email.`);
+    showModal('success', 'Team Member Removed!', `Member: ${memberName}\n\n${memberName} has been removed from your team and will receive a notification email.`);
     
     // In production, you would refresh or update the UI
     setTimeout(() => {
@@ -1288,7 +1288,7 @@ function showViewTransactionModal(txnId) {
 
 function downloadInvoiceForTransaction(txnId) {
     ModalSystem.close('viewTransactionModal');
-    alert(`📄 Downloading invoice for transaction ${txnId}...\n\nIn production, a PDF invoice would be generated and downloaded.`);
+    showModal('info', 'Downloading Invoice', `Downloading invoice for transaction ${txnId}...\n\nIn production, a PDF invoice would be generated and downloaded.`);
 }
 
 // Edit Profile Modal
@@ -1414,9 +1414,9 @@ function handleProfilePicChange(event) {
 }
 
 function removeProfilePic() {
-    if (confirm('Remove profile picture?\n\nYour profile will use the default avatar.')) {
+    showModal('confirmation', 'Remove Profile Picture?', 'Your profile will use the default avatar.', function() {
         document.querySelector('.profile-pic-preview').src = 'https://ui-avatars.com/api/?name=YV&background=667eea&color=fff&size=120';
-    }
+    });
 }
 
 function saveProfileChanges() {
@@ -1429,12 +1429,12 @@ function saveProfileChanges() {
     
     // Validate required fields
     if (!fullName || !email) {
-        alert('⚠️ Required Fields\n\nPlease fill in your full name and email address.');
+        showModal('warning', 'Required Fields', 'Please fill in your full name and email address.');
         return;
     }
     
     // In production, send to backend API
-    alert('✅ Profile Updated!\n\nYour profile information has been successfully updated.');
+    showModal('success', 'Profile Updated!', 'Your profile information has been successfully updated.');
     
     // Close modal and reload page to show changes
     ModalSystem.close('editProfileModal');

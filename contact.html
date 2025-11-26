@@ -331,7 +331,7 @@
     <script>
         document.getElementById('contactForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            alert('Thank you for your message! We will get back to you within 24 hours.');
+            showModal('info', 'Information', 'Thank you for your message! We will get back to you within 24 hours.');
             this.reset();
         });
     </script>

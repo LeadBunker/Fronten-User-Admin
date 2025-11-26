@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/dashboard.css">
     <link rel="stylesheet" href="css/admin-styles.css">
+    <link rel="stylesheet" href="../css/modals.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
@@ -477,6 +478,91 @@
                 </div>
             </div>
 
+            <!-- Validation Settings -->
+            <div class="card">
+                <div class="card-header">
+                    <h3><i class="fas fa-check-circle"></i> Validation Settings</h3>
+                    <p style="margin: 8px 0 0 0; font-size: 13px; color: var(--text-light); font-weight: normal;">Configure pricing and file format options for the email/phone validator</p>
+                </div>
+                <div class="settings-form">
+                    <!-- Validation Pricing -->
+                    <h4 style="margin: 0 0 16px 0;"><i class="fas fa-dollar-sign"></i> Validation Pricing</h4>
+                    <div class="form-group">
+                        <label><i class="fas fa-coins"></i> Credits Per Validation</label>
+                        <input type="number" id="validationCreditCost" class="form-input" value="1" min="0.1" step="0.1">
+                        <small class="form-hint">Number of credits charged for each email or phone number validated</small>
+                    </div>
+
+                    <!-- File Format Management -->
+                    <hr style="margin: 24px 0; border: none; border-top: 1px solid var(--border-color);">
+                    <h4 style="margin: 0 0 16px 0;"><i class="fas fa-file"></i> Allowed File Formats</h4>
+                    
+                    <div class="form-group">
+                        <label>Current Allowed Formats</label>
+                        <div id="allowedFormatsList" style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px;">
+                            <span class="format-badge" data-format="csv" style="display: inline-flex; align-items: center; gap: 8px; padding: 8px 12px; background: #E0E7FF; color: #4338CA; border-radius: 6px; font-size: 13px; font-weight: 600;">
+                                <i class="fas fa-file-csv"></i> CSV
+                                <button onclick="removeFormat('csv')" style="background: none; border: none; color: #4338CA; cursor: pointer; padding: 0; margin-left: 4px;" title="Remove format">
+                                    <i class="fas fa-times-circle"></i>
+                                </button>
+                            </span>
+                            <span class="format-badge" data-format="txt" style="display: inline-flex; align-items: center; gap: 8px; padding: 8px 12px; background: #E0E7FF; color: #4338CA; border-radius: 6px; font-size: 13px; font-weight: 600;">
+                                <i class="fas fa-file-alt"></i> TXT
+                                <button onclick="removeFormat('txt')" style="background: none; border: none; color: #4338CA; cursor: pointer; padding: 0; margin-left: 4px;" title="Remove format">
+                                    <i class="fas fa-times-circle"></i>
+                                </button>
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label><i class="fas fa-plus-circle"></i> Add New Format</label>
+                        <div style="display: flex; gap: 12px;">
+                            <input type="text" id="newFormatInput" class="form-input" placeholder="e.g., xlsx, json, xml" style="flex: 1; text-transform: lowercase;">
+                            <button type="button" class="btn btn-secondary" onclick="addNewFormat()">
+                                <i class="fas fa-plus"></i> Add Format
+                            </button>
+                        </div>
+                        <small class="form-hint">Add file extensions that users can upload for validation (without the dot)</small>
+                    </div>
+
+                    <!-- Common Format Suggestions -->
+                    <div style="margin-top: 16px; padding: 12px; background: #F9FAFB; border-radius: 8px;">
+                        <div style="font-size: 12px; color: #6B7280; margin-bottom: 8px; font-weight: 600;">
+                            <i class="fas fa-lightbulb"></i> Common Formats:
+                        </div>
+                        <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+                            <button type="button" class="btn-sm" style="background: white; border: 1px solid #D1D5DB; color: #374151;" onclick="quickAddFormat('xlsx')">
+                                <i class="fas fa-file-excel"></i> XLSX
+                            </button>
+                            <button type="button" class="btn-sm" style="background: white; border: 1px solid #D1D5DB; color: #374151;" onclick="quickAddFormat('json')">
+                                <i class="fas fa-file-code"></i> JSON
+                            </button>
+                            <button type="button" class="btn-sm" style="background: white; border: 1px solid #D1D5DB; color: #374151;" onclick="quickAddFormat('xml')">
+                                <i class="fas fa-file-code"></i> XML
+                            </button>
+                            <button type="button" class="btn-sm" style="background: white; border: 1px solid #D1D5DB; color: #374151;" onclick="quickAddFormat('xls')">
+                                <i class="fas fa-file-excel"></i> XLS
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Info Box -->
+                    <div style="margin-top: 24px; padding: 16px; background: #EFF6FF; border-left: 4px solid #3B82F6; border-radius: 8px;">
+                        <div style="display: flex; align-items: start; gap: 12px;">
+                            <i class="fas fa-info-circle" style="color: #3B82F6; margin-top: 2px; font-size: 18px;"></i>
+                            <div style="font-size: 12px; color: #1E40AF; line-height: 1.6;">
+                                <strong>Important:</strong> Changes to validation settings will apply to all users immediately. Make sure to test validation with new file formats before enabling them for production use.
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="btn btn-primary" onclick="saveValidationSettings()">
+                        <i class="fas fa-save"></i> Save Validation Settings
+                    </button>
+                </div>
+            </div>
+
             <!-- Maintenance Mode -->
             <div class="card" style="border: 2px solid #f59e0b;">
                 <div class="card-header" style="background: #fef3c7; padding: 16px; margin: -20px -20px 20px -20px; border-radius: 16px 16px 0 0;">
@@ -526,7 +612,7 @@
                         <strong style="color: #991b1b;">Reset Database</strong>
                         <p style="color: #dc2626; margin: 8px 0 0 0;">⚠️ WARNING: This will delete ALL data and cannot be undone!</p>
                     </div>
-                    <button class="btn" style="background: #ef4444; color: white;" onclick="alert('This action requires additional confirmation')">
+                    <button class="btn" style="background: #ef4444; color: white;" onclick="showModal('info', ''This action requires additional confirmation'', 'This action requires additional confirmation')">
                         <i class="fas fa-database"></i> Reset Database
                     </button>
                 </div>
@@ -575,9 +661,9 @@
             
             // In production, this would upload files to server
             if (lightLogoFile || darkLogoFile || faviconFile) {
-                alert('Logo settings saved successfully!\n\nNote: In production, files will be uploaded to the server.');
+                showModal('success', ''Logo settings saved successfully!', 'Logo settings saved successfully!\n\nNote: In production, files will be uploaded to the server.');
             } else {
-                alert('Logo settings updated!');
+                showModal('info', ''Logo settings updated!'', 'Logo settings updated!');
             }
         }
 
@@ -588,21 +674,23 @@
                 const reader = new FileReader();
                 reader.onload = function(e) {
                     // In production, show a modal with preview
-                    alert('Preview functionality will show your logo in different contexts.');
+                    showModal('info', 'Information', 'Preview functionality will show your logo in different contexts.');
                 };
                 reader.readAsDataURL(lightLogoFile);
             } else {
-                alert('Please select a logo file first.');
+                showModal('info', ''Please select a logo file first.'', 'Please select a logo file first.');
             }
         }
 
         function resetToDefault() {
-            if (confirm('Are you sure you want to reset all logos to default? This action cannot be undone.')) {
+            showModal('confirmation', 'Confirm Action', 'Are you sure you want to reset all logos to default? This action cannot be undone.', function() {
+
                 document.getElementById('lightLogoInput').value = '';
                 document.getElementById('darkLogoInput').value = '';
                 document.getElementById('faviconInput').value = '';
-                alert('Logos reset to default values.');
-            }
+                showModal('info', ''Logos reset to default values.'', 'Logos reset to default values.');
+            
+            });
         }
 
         // File input preview functionality
@@ -623,7 +711,120 @@
                 console.log('Favicon selected:', this.files[0].name);
             }
         });
+
+        // Validation Settings Management
+        let allowedFormats = ['csv', 'txt'];
+
+        function saveValidationSettings() {
+            const creditCost = document.getElementById('validationCreditCost').value;
+            
+            if (creditCost < 0.1) {
+                showModal('error', 'Error: Credit cost must be at least 0.1', '❌ Error: Credit cost must be at least 0.1');
+                return;
+            }
+
+            // In production, this would save to database
+            localStorage.setItem('validationCreditCost', creditCost);
+            localStorage.setItem('allowedFormats', JSON.stringify(allowedFormats));
+            
+            showModal('success', 'Validation Settings Saved!', `✅ Validation Settings Saved!\n\nCredit Cost: ${creditCost} per validation\nAllowed Formats: ${allowedFormats.join(', ').toUpperCase()}`);
+        }
+
+        function addNewFormat() {
+            const input = document.getElementById('newFormatInput');
+            const format = input.value.trim().toLowerCase().replace('.', '');
+            
+            if (!format) {
+                showModal('error', 'Please enter a file format', '⚠️ Please enter a file format');
+                return;
+            }
+            
+            if (allowedFormats.includes(format)) {
+                showModal('error', 'Error', `⚠️ Format "${format.toUpperCase()}" is already in the list`);
+                return;
+            }
+            
+            allowedFormats.push(format);
+            renderFormatBadges();
+            input.value = '';
+            showModal('success', 'Success', `✅ Format "${format.toUpperCase()}" added successfully!`);
+        }
+
+        function quickAddFormat(format) {
+            if (allowedFormats.includes(format)) {
+                showModal('error', 'Error', `⚠️ Format "${format.toUpperCase()}" is already in the list`);
+                return;
+            }
+            
+            allowedFormats.push(format);
+            renderFormatBadges();
+            showModal('success', 'Success', `✅ Format "${format.toUpperCase()}" added successfully!`);
+        }
+
+        function removeFormat(format) {
+            if (allowedFormats.length <= 1) {
+                showModal('error', 'Error', '⚠️ Cannot remove all formats. At least one format must be allowed.');
+                return;
+            }
+            
+            showModal('confirmation', 'Confirm Action', `Remove "${format.toUpperCase()}" from allowed formats?`, function() {
+                allowedFormats = allowedFormats.filter(f => f !== format);
+                renderFormatBadges();
+                showModal('success', 'Success', `✅ Format "${format.toUpperCase()}" removed successfully!`);
+            });
+        }
+
+        function renderFormatBadges() {
+            const container = document.getElementById('allowedFormatsList');
+            container.innerHTML = '';
+            
+            allowedFormats.forEach(format => {
+                const badge = document.createElement('span');
+                badge.className = 'format-badge';
+                badge.setAttribute('data-format', format);
+                badge.style.cssText = 'display: inline-flex; align-items: center; gap: 8px; padding: 8px 12px; background: #E0E7FF; color: #4338CA; border-radius: 6px; font-size: 13px; font-weight: 600;';
+                
+                const icon = getFileIcon(format);
+                badge.innerHTML = `
+                    <i class="${icon}"></i> ${format.toUpperCase()}
+                    <button onclick="removeFormat('${format}')" style="background: none; border: none; color: #4338CA; cursor: pointer; padding: 0; margin-left: 4px;" title="Remove format">
+                        <i class="fas fa-times-circle"></i>
+                    </button>
+                `;
+                
+                container.appendChild(badge);
+            });
+        }
+
+        function getFileIcon(format) {
+            const icons = {
+                'csv': 'fas fa-file-csv',
+                'txt': 'fas fa-file-alt',
+                'xlsx': 'fas fa-file-excel',
+                'xls': 'fas fa-file-excel',
+                'json': 'fas fa-file-code',
+                'xml': 'fas fa-file-code',
+                'pdf': 'fas fa-file-pdf'
+            };
+            return icons[format] || 'fas fa-file';
+        }
+
+        // Load saved settings on page load
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedCreditCost = localStorage.getItem('validationCreditCost');
+            const savedFormats = localStorage.getItem('allowedFormats');
+            
+            if (savedCreditCost) {
+                document.getElementById('validationCreditCost').value = savedCreditCost;
+            }
+            
+            if (savedFormats) {
+                allowedFormats = JSON.parse(savedFormats);
+                renderFormatBadges();
+            }
+        });
     </script>
+    <script src="../js/universal-modal.js"></script>
     <script src="../js/dashboard.js"></script>
 </body>
 </html>

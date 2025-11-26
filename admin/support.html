@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/dashboard.css">
     <link rel="stylesheet" href="css/admin-styles.css">
+    <link rel="stylesheet" href="../css/modals.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
@@ -570,19 +571,20 @@
         }
 
         function resolveTicket(id) {
-            if (confirm('Mark ticket #TICK-' + id + ' as resolved?')) {
-                alert('Ticket resolved! (Demo)');
-            }
+            showModal('confirmation', 'Resolve Ticket', 'Mark ticket #TICK-' + id + ' as resolved?', function() {
+                showModal('info', 'Ticket Resolved', 'Ticket resolved! (Demo)');
+            });
         }
 
         function assignTicket(id) {
-            alert('Assign ticket #TICK-' + id + ' to team member (Demo)');
+            showModal('info', 'Information', 'Assign ticket #TICK-' + id + ' to team member (Demo)');
         }
 
         function addNote(id) {
-            alert('Add internal note to ticket #TICK-' + id + ' (Demo)');
+            showModal('info', 'Information', 'Add internal note to ticket #TICK-' + id + ' (Demo)');
         }
     </script>
+    <script src="../js/universal-modal.js"></script>
     <script src="../js/dashboard.js"></script>
 </body>
 </html>

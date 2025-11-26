@@ -46,6 +46,7 @@
                     <li><a href="dashboard-tasks.html"><i class="fas fa-tasks"></i> My Tasks</a></li>
                     <li class="active"><a href="dashboard-email-lists.html"><i class="fas fa-envelope"></i> Email Lists</a></li>
                     <li><a href="dashboard-phone-lists.html"><i class="fas fa-phone"></i> Phone Lists</a></li>
+                    <li><a href="dashboard-validator.html"><i class="fas fa-check-circle"></i> Validator</a></li>
                     <li><a href="dashboard-credits.html"><i class="fas fa-gem"></i> Credits & Billing</a></li>
                     <li><a href="dashboard-transactions.html"><i class="fas fa-credit-card"></i> Transactions</a></li>
                     <li><a href="dashboard-analytics.html"><i class="fas fa-chart-bar"></i> Analytics</a></li>
@@ -299,8 +300,8 @@
                                 <td><span class="badge badge-success">Verified</span></td>
                                 <td>2 hours ago</td>
                                 <td>
-                                    <button class="btn-sm btn-primary" onclick="alert(\'📋 Copied!\n\nList copied to clipboard.\')">Copy</button>
-                                    <button class="btn-sm btn-secondary" onclick="viewList(\'LIST-ID\', \'Email\')">View</button>
+                                    <button class="btn-sm btn-primary" onclick="showModal('success', 'Copied!', 'List copied to clipboard.')">Copy</button>
+                                    <button class="btn-sm btn-secondary" onclick="viewList('LIST-ID', 'Email')">View</button>
                                 </td>
                             </tr>
                             <tr>
@@ -310,8 +311,8 @@
                                 <td><span class="badge badge-success">Verified</span></td>
                                 <td>4 hours ago</td>
                                 <td>
-                                    <button class="btn-sm btn-primary" onclick="alert(\'📋 Copied!\n\nList copied to clipboard.\')">Copy</button>
-                                    <button class="btn-sm btn-secondary" onclick="viewList(\'LIST-ID\', \'Email\')">View</button>
+                                    <button class="btn-sm btn-primary" onclick="showModal('success', 'Copied!', 'List copied to clipboard.')">Copy</button>
+                                    <button class="btn-sm btn-secondary" onclick="viewList('LIST-ID', 'Email')">View</button>
                                 </td>
                             </tr>
                             <tr>
@@ -321,8 +322,8 @@
                                 <td><span class="badge badge-warning">Pending</span></td>
                                 <td>1 day ago</td>
                                 <td>
-                                    <button class="btn-sm btn-primary" onclick="alert(\'📋 Copied!\n\nList copied to clipboard.\')">Copy</button>
-                                    <button class="btn-sm btn-secondary" onclick="viewList(\'LIST-ID\', \'Email\')">View</button>
+                                    <button class="btn-sm btn-primary" onclick="showModal('success', 'Copied!', 'List copied to clipboard.')">Copy</button>
+                                    <button class="btn-sm btn-secondary" onclick="viewList('LIST-ID', 'Email')">View</button>
                                 </td>
                             </tr>
                             <tr>
@@ -332,8 +333,8 @@
                                 <td><span class="badge badge-success">Verified</span></td>
                                 <td>2 days ago</td>
                                 <td>
-                                    <button class="btn-sm btn-primary" onclick="alert(\'📋 Copied!\n\nList copied to clipboard.\')">Copy</button>
-                                    <button class="btn-sm btn-secondary" onclick="viewList(\'LIST-ID\', \'Email\')">View</button>
+                                    <button class="btn-sm btn-primary" onclick="showModal('success', 'Copied!', 'List copied to clipboard.')">Copy</button>
+                                    <button class="btn-sm btn-secondary" onclick="viewList('LIST-ID', 'Email')">View</button>
                                 </td>
                             </tr>
                             <tr>
@@ -343,8 +344,8 @@
                                 <td><span class="badge badge-success">Verified</span></td>
                                 <td>3 days ago</td>
                                 <td>
-                                    <button class="btn-sm btn-primary" onclick="alert(\'📋 Copied!\n\nList copied to clipboard.\')">Copy</button>
-                                    <button class="btn-sm btn-secondary" onclick="viewList(\'LIST-ID\', \'Email\')">View</button>
+                                    <button class="btn-sm btn-primary" onclick="showModal('success', 'Copied!', 'List copied to clipboard.')">Copy</button>
+                                    <button class="btn-sm btn-secondary" onclick="viewList('LIST-ID', 'Email')">View</button>
                                 </td>
                             </tr>
                             <tr>
@@ -354,8 +355,8 @@
                                 <td><span class="badge badge-danger">Invalid</span></td>
                                 <td>3 days ago</td>
                                 <td>
-                                    <button class="btn-sm btn-danger" onclick="deleteList(\'LIST-ID\', \'Email\')">Delete</button>
-                                    <button class="btn-sm btn-secondary" onclick="viewList(\'LIST-ID\', \'Email\')">View</button>
+                                    <button class="btn-sm btn-danger" onclick="deleteList('LIST-ID', 'Email')">Delete</button>
+                                    <button class="btn-sm btn-secondary" onclick="viewList('LIST-ID', 'Email')">View</button>
                                 </td>
                             </tr>
                             <tr>
@@ -365,8 +366,8 @@
                                 <td><span class="badge badge-success">Verified</span></td>
                                 <td>4 days ago</td>
                                 <td>
-                                    <button class="btn-sm btn-primary" onclick="alert(\'📋 Copied!\n\nList copied to clipboard.\')">Copy</button>
-                                    <button class="btn-sm btn-secondary" onclick="viewList(\'LIST-ID\', \'Email\')">View</button>
+                                    <button class="btn-sm btn-primary" onclick="showModal('success', 'Copied!', 'List copied to clipboard.')">Copy</button>
+                                    <button class="btn-sm btn-secondary" onclick="viewList('LIST-ID', 'Email')">View</button>
                                 </td>
                             </tr>
                         </tbody>
@@ -382,7 +383,7 @@
                             <div class="mobile-list-source">Source: techstartup.io</div>
                             <div class="mobile-list-time"><i class="fas fa-clock"></i> 2 hours ago</div>
                             <div class="mobile-list-footer">
-                                <button class="btn-sm btn-primary" onclick="alert('📋 Copied!\\n\\nList copied to clipboard.')">
+                                <button class="btn-sm btn-primary" onclick="showModal('success', 'Copied!', 'List copied to clipboard.')">
                                     <i class="fas fa-copy"></i> Copy
                                 </button>
                                 <button class="btn-sm btn-secondary" onclick="viewList('LIST-ID', 'Email')">
@@ -399,7 +400,7 @@
                             <div class="mobile-list-source">Source: business-directory.com</div>
                             <div class="mobile-list-time"><i class="fas fa-clock"></i> 4 hours ago</div>
                             <div class="mobile-list-footer">
-                                <button class="btn-sm btn-primary" onclick="alert('📋 Copied!\\n\\nList copied to clipboard.')">
+                                <button class="btn-sm btn-primary" onclick="showModal('success', 'Copied!', 'List copied to clipboard.')">
                                     <i class="fas fa-copy"></i> Copy
                                 </button>
                                 <button class="btn-sm btn-secondary" onclick="viewList('LIST-ID', 'Email')">
@@ -416,7 +417,7 @@
                             <div class="mobile-list-source">Source: marketplace-hub.net</div>
                             <div class="mobile-list-time"><i class="fas fa-clock"></i> 1 day ago</div>
                             <div class="mobile-list-footer">
-                                <button class="btn-sm btn-primary" onclick="alert('📋 Copied!\\n\\nList copied to clipboard.')">
+                                <button class="btn-sm btn-primary" onclick="showModal('success', 'Copied!', 'List copied to clipboard.')">
                                     <i class="fas fa-copy"></i> Copy
                                 </button>
                                 <button class="btn-sm btn-secondary" onclick="viewList('LIST-ID', 'Email')">
@@ -549,6 +550,7 @@
             overlay.classList.toggle('active');
         }
     </script>
+    <script src="js/universal-modal.js"></script>
     <script src="js/modals.js"></script>
     <script src="js/dashboard.js"></script>
 </body>

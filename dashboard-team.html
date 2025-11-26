@@ -46,6 +46,7 @@
                     <li><a href="dashboard-tasks.html"><i class="fas fa-tasks"></i> My Tasks</a></li>
                     <li><a href="dashboard-email-lists.html"><i class="fas fa-envelope"></i> Email Lists</a></li>
                     <li><a href="dashboard-phone-lists.html"><i class="fas fa-phone"></i> Phone Lists</a></li>
+                    <li><a href="dashboard-validator.html"><i class="fas fa-check-circle"></i> Validator</a></li>
                     <li><a href="dashboard-credits.html"><i class="fas fa-gem"></i> Credits & Billing</a></li>
                     <li><a href="dashboard-transactions.html"><i class="fas fa-credit-card"></i> Transactions</a></li>
                     <li><a href="dashboard-analytics.html"><i class="fas fa-chart-bar"></i> Analytics</a></li>
@@ -337,7 +338,7 @@
                         <span class="badge badge-info">Member</span>
                         <span class="badge badge-warning">Pending</span>
                         <div class="member-actions">
-                            <button class="btn-sm btn-secondary" onclick="alert(\'📧 Resend Invitation\n\nInvitation email resent successfully!\')">Resend</button>
+                            <button class="btn-sm btn-secondary" onclick="showModal('success', 'Resend Invitation', 'Invitation email resent successfully!')">Resend</button>
                             <button class="btn-sm btn-danger">Cancel</button>
                         </div>
                     </div>
@@ -352,7 +353,7 @@
                         <span class="badge badge-secondary">Viewer</span>
                         <span class="badge badge-warning">Pending</span>
                         <div class="member-actions">
-                            <button class="btn-sm btn-secondary" onclick="alert(\'📧 Resend Invitation\n\nInvitation email resent successfully!\')">Resend</button>
+                            <button class="btn-sm btn-secondary" onclick="showModal('success', 'Resend Invitation', 'Invitation email resent successfully!')">Resend</button>
                             <button class="btn-sm btn-danger">Cancel</button>
                         </div>
                     </div>
@@ -423,6 +424,7 @@
             overlay.classList.toggle('active');
         }
     </script>
+    <script src="js/universal-modal.js"></script>
     <script src="js/modals.js"></script>
     <script src="js/dashboard.js"></script>
 </body>

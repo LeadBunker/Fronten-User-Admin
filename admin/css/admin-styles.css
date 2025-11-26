@@ -69,18 +69,67 @@ h2 {
     font-size: 11px !important;
 }
 
-/* Buttons - slightly smaller for admin */
+/* Buttons - matching user dashboard design */
 .btn {
-    font-size: 13px !important;
+    padding: 12px 24px;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    white-space: nowrap;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+}
+
+.btn-primary:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+}
+
+.btn-secondary {
+    background-color: #f8f9fa;
+    color: #333;
+    border: none;
+}
+
+.btn-secondary:hover {
+    color: #667eea;
+    background-color: rgba(102, 126, 234, 0.05);
 }
 
 .btn-sm {
-    font-size: 11px !important;
+    padding: 8px 16px;
+    font-size: 12px;
+    border-radius: 8px;
+    font-weight: 600;
+    border: none;
 }
 
 /* Badge consistency */
 .badge {
     font-size: 10px !important;
+}
+
+/* Prevent text selection on status badges */
+.user-status-badge,
+.badge,
+.status-badge {
+    user-select: none !important;
+    -webkit-user-select: none !important;
+    -moz-user-select: none !important;
+    -ms-user-select: none !important;
+    -webkit-tap-highlight-color: transparent !important;
+    -webkit-touch-callout: none !important;
 }
 
 /* Form labels */
@@ -669,16 +718,321 @@ input[type="file"]:hover {
    COMPREHENSIVE MOBILE RESPONSIVENESS
    ============================================ */
 
+/* Hide mobile cards on desktop by default */
+.mobile-cards-container {
+    display: none;
+}
+
 /* Tablet - 768px and below */
 @media (max-width: 768px) {
-    /* Tables - Make responsive */
-    table {
-        font-size: 12px;
+    /* Header Actions - Show notification button only, hide Add User from header */
+    .main-header .header-actions .btn-primary {
+        display: block !important;
+        position: fixed !important;
+        bottom: 20px !important;
+        right: 20px !important;
+        z-index: 1000 !important;
+        border-radius: 50px !important;
+        min-width: auto !important;
+        padding: 14px 20px !important;
+        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4) !important;
     }
     
-    table th,
-    table td {
-        padding: 10px 8px;
+    .main-header .header-actions .btn-primary i {
+        margin-right: 8px;
+    }
+    
+    /* Hide desktop tables on mobile */
+    .data-table-container table,
+    .table-responsive table,
+    .tasks-table {
+        display: none !important;
+    }
+    
+    /* Show mobile cards container */
+    .mobile-cards-container {
+        display: flex !important;
+        flex-direction: column;
+        gap: 12px;
+        margin-top: 16px;
+    }
+    
+    /* Mobile user card */
+    .mobile-user-card {
+        background: white;
+        border: 1px solid #E5E7EB;
+        border-radius: 12px;
+        padding: 16px;
+        transition: all 0.2s ease;
+    }
+    
+    .mobile-user-card:hover {
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        transform: translateY(-2px);
+    }
+    
+    .mobile-user-card.suspended {
+        border-left: 4px solid #EF4444;
+        background: #FEF2F2;
+    }
+    
+    .mobile-user-header {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 12px;
+    }
+    
+    .mobile-user-avatar {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        object-fit: cover;
+    }
+    
+    .mobile-user-info {
+        flex: 1;
+    }
+    
+    .mobile-user-name {
+        font-weight: 700;
+        font-size: 15px;
+        color: #111827;
+        margin-bottom: 2px;
+    }
+    
+    .mobile-user-id {
+        font-size: 12px;
+        color: #6B7280;
+        font-family: 'Courier New', monospace;
+    }
+    
+    .mobile-user-details {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        margin-bottom: 12px;
+    }
+    
+    .mobile-user-detail-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 13px;
+    }
+    
+    .mobile-user-detail-label {
+        color: #6B7280;
+        font-weight: 500;
+    }
+    
+    .mobile-user-detail-value {
+        color: #111827;
+        font-weight: 600;
+        text-align: right;
+    }
+    
+    .mobile-user-email {
+        word-break: break-all;
+    }
+    
+    .mobile-user-actions {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        padding-top: 12px;
+        border-top: 1px solid #E5E7EB;
+    }
+    
+    .mobile-user-actions .btn-sm {
+        flex: 1;
+        min-width: calc(50% - 4px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 4px;
+        padding: 8px 12px;
+        font-size: 12px;
+        border: none !important;
+    }
+    
+    /* Mobile transaction card */
+    .mobile-transaction-card {
+        background: white;
+        border: 1px solid #E5E7EB;
+        border-radius: 12px;
+        padding: 16px;
+        transition: all 0.2s ease;
+    }
+    
+    .mobile-transaction-card:hover {
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        transform: translateY(-2px);
+    }
+    
+    .mobile-transaction-card.failed {
+        border-left: 4px solid #EF4444;
+        background: #FEF2F2;
+    }
+    
+    .mobile-transaction-card.pending {
+        border-left: 4px solid #F59E0B;
+        background: #FFFBEB;
+    }
+    
+    .mobile-transaction-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 12px;
+    }
+    
+    .mobile-transaction-id {
+        font-weight: 700;
+        font-size: 14px;
+        color: #667eea;
+        font-family: 'Courier New', monospace;
+    }
+    
+    .mobile-transaction-details {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        margin-bottom: 12px;
+    }
+    
+    /* Mobile support ticket card */
+    .mobile-ticket-card {
+        background: white;
+        border: 1px solid #E5E7EB;
+        border-radius: 12px;
+        padding: 16px;
+        transition: all 0.2s ease;
+    }
+    
+    .mobile-ticket-card:hover {
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        transform: translateY(-2px);
+    }
+    
+    .mobile-ticket-card.urgent {
+        border-left: 4px solid #EF4444;
+    }
+    
+    .mobile-ticket-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 10px;
+    }
+    
+    .mobile-ticket-id {
+        font-weight: 700;
+        font-size: 14px;
+        color: #667eea;
+    }
+    
+    .mobile-ticket-subject {
+        font-weight: 600;
+        font-size: 14px;
+        color: #111827;
+        margin-bottom: 8px;
+    }
+    
+    /* Mobile coupon card */
+    .mobile-coupon-card {
+        background: white;
+        border: 1px solid #E5E7EB;
+        border-radius: 12px;
+        padding: 16px;
+        transition: all 0.2s ease;
+    }
+    
+    .mobile-coupon-card:hover {
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        transform: translateY(-2px);
+    }
+    
+    .mobile-coupon-card.expired {
+        opacity: 0.6;
+        background: #F3F4F6;
+    }
+    
+    .mobile-coupon-code {
+        font-weight: 700;
+        font-size: 16px;
+        color: #667eea;
+        font-family: 'Courier New', monospace;
+        margin-bottom: 8px;
+    }
+    
+    /* Mobile scraping job card */
+    .mobile-job-card {
+        background: white;
+        border: 1px solid #E5E7EB;
+        border-radius: 12px;
+        padding: 16px;
+        transition: all 0.2s ease;
+    }
+    
+    .mobile-job-card:hover {
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        transform: translateY(-2px);
+    }
+    
+    .mobile-job-card.failed {
+        border-left: 4px solid #EF4444;
+        background: #FEF2F2;
+    }
+    
+    .mobile-job-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 10px;
+    }
+    
+    .mobile-job-id {
+        font-weight: 700;
+        font-size: 14px;
+        color: #667eea;
+    }
+    
+    .mobile-job-url {
+        font-weight: 600;
+        font-size: 13px;
+        color: #111827;
+        margin-bottom: 10px;
+        word-break: break-all;
+    }
+    
+    /* Common mobile card styles */
+    .mobile-card-meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-bottom: 12px;
+        align-items: center;
+    }
+    
+    .mobile-card-meta .badge {
+        font-size: 11px;
+        padding: 4px 8px;
+    }
+    
+    .mobile-card-actions {
+        display: flex;
+        gap: 8px;
+        padding-top: 12px;
+        border-top: 1px solid #E5E7EB;
+        flex-wrap: wrap;
+    }
+    
+    .mobile-card-actions .btn-sm {
+        flex: 1;
+        min-width: calc(33.33% - 6px);
+        padding: 8px 10px;
+        font-size: 11px;
     }
     
     /* Button groups */
@@ -716,6 +1070,52 @@ input[type="file"]:hover {
     .form-select {
         font-size: 13px;
         padding: 10px 12px;
+    }
+    
+    /* Hide filter bar on mobile - make it vertical */
+    .filter-bar {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .filter-bar .form-input,
+    .filter-bar .form-select,
+    .filter-bar .btn {
+        width: 100%;
+    }
+    
+    /* User Details Modal Mobile Optimization */
+    #userDetailsModal > div {
+        padding: 16px !important;
+        max-height: 90vh !important;
+    }
+    
+    #userDetailsModal h2 {
+        font-size: 18px !important;
+    }
+    
+    #userDetailsModal h3 {
+        font-size: 16px !important;
+    }
+    
+    #userDetailsModal h4 {
+        font-size: 14px !important;
+    }
+    
+    /* Make modal grid single column on mobile */
+    #userDetailsModal > div > div[style*="grid-template-columns"] {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 12px !important;
+    }
+    
+    /* Modal buttons stack on mobile */
+    #userDetailsModal > div > div[style*="display: flex; gap: 12px"] {
+        flex-direction: column !important;
+    }
+    
+    #userDetailsModal .btn {
+        width: 100% !important;
     }
 }
 
@@ -855,3 +1255,32 @@ div[style*="overflow-y: auto"]::-webkit-scrollbar {
     }
 }
 
+/* Mobile Sidebar Toggle */
+.sidebar-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 998;
+    display: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.sidebar-overlay.active {
+    display: block;
+    opacity: 1;
+}
+
+.sidebar.active {
+    transform: translateX(0) !important;
+}
+
+@media (max-width: 768px) {
+    .sidebar {
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+    }
+}

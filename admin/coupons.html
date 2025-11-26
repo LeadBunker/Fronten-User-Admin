@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/dashboard.css">
     <link rel="stylesheet" href="css/admin-styles.css">
+    <link rel="stylesheet" href="../css/modals.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
@@ -553,32 +554,14 @@
         }
 
         function editCoupon(code) {
-            alert('Edit coupon: ' + code + ' (Demo)');
+            showModal('info', 'Edit Coupon', 'Edit coupon: ' + code + ' (Demo)');
             // In production, open modal with coupon data
         }
 
-        function disableCoupon(code) {
-            if (confirm('Disable coupon ' + code + '?')) {
-                alert('Coupon disabled! (Demo)');
-            }
-        }
-
-        function enableCoupon(code) {
-            if (confirm('Enable coupon ' + code + '?')) {
-                alert('Coupon enabled! (Demo)');
-            }
-        }
-
-        function deleteCoupon(code) {
-            if (confirm('⚠️ Delete coupon ' + code + '? This action cannot be undone!')) {
-                alert('Coupon deleted! (Demo)');
-            }
-        }
-
-        function viewCouponDetails(code) {
-            alert('View details for: ' + code + ' (Demo)');
-        }
+        // Coupon functions moved to admin-functions.js
     </script>
+    <script src="../js/universal-modal.js"></script>
+    <script src="js/admin-functions.js"></script>
     <script src="../js/dashboard.js"></script>
 </body>
 </html>

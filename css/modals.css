@@ -1,4 +1,232 @@
 /* ============================================
+   UNIVERSAL MODAL SYSTEM (Alert/Confirm Replacement)
+   ============================================ */
+
+#universal-modal-container {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    pointer-events: none !important;
+    z-index: 99998 !important;
+}
+
+#universal-modal-container > * {
+    pointer-events: auto !important;
+}
+
+.universal-modal-overlay {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 99999 !important;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    display: none;
+    pointer-events: none;
+}
+
+.universal-modal-overlay.show {
+    opacity: 1 !important;
+    display: block !important;
+    pointer-events: auto !important;
+}
+
+.universal-modal {
+    position: fixed !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) scale(0.9) !important;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+    padding: 40px;
+    max-width: 500px !important;
+    width: 90% !important;
+    z-index: 100000 !important;
+    opacity: 0;
+    transition: all 0.3s ease;
+    text-align: center;
+    display: none;
+    pointer-events: none;
+}
+
+.universal-modal.show {
+    opacity: 1 !important;
+    transform: translate(-50%, -50%) scale(1) !important;
+    display: block !important;
+    pointer-events: auto !important;
+}
+
+.universal-modal-icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: bounceIn 0.6s ease;
+}
+
+.universal-modal-icon i {
+    font-size: 40px;
+    color: white;
+}
+
+.universal-modal-icon.icon-success {
+    background: linear-gradient(135deg, #10b981, #059669);
+}
+
+.universal-modal-icon.icon-error {
+    background: linear-gradient(135deg, #dc2626, #b91c1c);
+}
+
+.universal-modal-icon.icon-warning {
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+}
+
+.universal-modal-icon.icon-info {
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
+}
+
+.universal-modal-icon.icon-confirmation {
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
+}
+
+@keyframes bounceIn {
+    0% { transform: scale(0); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+.universal-modal-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: #111827;
+    margin-bottom: 12px;
+}
+
+.universal-modal-message {
+    font-size: 14px;
+    color: #6B7280;
+    margin-bottom: 24px;
+    line-height: 1.6;
+    white-space: pre-line;
+}
+
+.universal-modal-buttons {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.modal-btn {
+    padding: 12px 32px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-width: 120px;
+}
+
+.modal-btn-primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.modal-btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+}
+
+.modal-btn-secondary {
+    background: white;
+    color: #667eea;
+    border: 2px solid #667eea;
+}
+
+.modal-btn-secondary:hover {
+    background: #F3F4F6;
+}
+
+.modal-btn-danger {
+    background: linear-gradient(135deg, #dc2626, #b91c1c);
+    color: white;
+}
+
+.modal-btn-danger:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(220, 38, 38, 0.3);
+}
+
+.modal-btn-warning {
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+    color: white;
+}
+
+.modal-btn-warning:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(245, 158, 11, 0.3);
+}
+
+.modal-btn-info {
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
+    color: white;
+}
+
+.modal-btn-info:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(59, 130, 246, 0.3);
+}
+
+/* Mobile Responsive for Universal Modal */
+@media (max-width: 768px) {
+    .universal-modal {
+        padding: 30px 20px;
+        width: 95%;
+        max-width: 400px;
+    }
+    
+    .universal-modal-icon {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .universal-modal-icon i {
+        font-size: 30px;
+    }
+    
+    .universal-modal-title {
+        font-size: 20px;
+    }
+    
+    .universal-modal-message {
+        font-size: 13px;
+    }
+    
+    .universal-modal-buttons {
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .modal-btn {
+        width: 100%;
+    }
+}
+
+/* ============================================
    MODAL SYSTEM FOR USER DASHBOARD
    Beautiful popups like admin panel
    ============================================ */

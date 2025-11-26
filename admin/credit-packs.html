@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/dashboard.css">
     <link rel="stylesheet" href="css/admin-styles.css">
+    <link rel="stylesheet" href="../css/modals.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
@@ -183,7 +184,7 @@
                 <div class="card-header">
                     <h3><i class="fas fa-bolt"></i> Active Credit Packs (8)</h3>
                 </div>
-                <div class="table-responsive">
+                <div class="table-responsive data-table-container">
                     <table class="tasks-table">
                         <thead>
                             <tr>
@@ -361,6 +362,81 @@
                             </tr>
                         </tbody>
                     </table>
+                    
+                    <!-- Mobile Cards View -->
+                    <div class="mobile-cards-container">
+                        <!-- Pack 1 -->
+                        <div class="mobile-user-card">
+                            <div class="mobile-user-header">
+                                <div class="mobile-user-info">
+                                    <div class="mobile-user-name">#PACK-001 - 50 Credits</div>
+                                    <div class="mobile-user-id">$8 ($0.16 per credit)</div>
+                                </div>
+                                <span class="user-status-badge" style="background: #10b981;">Active</span>
+                            </div>
+                            <div class="mobile-user-details">
+                                <div class="mobile-user-detail-row">
+                                    <div class="mobile-user-detail-label">Discount</div>
+                                    <div class="mobile-user-detail-value">None</div>
+                                </div>
+                                <div class="mobile-user-detail-row">
+                                    <div class="mobile-user-detail-label">Sales</div>
+                                    <div class="mobile-user-detail-value">247 sales</div>
+                                </div>
+                                <div class="mobile-user-detail-row">
+                                    <div class="mobile-user-detail-label">Revenue</div>
+                                    <div class="mobile-user-detail-value" style="font-weight: 600;">$1,976</div>
+                                </div>
+                            </div>
+                            <div class="mobile-user-actions">
+                                <button class="btn-sm btn-primary" onclick="editPack('001')">
+                                    <i class="fas fa-edit"></i> Edit
+                                </button>
+                                <button class="btn-sm btn-secondary" onclick="viewPackStats('001')">
+                                    <i class="fas fa-chart-bar"></i> Stats
+                                </button>
+                                <button class="btn-sm" style="background: #f59e0b; color: white;" onclick="togglePackStatus('001')">
+                                    <i class="fas fa-pause"></i> Disable
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <!-- Pack 2 -->
+                        <div class="mobile-user-card">
+                            <div class="mobile-user-header">
+                                <div class="mobile-user-info">
+                                    <div class="mobile-user-name">#PACK-002 - 200 Credits</div>
+                                    <div class="mobile-user-id">$30 ($0.15 per credit)</div>
+                                </div>
+                                <span class="user-status-badge" style="background: #10b981;">Active</span>
+                            </div>
+                            <div class="mobile-user-details">
+                                <div class="mobile-user-detail-row">
+                                    <div class="mobile-user-detail-label">Discount</div>
+                                    <div class="mobile-user-detail-value">6% off</div>
+                                </div>
+                                <div class="mobile-user-detail-row">
+                                    <div class="mobile-user-detail-label">Sales</div>
+                                    <div class="mobile-user-detail-value">189 sales</div>
+                                </div>
+                                <div class="mobile-user-detail-row">
+                                    <div class="mobile-user-detail-label">Revenue</div>
+                                    <div class="mobile-user-detail-value" style="font-weight: 600;">$5,670</div>
+                                </div>
+                            </div>
+                            <div class="mobile-user-actions">
+                                <button class="btn-sm btn-primary" onclick="editPack('002')">
+                                    <i class="fas fa-edit"></i> Edit
+                                </button>
+                                <button class="btn-sm btn-secondary" onclick="viewPackStats('002')">
+                                    <i class="fas fa-chart-bar"></i> Stats
+                                </button>
+                                <button class="btn-sm" style="background: #f59e0b; color: white;" onclick="togglePackStatus('002')">
+                                    <i class="fas fa-pause"></i> Disable
+                                </button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </main>
@@ -540,7 +616,7 @@
             const active = document.getElementById('packActive').checked;
 
             if (!credits || !price) {
-                alert('❌ Error\n\nPlease fill in all required fields:\n• Number of credits\n• Base price');
+                showModal('error', 'Error', '❌ Error\n\nPlease fill in all required fields:\n• Number of credits\n• Base price');
                 return;
             }
 
@@ -553,20 +629,14 @@
                 discountInfo = `${percent}% off`;
             }
 
-            alert(`✅ Credit Pack Created!\n\nCredits: ${credits}\nPrice: $${price}\nDiscount: ${discountInfo}\nStatus: ${active ? 'Active' : 'Inactive'}\n\nIn production, this would be saved to the database and appear on the user's credits page.`);
+            showModal('success', 'Credit Pack Created!', `✅ Credit Pack Created!\n\nCredits: ${credits}\nPrice: $${price}\nDiscount: ${discountInfo}\nStatus: ${active ? 'Active' : 'Inactive'}\n\nIn production, this would be saved to the database and appear on the user's credits page.`);
             document.getElementById('createPackModal').style.display = 'none';
         }
 
-        function editPack(id) {
-            alert(`✏️ Edit Credit Pack #PACK-${id}\n\nIn production, this would open a modal with the pack details for editing.`);
-        }
-
-        function deletePack(id) {
-            if (confirm(`⚠️ Delete Credit Pack?\n\nAre you sure you want to delete pack #PACK-${id}?\n\nThis action cannot be undone.`)) {
-                alert(`✅ Pack #PACK-${id} has been deleted.`);
-            }
-        }
+        // Pack functions moved to admin-functions.js
     </script>
+    <script src="../js/universal-modal.js"></script>
+    <script src="js/admin-functions.js"></script>
     <script src="../js/dashboard.js"></script>
 </body>
 </html>

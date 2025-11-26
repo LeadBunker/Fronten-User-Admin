@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/dashboard.css">
     <link rel="stylesheet" href="css/admin-styles.css">
+    <link rel="stylesheet" href="../css/modals.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
@@ -601,23 +602,24 @@
         }
 
         function approvePayment(id) {
-            if (confirm('✅ APPROVE this payment?\n\nThis will:\n• Credit the user\'s account\n• Activate their subscription/credits\n• Send confirmation email\n\nAre you sure?')) {
-                alert('Payment #CRYPTO-' + id + ' approved!\n\nUser account has been credited and notified. (Demo)');
+            showModal('confirmation', 'Approve Payment', '✅ APPROVE this payment?\n\nThis will:\n• Credit the user\'s account\n• Activate their subscription/credits\n• Send confirmation email\n\nAre you sure?', function() {
+                showModal('info', 'Payment Approved', 'Payment #CRYPTO-' + id + ' approved!\n\nUser account has been credited and notified. (Demo)');
                 // In production, this would call API to approve and credit account
-            }
+            });
         }
 
         function rejectPayment(id) {
             const reason = prompt('⚠️ REJECT this payment?\n\nPlease enter rejection reason:\n(This will be sent to the user)');
             if (reason) {
-                alert('Payment #CRYPTO-' + id + ' rejected!\n\nReason: ' + reason + '\n\nUser has been notified. (Demo)');
+                showModal('info', 'Payment Rejected', 'Payment #CRYPTO-' + id + ' rejected!\n\nReason: ' + reason + '\n\nUser has been notified. (Demo)');
             }
         }
 
         function refreshPaymentStatus(id) {
-            alert('Refreshing payment status from blockchain... (Demo)\n\nIn production, this would query the blockchain for latest status.');
+            showModal('info', 'Information', 'Refreshing payment status from blockchain... (Demo)\n\nIn production, this would query the blockchain for latest status.');
         }
     </script>
+    <script src="../js/universal-modal.js"></script>
     <script src="../js/dashboard.js"></script>
 </body>
 </html>

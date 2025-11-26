@@ -1,0 +1,1300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validator - Leadbunker Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/modals.css">
+</head>
+<body>
+    <!-- Mobile Header -->
+    <header class="mobile-header">
+        <button class="mobile-menu-btn" onclick="toggleSidebar()">
+            <i class="fas fa-bars"></i>
+        </button>
+        <h1 class="mobile-page-title">Validator</h1>
+        <div class="mobile-header-right">
+        <button class="mobile-notification-btn" id="mobileNotificationBell">
+            <i class="fas fa-bell"></i>
+            <span class="notification-badge">5</span>
+        </button>
+        <a href="dashboard-profile.html" class="mobile-profile-link">
+            <img src="https://ui-avatars.com/api/?name=John+Doe&background=667eea&color=fff&size=80" alt="Profile" class="mobile-profile-img">
+        </a>
+        </div>
+    </header>
+
+    <!-- Mobile Sidebar Overlay -->
+    <div class="sidebar-overlay" onclick="toggleSidebar()"></div>
+
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <div class="logo-icon">LB</div>
+                    <span>Leadbunker</span>
+                </div>
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li><a href="dashboard.html"><i class="fas fa-home"></i> Dashboard</a></li>
+                    <li><a href="dashboard-new-extraction.html"><i class="fas fa-rocket"></i> New Extraction</a></li>
+                    <li><a href="dashboard-tasks.html"><i class="fas fa-tasks"></i> My Tasks</a></li>
+                    <li><a href="dashboard-email-lists.html"><i class="fas fa-envelope"></i> Email Lists</a></li>
+                    <li><a href="dashboard-phone-lists.html"><i class="fas fa-phone"></i> Phone Lists</a></li>
+                    <li class="active"><a href="dashboard-validator.html"><i class="fas fa-check-circle"></i> Validator</a></li>
+                    <li><a href="dashboard-credits.html"><i class="fas fa-gem"></i> Credits & Billing</a></li>
+                    <li><a href="dashboard-transactions.html"><i class="fas fa-credit-card"></i> Transactions</a></li>
+                    <li><a href="dashboard-analytics.html"><i class="fas fa-chart-bar"></i> Analytics</a></li>
+                    <li><a href="dashboard-api-keys.html"><i class="fas fa-key"></i> API Keys</a></li>
+                    <li><a href="dashboard-team.html"><i class="fas fa-users"></i> Team</a></li>
+                    <li><a href="dashboard-settings.html"><i class="fas fa-cog"></i> Settings</a></li>
+                </ul>
+            </nav>
+            <div class="sidebar-footer">
+                <ul>
+                    <li><a href="dashboard-support.html"><i class="fas fa-life-ring"></i> Support</a></li>
+                    <li><a href="dashboard-profile.html"><i class="fas fa-user"></i> Profile</a></li>
+                    <li><a href="index.html"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                </ul>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="main-header">
+                <h1>Email & Phone Validator</h1>
+                <div class="header-actions">
+                    <!-- Notification Bell -->
+                    <div class="notification-wrapper">
+                        <button class="icon-btn notification-bell" id="userNotificationBell">
+                            <i class="fas fa-bell"></i>
+                            <span class="notification-badge">5</span>
+                        </button>
+                        
+                        <!-- User Notification Dropdown -->
+                        <div class="notification-dropdown" id="userNotificationDropdown">
+                            <div class="notification-header">
+                                <h3>Notifications</h3>
+                                <div class="notification-actions">
+                                    <button class="mark-all-read" onclick="markAllNotificationsRead()">
+                                        <i class="fas fa-check-double"></i> Mark all read
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <!-- Notification Tabs -->
+                            <div class="notification-tabs">
+                                <button class="tab-btn active" data-tab="all" onclick="switchNotificationTab('all')">
+                                    All <span class="tab-count">5</span>
+                                </button>
+                                <button class="tab-btn" data-tab="important" onclick="switchNotificationTab('important')">
+                                    Important <span class="tab-count urgent">2</span>
+                                </button>
+                                <button class="tab-btn" data-tab="unread" onclick="switchNotificationTab('unread')">
+                                    Unread <span class="tab-count">5</span>
+                                </button>
+                            </div>
+                            
+                            <!-- Notifications List -->
+                            <div class="notifications-list" id="userNotificationsList">
+                                
+                                <!-- Important Notifications -->
+                                <div class="notification-item unread urgent" data-priority="important">
+                                    <div class="notification-icon urgent">
+                                        <i class="fas fa-coins"></i>
+                                    </div>
+                                    <div class="notification-content">
+                                        <div class="notification-title">Crypto Deposit Received!</div>
+                                        <div class="notification-desc">0.05 BTC deposited to your wallet</div>
+                                        <div class="notification-meta">
+                                            <span class="notification-time"><i class="fas fa-clock"></i> 10 mins ago</span>
+                                            <a href="dashboard-transactions.html" class="notification-link">View Transaction →</a>
+                                        </div>
+                                    </div>
+                                    <button class="notification-mark-read" onclick="markNotificationRead(this)" title="Mark as read">
+                                        <i class="fas fa-check"></i>
+                                    </button>
+                                </div>
+                                
+                                <div class="notification-item unread urgent" data-priority="important">
+                                    <div class="notification-icon urgent">
+                                        <i class="fas fa-gem"></i>
+                                    </div>
+                                    <div class="notification-content">
+                                        <div class="notification-title">Low Credits Warning</div>
+                                        <div class="notification-desc">You have 150 credits remaining</div>
+                                        <div class="notification-meta">
+                                            <span class="notification-time"><i class="fas fa-clock"></i> 2 hours ago</span>
+                                            <a href="dashboard-credits.html" class="notification-link">Buy Credits →</a>
+                                        </div>
+                                    </div>
+                                    <button class="notification-mark-read" onclick="markNotificationRead(this)" title="Mark as read">
+                                        <i class="fas fa-check"></i>
+                                    </button>
+                                </div>
+                                
+                                <!-- Regular Notifications -->
+                                <div class="notification-item unread" data-priority="normal">
+                                    <div class="notification-icon medium">
+                                        <i class="fas fa-check-circle"></i>
+                                    </div>
+                                    <div class="notification-content">
+                                        <div class="notification-title">Extraction Completed</div>
+                                        <div class="notification-desc">example.com - 89 emails, 23 phones extracted</div>
+                                        <div class="notification-meta">
+                                            <span class="notification-time"><i class="fas fa-clock"></i> 3 hours ago</span>
+                                            <a href="dashboard-tasks.html" class="notification-link">View Results →</a>
+                                        </div>
+                                    </div>
+                                    <button class="notification-mark-read" onclick="markNotificationRead(this)" title="Mark as read">
+                                        <i class="fas fa-check"></i>
+                                    </button>
+                                </div>
+                                
+                                <div class="notification-item unread" data-priority="normal">
+                                    <div class="notification-icon low">
+                                        <i class="fas fa-gift"></i>
+                                    </div>
+                                    <div class="notification-content">
+                                        <div class="notification-title">Welcome Bonus Applied!</div>
+                                        <div class="notification-desc">100 free credits added to your account</div>
+                                        <div class="notification-meta">
+                                            <span class="notification-time"><i class="fas fa-clock"></i> 1 day ago</span>
+                                            <a href="dashboard-credits.html" class="notification-link">View Credits →</a>
+                                        </div>
+                                    </div>
+                                    <button class="notification-mark-read" onclick="markNotificationRead(this)" title="Mark as read">
+                                        <i class="fas fa-check"></i>
+                                    </button>
+                                </div>
+                                
+                                <div class="notification-item unread" data-priority="normal">
+                                    <div class="notification-icon low">
+                                        <i class="fas fa-bell"></i>
+                                    </div>
+                                    <div class="notification-content">
+                                        <div class="notification-title">New Feature Available</div>
+                                        <div class="notification-desc">Try our improved email validation system</div>
+                                        <div class="notification-meta">
+                                            <span class="notification-time"><i class="fas fa-clock"></i> 2 days ago</span>
+                                            <a href="dashboard-new-extraction.html" class="notification-link">Try Now →</a>
+                                        </div>
+                                    </div>
+                                    <button class="notification-mark-read" onclick="markNotificationRead(this)" title="Mark as read">
+                                        <i class="fas fa-check"></i>
+                                    </button>
+                                </div>
+                                
+                            </div>
+                            
+                            <!-- Notification Footer -->
+                            <div class="notification-footer">
+                                <a href="notifications.html" class="view-all-notifications">View All Notifications</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Search Button -->
+                    <button class="icon-btn" onclick="toggleSearch()" title="Search">
+                        <i class="fas fa-search"></i>
+                    </button>
+                    
+                    <!-- User Profile -->
+                    <div class="user-profile" onclick="window.location.href='dashboard-profile.html'">
+                        <div class="user-info">
+                            <span class="welcome-text">Welcome back</span>
+                            <span class="user-name">John Doe</span>
+                        </div>
+                        <img src="https://i.pravatar.cc/40?u=john" alt="User Avatar" class="user-avatar">
+                    </div>
+                </div>
+            </header>
+
+            <!-- Credit Balance Warning -->
+            <div class="card" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; margin-bottom: 20px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;">
+                    <div>
+                        <h3 style="color: white; margin-bottom: 8px;"><i class="fas fa-gem"></i> Available Credits</h3>
+                        <p style="font-size: 28px; font-weight: 700; margin: 0;" id="userCreditsDisplay">2,450 Credits</p>
+                    </div>
+                    <button class="btn" style="background: white; color: #667eea;" onclick="window.location.href='dashboard-credits.html'">
+                        <i class="fas fa-plus"></i> Add Credits
+                    </button>
+                </div>
+            </div>
+
+            <!-- Validator Form -->
+            <section class="card">
+                <div class="card-header">
+                    <h2><i class="fas fa-check-circle"></i> Validate Emails or Phone Numbers</h2>
+                    <p class="card-subtitle">Upload a file or manually input data to validate</p>
+                </div>
+                
+                <form class="extraction-form" id="validatorForm">
+                    <div class="form-group">
+                        <label for="validation-type"><i class="fas fa-filter"></i> Validation Type</label>
+                        <select id="validation-type" class="form-select" onchange="updateValidationType()">
+                            <option value="email">Email Addresses</option>
+                            <option value="phone">Phone Numbers</option>
+                        </select>
+                    </div>
+
+                    <!-- Pricing Info -->
+                    <div class="card" style="background: #EFF6FF; border-left: 4px solid #3B82F6; margin-bottom: 20px;">
+                        <div style="display: flex; align-items: start; gap: 12px;">
+                            <i class="fas fa-info-circle" style="color: #3B82F6; margin-top: 2px; font-size: 18px;"></i>
+                            <div style="font-size: 13px; color: #1E40AF; line-height: 1.6;">
+                                <strong>Validation Pricing:</strong> <span id="validationPriceDisplay">1 credit</span> per email/phone number validated.
+                                <br>
+                                <strong>Estimated Cost:</strong> <span id="estimatedCost" style="font-weight: 700;">0 credits</span> (<span id="itemCount">0</span> items to validate)
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- File Upload Section -->
+                    <div class="form-group">
+                        <label><i class="fas fa-upload"></i> Upload File</label>
+                        <div class="file-upload-area" id="fileUploadArea" style="position: relative; z-index: 1; cursor: pointer; pointer-events: auto;">
+                            <div class="upload-icon" style="pointer-events: none;">
+                                <i class="fas fa-cloud-upload-alt"></i>
+                            </div>
+                            <div class="upload-text" style="pointer-events: none;">
+                                <strong>Drag & drop your file here</strong>
+                                <p>or click to browse</p>
+                                <small id="allowedFormats">Supported formats: CSV, TXT</small>
+                            </div>
+                            <input type="file" id="fileInput" accept=".csv,.txt" style="display: none;" onchange="handleFileSelect(event)">
+                        </div>
+                        <div id="fileInfo" class="file-info" style="display: none;">
+                            <i class="fas fa-file"></i>
+                            <span id="fileName"></span>
+                            <button type="button" class="btn-sm btn-secondary" onclick="clearFile()">
+                                <i class="fas fa-times"></i> Remove
+                            </button>
+                        </div>
+                    </div>
+
+                    <div style="text-align: center; margin: 20px 0; color: #6B7280; font-weight: 600;">- OR -</div>
+
+                    <!-- Manual Input Section -->
+                    <div class="form-group">
+                        <label for="manual-input"><i class="fas fa-keyboard"></i> Manual Input</label>
+                        <textarea 
+                            id="manual-input" 
+                            class="form-input" 
+                            rows="8" 
+                            placeholder="Enter emails or phone numbers (one per line)&#10;&#10;Example for emails:&#10;john@example.com&#10;jane@company.com&#10;&#10;Example for phones:&#10;+1234567890&#10;+9876543210"
+                            oninput="updateEstimatedCost()"
+                            style="font-size: 16px !important; -webkit-appearance: none; appearance: none; touch-action: manipulation; pointer-events: auto !important; z-index: 1; position: relative; user-select: text; -webkit-user-select: text;"
+                        ></textarea>
+                        <small class="form-hint">Enter one email address or phone number per line</small>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-primary" onclick="startValidation();" style="position: relative; z-index: 1; pointer-events: auto; cursor: pointer; touch-action: manipulation;">
+                            <i class="fas fa-play"></i> Start Validation
+                        </button>
+                        <button type="button" class="btn btn-secondary" onclick="clearForm();" style="position: relative; z-index: 1; pointer-events: auto; cursor: pointer; touch-action: manipulation;">
+                            <i class="fas fa-eraser"></i> Clear Form
+                        </button>
+                    </div>
+                </form>
+            </section>
+
+            <!-- Validation Progress -->
+            <section class="card" id="progressSection" style="display: none;">
+                <div class="card-header">
+                    <h3><i class="fas fa-spinner fa-spin"></i> Validation in Progress</h3>
+                </div>
+                <div style="padding: 20px;">
+                    <div class="progress-bar" style="width: 100%; height: 30px; background: #E5E7EB; border-radius: 8px; overflow: hidden; position: relative;">
+                        <div id="progressBar" style="width: 0%; height: 100%; background: linear-gradient(90deg, #667eea, #764ba2); transition: width 0.3s ease; display: flex; align-items: center; justify-content: center; color: white; font-weight: 600; font-size: 13px;">
+                            <span id="progressText">0%</span>
+                        </div>
+                    </div>
+                    <p style="text-align: center; margin-top: 12px; color: #6B7280; font-size: 13px;" id="progressStatus">Initializing validation...</p>
+                </div>
+            </section>
+
+            <!-- Results Summary -->
+            <section class="card" id="summarySection" style="display: none;">
+                <div class="card-header">
+                    <h3><i class="fas fa-chart-pie"></i> Validation Summary</h3>
+                </div>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; padding: 20px;">
+                    <div class="stat-card" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px; border-radius: 12px; display: flex; flex-direction: column; justify-content: space-between;">
+                        <div style="font-size: 13px; opacity: 0.9;">Total Validated</div>
+                        <div style="font-size: 32px; font-weight: 700; text-align: right; margin-top: 8px;" id="totalValidated">0</div>
+                    </div>
+                    <div class="stat-card" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 20px; border-radius: 12px; display: flex; flex-direction: column; justify-content: space-between;">
+                        <div style="font-size: 13px; opacity: 0.9;">Valid</div>
+                        <div style="font-size: 32px; font-weight: 700; text-align: right; margin-top: 8px;" id="validCount">0</div>
+                    </div>
+                    <div class="stat-card" style="background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%); color: white; padding: 20px; border-radius: 12px; display: flex; flex-direction: column; justify-content: space-between;">
+                        <div style="font-size: 13px; opacity: 0.9;">Invalid</div>
+                        <div style="font-size: 32px; font-weight: 700; text-align: right; margin-top: 8px;" id="invalidCount">0</div>
+                    </div>
+                    <div class="stat-card" style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: white; padding: 20px; border-radius: 12px; display: flex; flex-direction: column; justify-content: space-between;">
+                        <div style="font-size: 13px; opacity: 0.9;">Credits Used</div>
+                        <div style="font-size: 32px; font-weight: 700; text-align: right; margin-top: 8px;" id="creditsUsed">0</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Valid Results Table -->
+            <section class="card" id="validResultsSection" style="display: none;">
+                <div class="card-header" style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(5, 150, 105, 0.1) 100%); border-left: 4px solid #10b981; padding: 20px; position: relative;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; padding-right: 50px;">
+                        <h3 style="color: #059669; display: flex; align-items: center; gap: 8px; margin: 0; font-size: clamp(14px, 4vw, 18px);"><i class="fas fa-check-circle" style="margin-left: 8px;"></i> Valid Results (<span id="validTableCount">0</span>)</h3>
+                        <button type="button" class="btn btn-primary" onclick="downloadValidResults();" style="padding: 12px 20px !important; margin: 0; font-size: 13px; pointer-events: auto; position: relative; z-index: 100; cursor: pointer; touch-action: manipulation;">
+                            <i class="fas fa-download"></i> Download Valid
+                        </button>
+                    </div>
+                    <button type="button" class="btn" onclick="toggleValidResults();" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); padding: 10px 14px !important; margin: 0; background: transparent; color: #059669; border: none; font-size: 22px; cursor: pointer; z-index: 10001; -webkit-tap-highlight-color: transparent; pointer-events: auto; touch-action: manipulation; min-width: 44px; min-height: 44px; display: flex; align-items: center; justify-content: center;" title="Collapse/Expand">
+                        <i class="fas fa-chevron-up" id="validChevron" style="pointer-events: none;"></i>
+                    </button>
+                </div>
+                <div class="table-responsive" id="validResultsContent" style="transition: all 0.3s ease; overflow: hidden;">
+                    <!-- Desktop Table View -->
+                    <table class="tasks-table desktop-results-table">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th id="validEntryHeader">Entry</th>
+                                <th>Status</th>
+                                <th>Validated At</th>
+                            </tr>
+                        </thead>
+                        <tbody id="validResultsTable">
+                        </tbody>
+                    </table>
+                    
+                    <!-- Mobile Card View -->
+                    <div class="mobile-results-container" id="validResultsMobile">
+                    </div>
+                </div>
+            </section>
+
+            <!-- Invalid Results Table -->
+            <section class="card" id="invalidResultsSection" style="display: none;">
+                <div class="card-header" style="background: linear-gradient(135deg, rgba(239, 68, 68, 0.1) 0%, rgba(220, 38, 38, 0.1) 100%); border-left: 4px solid #ef4444; padding: 20px; position: relative;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; padding-right: 50px;">
+                        <h3 style="color: #dc2626; display: flex; align-items: center; gap: 8px; margin: 0; font-size: clamp(14px, 4vw, 18px);"><i class="fas fa-times-circle" style="margin-left: 8px;"></i> Invalid Results (<span id="invalidTableCount">0</span>)</h3>
+                        <button type="button" class="btn btn-secondary" onclick="downloadInvalidResults();" style="padding: 12px 20px !important; margin: 0; font-size: 13px; pointer-events: auto; position: relative; z-index: 100; cursor: pointer; touch-action: manipulation;">
+                            <i class="fas fa-download"></i> Download Invalid
+                        </button>
+                    </div>
+                    <button type="button" class="btn" onclick="toggleInvalidResults();" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); padding: 10px 14px !important; margin: 0; background: transparent; color: #dc2626; border: none; font-size: 22px; cursor: pointer; z-index: 10001; -webkit-tap-highlight-color: transparent; pointer-events: auto; touch-action: manipulation; min-width: 44px; min-height: 44px; display: flex; align-items: center; justify-content: center;" title="Collapse/Expand">
+                        <i class="fas fa-chevron-up" id="invalidChevron" style="pointer-events: none;"></i>
+                    </button>
+                </div>
+                <div class="table-responsive" id="invalidResultsContent" style="transition: all 0.3s ease; overflow: hidden;">
+                    <!-- Desktop Table View -->
+                    <table class="tasks-table desktop-results-table">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th id="invalidEntryHeader">Entry</th>
+                                <th>Status</th>
+                                <th>Issue</th>
+                                <th>Validated At</th>
+                            </tr>
+                        </thead>
+                        <tbody id="invalidResultsTable">
+                        </tbody>
+                    </table>
+                    
+                    <!-- Mobile Card View -->
+                    <div class="mobile-results-container" id="invalidResultsMobile">
+                    </div>
+                </div>
+            </section>
+
+        </main>
+
+        <!-- Completion Popup -->
+        <div class="completion-popup-overlay" id="completionOverlay" onclick="closeCompletionPopup()"></div>
+        <div class="completion-popup" id="completionPopup">
+            <div class="completion-icon">
+                <i class="fas fa-check"></i>
+            </div>
+            <h2 class="completion-title">Validation Complete!</h2>
+            <p class="completion-message">Your email/phone validation has been completed successfully. Valid results have been automatically saved to your lists.</p>
+            
+            <div class="completion-stats">
+                <div class="completion-stat">
+                    <div class="completion-stat-value success" id="popupValidCount">0</div>
+                    <div class="completion-stat-label">Valid</div>
+                </div>
+                <div class="completion-stat">
+                    <div class="completion-stat-value error" id="popupInvalidCount">0</div>
+                    <div class="completion-stat-label">Invalid</div>
+                </div>
+                <div class="completion-stat">
+                    <div class="completion-stat-value" id="popupTotalCount">0</div>
+                    <div class="completion-stat-label">Total Validated</div>
+                </div>
+                <div class="completion-stat">
+                    <div class="completion-stat-value" id="popupCreditsUsed">0</div>
+                    <div class="completion-stat-label">Credits Used</div>
+                </div>
+            </div>
+
+            <button class="btn btn-primary" onclick="closeCompletionPopup()" style="width: 100%; padding: 14px;">
+                <i class="fas fa-check"></i> View Results
+            </button>
+        </div>
+
+        <!-- Footer -->
+        <footer class="dashboard-footer">
+            <div class="footer-content">
+                <div class="footer-copyright">
+                    &copy; <span id="currentYear"></span> <strong>Leadbunker</strong>. All rights reserved.
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <style>
+        /* Mobile Input Fix */
+        * {
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        textarea, input, button {
+            -webkit-user-select: text;
+            user-select: text;
+            touch-action: manipulation;
+        }
+        
+        button {
+            -webkit-user-select: none;
+            user-select: none;
+            cursor: pointer;
+        }
+        
+        /* Ensure textarea is tappable on mobile */
+        #manual-input {
+            font-size: 16px !important;
+            -webkit-appearance: none;
+            appearance: none;
+            pointer-events: auto !important;
+            touch-action: manipulation !important;
+        }
+        
+        /* File Upload Area */
+        .file-upload-area {
+            border: 2px dashed #D1D5DB;
+            border-radius: 12px;
+            padding: 40px 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: #F9FAFB;
+        }
+
+        .file-upload-area:hover {
+            border-color: #667eea;
+            background: #F3F4F6;
+        }
+
+        .file-upload-area.dragover {
+            border-color: #667eea;
+            background: #EEF2FF;
+            border-style: solid;
+        }
+
+        .upload-icon {
+            font-size: 48px;
+            color: #9CA3AF;
+            margin-bottom: 16px;
+        }
+
+        .upload-text strong {
+            display: block;
+            font-size: 16px;
+            color: #111827;
+            margin-bottom: 4px;
+        }
+
+        .upload-text p {
+            color: #6B7280;
+            margin: 4px 0;
+            font-size: 14px;
+        }
+
+        .upload-text small {
+            color: #9CA3AF;
+            font-size: 12px;
+        }
+
+        .file-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            background: #F3F4F6;
+            border-radius: 8px;
+            margin-top: 12px;
+        }
+
+        .file-info i {
+            color: #667eea;
+            font-size: 20px;
+        }
+
+        .file-info span {
+            flex: 1;
+            font-weight: 600;
+            color: #111827;
+        }
+
+        /* Mobile Results Cards */
+        .mobile-results-container {
+            display: none;
+        }
+
+        .mobile-result-card {
+            background: white;
+            border: 1px solid #E5E7EB;
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 12px;
+            transition: all 0.2s ease;
+        }
+
+        .mobile-result-card:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .mobile-result-card.valid {
+            border-left: 4px solid #10b981;
+        }
+
+        .mobile-result-card.invalid {
+            border-left: 4px solid #ef4444;
+        }
+
+        .mobile-result-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .mobile-result-number {
+            font-weight: 700;
+            font-size: 14px;
+            color: #667eea;
+        }
+
+        .mobile-result-entry {
+            font-weight: 600;
+            font-size: 14px;
+            color: #111827;
+            margin-bottom: 10px;
+            word-break: break-all;
+        }
+
+        .mobile-result-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 8px;
+            align-items: center;
+        }
+
+        .mobile-result-time {
+            font-size: 11px;
+            color: #6B7280;
+        }
+
+        .mobile-result-issue {
+            font-size: 12px;
+            color: #DC2626;
+            padding: 4px 8px;
+            background: #FEE2E2;
+            border-radius: 6px;
+            margin-top: 8px;
+        }
+
+        /* Completion Popup */
+        .completion-popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.9);
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+            padding: 40px;
+            max-width: 500px;
+            width: 90%;
+            z-index: 100000;
+            opacity: 0;
+            transition: all 0.3s ease;
+            text-align: center;
+            display: none;
+            pointer-events: none;
+        }
+
+        .completion-popup.show {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1);
+            display: block;
+            pointer-events: auto;
+        }
+
+        .completion-popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 99999;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            display: none;
+            pointer-events: none;
+        }
+
+        .completion-popup-overlay.show {
+            opacity: 1;
+            display: block;
+            pointer-events: auto;
+        }
+
+        .completion-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            background: linear-gradient(135deg, #10b981, #059669);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: bounceIn 0.6s ease;
+        }
+
+        .completion-icon i {
+            font-size: 40px;
+            color: white;
+        }
+
+        @keyframes bounceIn {
+            0% { transform: scale(0); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        .completion-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #111827;
+            margin-bottom: 12px;
+        }
+
+        .completion-message {
+            font-size: 14px;
+            color: #6B7280;
+            margin-bottom: 24px;
+            line-height: 1.6;
+        }
+
+        .completion-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .completion-stat {
+            padding: 16px;
+            background: #F9FAFB;
+            border-radius: 12px;
+        }
+
+        .completion-stat-value {
+            font-size: 28px;
+            font-weight: 700;
+            color: #111827;
+            margin-bottom: 4px;
+        }
+
+        .completion-stat-value.success {
+            color: #10b981;
+        }
+
+        .completion-stat-value.error {
+            color: #ef4444;
+        }
+
+        .completion-stat-label {
+            font-size: 12px;
+            color: #6B7280;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        /* Responsive Tables */
+        @media (max-width: 768px) {
+            .desktop-results-table {
+                display: none;
+            }
+            
+            .mobile-results-container {
+                display: block;
+            }
+
+            .completion-popup {
+                padding: 30px 20px;
+            }
+
+            .completion-stats {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (min-width: 769px) {
+            .mobile-results-container {
+                display: none;
+            }
+        }
+    </style>
+    
+    <script>
+        // Set current year in footer
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+        
+        // Configuration (load from admin settings)
+        let validationConfig = {
+            creditCost: parseFloat(localStorage.getItem('validationCreditCost')) || 1,
+            allowedFormats: JSON.parse(localStorage.getItem('allowedFormats')) || ['csv', 'txt']
+        };
+        
+        // Update the pricing display
+        document.getElementById('validationPriceDisplay').textContent = validationConfig.creditCost + ' credit' + (validationConfig.creditCost !== 1 ? 's' : '');
+        
+        // Update allowed formats display
+        document.getElementById('allowedFormats').textContent = 'Supported formats: ' + validationConfig.allowedFormats.map(f => f.toUpperCase()).join(', ');
+        
+        // Update file input accept attribute
+        document.getElementById('fileInput').accept = '.' + validationConfig.allowedFormats.join(',.');
+        
+        // Store validation results
+        let validResults = [];
+        let invalidResults = [];
+        let currentValidationType = 'email';
+        let userCredits = 2450;
+        
+        // Mobile Menu Toggle
+        function toggleSidebar() {
+            const sidebar = document.querySelector('.sidebar');
+            const overlay = document.querySelector('.sidebar-overlay');
+            sidebar.classList.toggle('active');
+            overlay.classList.toggle('active');
+        }
+        
+        // Update validation type
+        function updateValidationType() {
+            currentValidationType = document.getElementById('validation-type').value;
+            const manualInput = document.getElementById('manual-input');
+            
+            if (currentValidationType === 'email') {
+                manualInput.placeholder = "Enter email addresses (one per line)\n\nExample:\njohn@example.com\njane@company.com\nadmin@business.org";
+                document.getElementById('validEntryHeader').textContent = 'Email Address';
+                document.getElementById('invalidEntryHeader').textContent = 'Email Address';
+            } else {
+                manualInput.placeholder = "Enter phone numbers (one per line)\n\nExample:\n+1234567890\n+9876543210\n+1122334455";
+                document.getElementById('validEntryHeader').textContent = 'Phone Number';
+                document.getElementById('invalidEntryHeader').textContent = 'Phone Number';
+            }
+            
+            updateEstimatedCost();
+        }
+        
+        // File upload handlers
+        const fileUploadArea = document.getElementById('fileUploadArea');
+        const fileInput = document.getElementById('fileInput');
+        
+        fileUploadArea.addEventListener('click', () => {
+            fileInput.click();
+        });
+        
+        fileUploadArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            fileUploadArea.classList.add('dragover');
+        });
+        
+        fileUploadArea.addEventListener('dragleave', () => {
+            fileUploadArea.classList.remove('dragover');
+        });
+        
+        fileUploadArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            fileUploadArea.classList.remove('dragover');
+            
+            const files = e.dataTransfer.files;
+            if (files.length > 0) {
+                handleFile(files[0]);
+            }
+        });
+        
+        function handleFileSelect(event) {
+            const file = event.target.files[0];
+            if (file) {
+                handleFile(file);
+            }
+        }
+        
+        function handleFile(file) {
+            const fileExtension = file.name.split('.').pop().toLowerCase();
+            
+            // Check if file format is allowed
+            if (!validationConfig.allowedFormats.includes(fileExtension)) {
+                showModal('error', 'File Format Not Allowed', `Allowed formats: ${validationConfig.allowedFormats.join(', ').toUpperCase()}\n\nYour file: ${fileExtension.toUpperCase()}`);
+                return;
+            }
+            
+            // Show file info
+            document.getElementById('fileName').textContent = file.name;
+            document.getElementById('fileInfo').style.display = 'flex';
+            
+            // Read file content
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const content = e.target.result;
+                document.getElementById('manual-input').value = content;
+                updateEstimatedCost();
+            };
+            reader.readAsText(file);
+        }
+        
+        function clearFile() {
+            fileInput.value = '';
+            document.getElementById('fileInfo').style.display = 'none';
+            document.getElementById('manual-input').value = '';
+            updateEstimatedCost();
+        }
+        
+        function clearForm() {
+            clearFile();
+            document.getElementById('validation-type').value = 'email';
+            updateValidationType();
+        }
+        
+        // Update estimated cost
+        function updateEstimatedCost() {
+            const input = document.getElementById('manual-input').value.trim();
+            const items = input.split('\n').filter(item => item.trim() !== '');
+            const count = items.length;
+            const cost = count * validationConfig.creditCost;
+            
+            document.getElementById('itemCount').textContent = count;
+            document.getElementById('estimatedCost').textContent = cost + ' credits';
+        }
+        
+        // Email validation function
+        function validateEmail(email) {
+            const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+            
+            if (!emailRegex.test(email)) {
+                return { valid: false, reason: 'Invalid email format' };
+            }
+            
+            // Additional checks
+            if (email.length > 254) {
+                return { valid: false, reason: 'Email too long' };
+            }
+            
+            const localPart = email.split('@')[0];
+            if (localPart.length > 64) {
+                return { valid: false, reason: 'Local part too long' };
+            }
+            
+            // Check for common disposable email domains
+            const disposableDomains = ['tempmail.com', 'throwaway.email', '10minutemail.com'];
+            const domain = email.split('@')[1];
+            if (disposableDomains.includes(domain)) {
+                return { valid: false, reason: 'Disposable email domain' };
+            }
+            
+            return { valid: true };
+        }
+        
+        // Phone validation function
+        function validatePhone(phone) {
+            // Remove spaces, dashes, and parentheses
+            const cleanPhone = phone.replace(/[\s\-\(\)]/g, '');
+            
+            // Check if it starts with + and has 10-15 digits
+            const phoneRegex = /^\+?[1-9]\d{9,14}$/;
+            
+            if (!phoneRegex.test(cleanPhone)) {
+                return { valid: false, reason: 'Invalid phone format' };
+            }
+            
+            // Check for obviously fake patterns
+            if (/^(\d)\1+$/.test(cleanPhone.replace('+', ''))) {
+                return { valid: false, reason: 'Invalid pattern (all same digits)' };
+            }
+            
+            return { valid: true };
+        }
+        
+        // Start validation
+        async function startValidation() {
+            const input = document.getElementById('manual-input').value.trim();
+            
+            if (!input) {
+                showModal('warning', 'No Data to Validate', 'Please enter data to validate or upload a file.');
+                return;
+            }
+            
+            const items = input.split('\n').filter(item => item.trim() !== '');
+            const totalCost = items.length * validationConfig.creditCost;
+            
+            if (items.length === 0) {
+                showModal('warning', 'No Valid Items', 'No valid items found to validate.');
+                return;
+            }
+            
+            if (userCredits < totalCost) {
+                showModal('error', 'Insufficient Credits', `Required: ${totalCost} credits\nAvailable: ${userCredits} credits\n\nPlease add more credits to continue.`);
+                return;
+            }
+            
+            // Confirm validation
+            showModal('confirmation', 'Start Validation?', `${items.length} items will be validated\nCost: ${totalCost} credits\n\nContinue?`, async function() {
+            // Reset results
+            validResults = [];
+            invalidResults = [];
+            
+            // Show progress section
+            document.getElementById('progressSection').style.display = 'block';
+            document.getElementById('summarySection').style.display = 'none';
+            document.getElementById('validResultsSection').style.display = 'none';
+            document.getElementById('invalidResultsSection').style.display = 'none';
+            
+            // Scroll to progress
+            document.getElementById('progressSection').scrollIntoView({ behavior: 'smooth' });
+            
+            // Simulate validation
+            for (let i = 0; i < items.length; i++) {
+                const item = items[i].trim();
+                const progress = ((i + 1) / items.length) * 100;
+                
+                // Update progress bar
+                document.getElementById('progressBar').style.width = progress + '%';
+                document.getElementById('progressText').textContent = Math.round(progress) + '%';
+                document.getElementById('progressStatus').textContent = `Validating ${i + 1} of ${items.length}...`;
+                
+                // Validate item
+                let result;
+                if (currentValidationType === 'email') {
+                    result = validateEmail(item);
+                } else {
+                    result = validatePhone(item);
+                }
+                
+                const timestamp = new Date().toLocaleString();
+                
+                if (result.valid) {
+                    validResults.push({ entry: item, timestamp });
+                } else {
+                    invalidResults.push({ entry: item, reason: result.reason, timestamp });
+                }
+                
+                // Simulate processing time
+                await new Promise(resolve => setTimeout(resolve, 100));
+            }
+            
+            // Deduct credits
+            userCredits -= totalCost;
+            document.getElementById('userCreditsDisplay').textContent = userCredits.toLocaleString() + ' Credits';
+            
+            // Show results
+            displayResults();
+            
+            // Hide progress
+            document.getElementById('progressSection').style.display = 'none';
+            
+            // Auto-save valid results
+            saveValidResults();
+            });
+        }
+        
+        // Display results
+        function displayResults() {
+            // Update summary
+            document.getElementById('totalValidated').textContent = validResults.length + invalidResults.length;
+            document.getElementById('validCount').textContent = validResults.length;
+            document.getElementById('invalidCount').textContent = invalidResults.length;
+            document.getElementById('creditsUsed').textContent = (validResults.length + invalidResults.length) * validationConfig.creditCost;
+            
+            document.getElementById('summarySection').style.display = 'block';
+            
+            // Display valid results - Desktop
+            if (validResults.length > 0) {
+                document.getElementById('validTableCount').textContent = validResults.length;
+                const validTableBody = document.getElementById('validResultsTable');
+                validTableBody.innerHTML = '';
+                
+                validResults.forEach((result, index) => {
+                    const row = `
+                        <tr>
+                            <td>${index + 1}</td>
+                            <td style="font-weight: 600; color: #059669;">${result.entry}</td>
+                            <td><span class="badge badge-success">Valid</span></td>
+                            <td>${result.timestamp}</td>
+                        </tr>
+                    `;
+                    validTableBody.innerHTML += row;
+                });
+                
+                // Display valid results - Mobile
+                const validMobileContainer = document.getElementById('validResultsMobile');
+                validMobileContainer.innerHTML = '';
+                
+                validResults.forEach((result, index) => {
+                    const card = `
+                        <div class="mobile-result-card valid">
+                            <div class="mobile-result-header">
+                                <span class="mobile-result-number">#${index + 1}</span>
+                                <span class="badge badge-success">Valid</span>
+                            </div>
+                            <div class="mobile-result-entry">${result.entry}</div>
+                            <div class="mobile-result-meta">
+                                <span class="mobile-result-time"><i class="fas fa-clock"></i> ${result.timestamp}</span>
+                            </div>
+                        </div>
+                    `;
+                    validMobileContainer.innerHTML += card;
+                });
+                
+                document.getElementById('validResultsSection').style.display = 'block';
+            }
+            
+            // Display invalid results - Desktop
+            if (invalidResults.length > 0) {
+                document.getElementById('invalidTableCount').textContent = invalidResults.length;
+                const invalidTableBody = document.getElementById('invalidResultsTable');
+                invalidTableBody.innerHTML = '';
+                
+                invalidResults.forEach((result, index) => {
+                    const row = `
+                        <tr>
+                            <td>${index + 1}</td>
+                            <td style="font-weight: 600; color: #dc2626;">${result.entry}</td>
+                            <td><span class="badge badge-danger">Invalid</span></td>
+                            <td style="color: #6B7280; font-size: 12px;">${result.reason}</td>
+                            <td>${result.timestamp}</td>
+                        </tr>
+                    `;
+                    invalidTableBody.innerHTML += row;
+                });
+                
+                // Display invalid results - Mobile
+                const invalidMobileContainer = document.getElementById('invalidResultsMobile');
+                invalidMobileContainer.innerHTML = '';
+                
+                invalidResults.forEach((result, index) => {
+                    const card = `
+                        <div class="mobile-result-card invalid">
+                            <div class="mobile-result-header">
+                                <span class="mobile-result-number">#${index + 1}</span>
+                                <span class="badge badge-danger">Invalid</span>
+                            </div>
+                            <div class="mobile-result-entry">${result.entry}</div>
+                            <div class="mobile-result-issue"><i class="fas fa-exclamation-circle"></i> ${result.reason}</div>
+                            <div class="mobile-result-meta">
+                                <span class="mobile-result-time"><i class="fas fa-clock"></i> ${result.timestamp}</span>
+                            </div>
+                        </div>
+                    `;
+                    invalidMobileContainer.innerHTML += card;
+                });
+                
+                document.getElementById('invalidResultsSection').style.display = 'block';
+            }
+            
+            // Show completion popup
+            showCompletionPopup();
+            
+            // Scroll to summary
+            setTimeout(() => {
+                document.getElementById('summarySection').scrollIntoView({ behavior: 'smooth' });
+            }, 500);
+        }
+        
+        // Show completion popup
+        function showCompletionPopup() {
+            const totalCount = validResults.length + invalidResults.length;
+            const creditsUsed = totalCount * validationConfig.creditCost;
+            
+            document.getElementById('popupValidCount').textContent = validResults.length;
+            document.getElementById('popupInvalidCount').textContent = invalidResults.length;
+            document.getElementById('popupTotalCount').textContent = totalCount;
+            document.getElementById('popupCreditsUsed').textContent = creditsUsed;
+            
+            document.getElementById('completionOverlay').classList.add('show');
+            document.getElementById('completionPopup').classList.add('show');
+            
+            // Prevent body scroll
+            document.body.style.overflow = 'hidden';
+        }
+        
+        // Close completion popup
+        function closeCompletionPopup() {
+            document.getElementById('completionOverlay').classList.remove('show');
+            document.getElementById('completionPopup').classList.remove('show');
+            document.body.style.overflow = '';
+        }
+        
+        // Toggle valid results section
+        let validResultsExpanded = true;
+        function toggleValidResults(e) {
+            if (e) {
+                e.preventDefault();
+                e.stopPropagation();
+            }
+            const content = document.getElementById('validResultsContent');
+            const icon = document.getElementById('validChevron');
+            
+            console.log('Toggle valid clicked, current state:', validResultsExpanded);
+            
+            if (validResultsExpanded) {
+                // Collapse
+                content.style.display = 'none';
+                if (icon) {
+                    icon.classList.remove('fa-chevron-up');
+                    icon.classList.add('fa-chevron-down');
+                }
+                validResultsExpanded = false;
+                console.log('Valid results collapsed');
+            } else {
+                // Expand
+                content.style.display = 'block';
+                if (icon) {
+                    icon.classList.remove('fa-chevron-down');
+                    icon.classList.add('fa-chevron-up');
+                }
+                validResultsExpanded = true;
+                console.log('Valid results expanded');
+            }
+        }
+        
+        // Toggle invalid results section
+        let invalidResultsExpanded = true;
+        function toggleInvalidResults(e) {
+            if (e) {
+                e.preventDefault();
+                e.stopPropagation();
+            }
+            const content = document.getElementById('invalidResultsContent');
+            const icon = document.getElementById('invalidChevron');
+            
+            console.log('Toggle invalid clicked, current state:', invalidResultsExpanded);
+            
+            if (invalidResultsExpanded) {
+                // Collapse
+                content.style.display = 'none';
+                if (icon) {
+                    icon.classList.remove('fa-chevron-up');
+                    icon.classList.add('fa-chevron-down');
+                }
+                invalidResultsExpanded = false;
+                console.log('Invalid results collapsed');
+            } else {
+                // Expand
+                content.style.display = 'block';
+                if (icon) {
+                    icon.classList.remove('fa-chevron-down');
+                    icon.classList.add('fa-chevron-up');
+                }
+                invalidResultsExpanded = true;
+                console.log('Invalid results expanded');
+            }
+        }
+        
+        // Simple mobile compatibility - using inline handlers now
+        
+        // Save valid results (simulated)
+        function saveValidResults() {
+            if (validResults.length === 0) return;
+            
+            // In a real application, this would save to a database
+            // For now, we'll store in localStorage
+            const storageKey = currentValidationType === 'email' ? 'validatedEmails' : 'validatedPhones';
+            const existing = JSON.parse(localStorage.getItem(storageKey) || '[]');
+            const newEntries = validResults.map(r => r.entry);
+            const combined = [...existing, ...newEntries];
+            localStorage.setItem(storageKey, JSON.stringify(combined));
+            
+            console.log(`✅ Saved ${validResults.length} valid ${currentValidationType}s to ${storageKey}`);
+        }
+        
+        // Download valid results
+        function downloadValidResults() {
+            if (validResults.length === 0) {
+                showModal('info', 'No Results', 'No valid results to download.');
+                return;
+            }
+            
+            const csvContent = [
+                ['#', currentValidationType === 'email' ? 'Email' : 'Phone', 'Status', 'Validated At'],
+                ...validResults.map((r, i) => [i + 1, r.entry, 'Valid', r.timestamp])
+            ].map(row => row.join(',')).join('\n');
+            
+            downloadCSV(csvContent, `valid_${currentValidationType}s_${Date.now()}.csv`);
+        }
+        
+        // Download invalid results
+        function downloadInvalidResults() {
+            if (invalidResults.length === 0) {
+                showModal('info', 'No Results', 'No invalid results to download.');
+                return;
+            }
+            
+            const csvContent = [
+                ['#', currentValidationType === 'email' ? 'Email' : 'Phone', 'Status', 'Issue', 'Validated At'],
+                ...invalidResults.map((r, i) => [i + 1, r.entry, 'Invalid', r.reason, r.timestamp])
+            ].map(row => row.join(',')).join('\n');
+            
+            downloadCSV(csvContent, `invalid_${currentValidationType}s_${Date.now()}.csv`);
+        }
+        
+        // Helper function to download CSV
+        function downloadCSV(content, filename) {
+            const blob = new Blob([content], { type: 'text/csv' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = filename;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            window.URL.revokeObjectURL(url);
+        }
+        
+        // Search Toggle
+        function toggleSearch() {
+            showModal('info', 'Search Functionality', 'Search through your validation history.\n\nIn production, this would open a search modal.');
+        }
+        
+        // Initialize
+        updateValidationType();
+    </script>
+    <script src="js/universal-modal.js"></script>
+    <script src="js/modals.js"></script>
+    <script src="js/dashboard.js"></script>
+</body>
+</html>
+

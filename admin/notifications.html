@@ -6,6 +6,7 @@
     <title>All Notifications - Admin Panel</title>
     <link rel="stylesheet" href="../css/dashboard.css">
     <link rel="stylesheet" href="css/admin-styles.css">
+    <link rel="stylesheet" href="../css/modals.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
@@ -488,9 +489,10 @@
                 badge.style.display = 'none';
             });
             
-            alert('✅ All notifications marked as read');
+            showModal('success', 'Notifications Cleared', 'All notifications marked as read');
         }
     </script>
+    <script src="../js/universal-modal.js"></script>
     <script src="../js/dashboard.js"></script>
 </body>
 </html>

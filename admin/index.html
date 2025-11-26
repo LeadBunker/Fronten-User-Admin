@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/dashboard.css">
     <link rel="stylesheet" href="css/admin-styles.css">
+    <link rel="stylesheet" href="../css/modals.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
@@ -676,7 +677,7 @@
             updateNotificationBadge();
             
             // Show success message
-            alert('All notifications marked as read');
+            showModal('success', 'Notifications Cleared', 'All notifications marked as read');
         }
 
         // Update notification badge count
@@ -720,25 +721,26 @@
 
         // Transaction Action Buttons
         function viewTransaction(txnId) {
-            alert(`📋 Transaction Details\n\nTransaction ID: ${txnId}\n\nIn production, this would open a modal with:\n• Full transaction details\n• User information\n• Payment method\n• Transaction history\n• Download invoice option`);
+            showModal('info', 'Transaction Details', `Transaction ID: ${txnId}\n\nIn production, this would open a modal with:\n• Full transaction details\n• User information\n• Payment method\n• Transaction history\n• Download invoice option`);
         }
 
         function approveTransaction(txnId) {
-            if (confirm(`✅ Approve Transaction?\n\nTransaction ID: ${txnId}\n\nThis will:\n• Mark the transaction as completed\n• Credit the user's account\n• Send confirmation email to user\n\nProceed?`)) {
-                alert(`✅ Transaction ${txnId} approved successfully!\n\nUser account has been credited.`);
+            showModal('confirmation', 'Approve Transaction?', `Transaction ID: ${txnId}\n\nThis will:\n• Mark the transaction as completed\n• Credit the user's account\n• Send confirmation email to user\n\nProceed?`, function() {
+                showModal('success', 'Transaction Approved', `Transaction ${txnId} approved successfully!\n\nUser account has been credited.`);
                 // In production, this would update the UI and database
-                location.reload();
-            }
+                setTimeout(() => location.reload(), 2000);
+            });
         }
 
         function retryTransaction(txnId) {
-            if (confirm(`🔄 Retry Failed Transaction?\n\nTransaction ID: ${txnId}\n\nThis will:\n• Attempt to re-process the payment\n• Notify the user via email\n• Update transaction status\n\nProceed?`)) {
-                alert(`🔄 Retrying transaction ${txnId}...\n\nUser will be notified of the retry attempt.`);
+            showModal('confirmation', 'Retry Failed Transaction?', `Transaction ID: ${txnId}\n\nThis will:\n• Attempt to re-process the payment\n• Notify the user via email\n• Update transaction status\n\nProceed?`, function() {
+                showModal('info', 'Retrying Transaction', `Retrying transaction ${txnId}...\n\nUser will be notified of the retry attempt.`);
                 // In production, this would trigger the payment retry
-                location.reload();
-            }
+                setTimeout(() => location.reload(), 2000);
+            });
         }
     </script>
+    <script src="../js/universal-modal.js"></script>
     <script src="../js/dashboard.js"></script>
 </body>
 </html>

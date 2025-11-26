@@ -470,7 +470,7 @@
             const confirmPassword = document.getElementById('confirm-password').value;
             
             if (password !== confirmPassword) {
-                alert('Passwords do not match!');
+                showModal('info', ''Passwords do not match!'', 'Passwords do not match!');
                 return;
             }
             
@@ -512,7 +512,7 @@
                 localStorage.setItem('userEmail', email);
                 
                 // Show success message with wallet info
-                alert('✅ Account Created Successfully!\n\n' +
+                showModal('success', 'Account Created Successfully!', 
                       '🎉 100 free credits added to your account\n' +
                       '💰 3 crypto wallets automatically generated:\n\n' +
                       '  • Bitcoin (BTC) wallet\n' +
@@ -527,6 +527,7 @@
         });
     </script>
     
+    <script src="js/universal-modal.js"></script>
     <script src="js/main.js"></script>
 </body>
 </html>

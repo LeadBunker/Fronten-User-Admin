@@ -46,6 +46,7 @@
                     <li><a href="dashboard-tasks.html"><i class="fas fa-tasks"></i> My Tasks</a></li>
                     <li><a href="dashboard-email-lists.html"><i class="fas fa-envelope"></i> Email Lists</a></li>
                     <li><a href="dashboard-phone-lists.html"><i class="fas fa-phone"></i> Phone Lists</a></li>
+                    <li><a href="dashboard-validator.html"><i class="fas fa-check-circle"></i> Validator</a></li>
                     <li><a href="dashboard-credits.html"><i class="fas fa-gem"></i> Credits & Billing</a></li>
                     <li><a href="dashboard-transactions.html"><i class="fas fa-credit-card"></i> Transactions</a></li>
                     <li><a href="dashboard-analytics.html"><i class="fas fa-chart-bar"></i> Analytics</a></li>
@@ -541,6 +542,7 @@
         </footer>
     </div>
 
+    <script src="js/universal-modal.js"></script>
     <script src="js/modals.js"></script>
     <script src="js/dashboard.js"></script>
     <script>
@@ -565,12 +567,12 @@
             const description = document.getElementById('ticketDescription').value;
             
             if (!subject || !category || !priority || !description) {
-                alert('❌ Please fill in all required fields.');
+                showModal('warning', 'Required Fields Missing', 'Please fill in all required fields.');
                 return;
             }
             
             // Simulate ticket creation
-            alert(`✅ Support Ticket Created!\n\nSubject: ${subject}\nCategory: ${category}\nPriority: ${priority}\n\nYour ticket has been submitted successfully. You'll receive a response within 2 hours.`);
+            showModal('success', 'Support Ticket Created!', `Subject: ${subject}\nCategory: ${category}\nPriority: ${priority}\n\nYour ticket has been submitted successfully. You'll receive a response within 2 hours.`);
             
             // Clear form
             event.target.reset();
@@ -585,7 +587,7 @@
 
         // Filter Tickets
         function filterTickets(status) {
-            alert(`🔍 Filtering tickets by: ${status}\n\nIn production, this would filter the tickets table.`);
+            showModal('info', 'Filter Tickets', `Filtering tickets by: ${status}\n\nIn production, this would filter the tickets table.`);
         }
 
         // Pagination
@@ -602,7 +604,7 @@
             currentPageEl.textContent = currentPage;
             
             // In production, this would load new tickets data
-            alert(`📄 Loading page ${currentPage}...`);
+            showModal('info', 'Loading Page', `Loading page ${currentPage}...`);
         }
 
         // Add hover effect to ticket rows

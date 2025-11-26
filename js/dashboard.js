@@ -129,7 +129,7 @@ function markAllNotificationsRead() {
         }
     });
     updateNotificationBadge();
-    alert('✅ All notifications marked as read');
+    showModal('success', 'Notifications Cleared', 'All notifications marked as read');
 }
 
 // Update notification badge count
@@ -169,7 +169,7 @@ function updateNotificationBadge() {
 // ============================================
 
 function toggleSearch() {
-    alert('🔍 Search functionality\n\nSearch through your extractions, tasks, and data.\n\nIn production, this would open a search modal where you can:\n• Search email lists\n• Search phone lists\n• Search tasks\n• Search transactions\n• Quick navigation');
+    showModal('info', 'Search Functionality', 'Search through your extractions, tasks, and data.\n\nIn production, this would open a search modal where you can:\n• Search email lists\n• Search phone lists\n• Search tasks\n• Search transactions\n• Quick navigation');
 }
 
 // ============================================
@@ -188,9 +188,9 @@ function copyAddress(type) {
     
     if (address) {
         navigator.clipboard.writeText(address).then(() => {
-            alert('✅ Address copied to clipboard!\n\n' + address);
+            showModal('success', 'Address Copied', 'Address copied to clipboard!\n\n' + address);
         }).catch(err => {
-            alert('Failed to copy address');
+            showModal('error', 'Copy Failed', 'Failed to copy address');
         });
     }
 }
@@ -211,7 +211,7 @@ function showQR(type) {
     }
     
     if (address) {
-        alert(`📱 QR Code for ${cryptoName}\n\nAddress: ${address}\n\nIn production, this would display a scannable QR code for easy mobile deposits.`);
+        showModal('info', `QR Code for ${cryptoName}`, `Address: ${address}\n\nIn production, this would display a scannable QR code for easy mobile deposits.`);
     }
 }
 
@@ -225,7 +225,7 @@ function buyCredits(planName, credits, price) {
 }
 
 function depositCrypto() {
-    alert('💰 Deposit via Cryptocurrency\n\nYou can deposit to any of your crypto wallets:\n\n• Bitcoin (BTC)\n• Ethereum (ETH)\n• USDT (TRC20)\n\nYour account will be automatically credited after blockchain confirmation.\n\nIn production, this would show your wallet addresses with QR codes.');
+    showModal('info', 'Deposit via Cryptocurrency', 'You can deposit to any of your crypto wallets:\n\n• Bitcoin (BTC)\n• Ethereum (ETH)\n• USDT (TRC20)\n\nYour account will be automatically credited after blockchain confirmation.\n\nIn production, this would show your wallet addresses with QR codes.');
 }
 
 // ============================================
@@ -241,11 +241,11 @@ function downloadResults(taskId, format) {
 }
 
 function deleteTask(taskId) {
-    if (confirm(`🗑️ Delete Task?\n\nTask ID: ${taskId}\n\nThis action cannot be undone. Are you sure?`)) {
-        alert(`✅ Task ${taskId} has been deleted.`);
+    showModal('confirmation', 'Delete Task?', `Task ID: ${taskId}\n\nThis action cannot be undone. Are you sure?`, function() {
+        showModal('success', 'Task Deleted', `Task ${taskId} has been deleted.`);
         // In production, this would remove the task from the UI and database
-        location.reload();
-    }
+        setTimeout(() => location.reload(), 2000);
+    });
 }
 
 // ============================================
@@ -253,24 +253,24 @@ function deleteTask(taskId) {
 // ============================================
 
 function viewList(listId, type) {
-    alert(`📋 ${type} List Details\n\nList ID: ${listId}\n\nIn production, this would show:\n• List contents\n• Data quality metrics\n• Export options\n• Validation status`);
+    showModal('info', `${type} List Details`, `List ID: ${listId}\n\nIn production, this would show:\n• List contents\n• Data quality metrics\n• Export options\n• Validation status`);
 }
 
 function downloadList(listId, format) {
-    alert(`⬇️ Download List\n\nList ID: ${listId}\nFormat: ${format}\n\nDownloading your ${type} list in ${format} format...`);
+    showModal('info', 'Download List', `List ID: ${listId}\nFormat: ${format}\n\nDownloading your list in ${format} format...`);
 }
 
 function deleteList(listId, type) {
-    if (confirm(`🗑️ Delete ${type} List?\n\nList ID: ${listId}\n\nThis action cannot be undone. Are you sure?`)) {
-        alert(`✅ ${type} list has been deleted.`);
-        location.reload();
-    }
+    showModal('confirmation', `Delete ${type} List?`, `List ID: ${listId}\n\nThis action cannot be undone. Are you sure?`, function() {
+        showModal('success', 'List Deleted', `${type} list has been deleted.`);
+        setTimeout(() => location.reload(), 2000);
+    });
 }
 
 function validateEmails(listId) {
-    if (confirm(`✅ Validate Email List?\n\nList ID: ${listId}\n\nThis will:\n• Check email syntax\n• Verify domain existence\n• Detect disposable emails\n• Cost: 1 credit per email\n\nProceed?`)) {
-        alert(`🔄 Email validation started...\n\nList ID: ${listId}\n\nYou'll be notified when validation is complete.`);
-    }
+    showModal('confirmation', 'Validate Email List?', `List ID: ${listId}\n\nThis will:\n• Check email syntax\n• Verify domain existence\n• Detect disposable emails\n• Cost: 1 credit per email\n\nProceed?`, function() {
+        showModal('info', 'Validation Started', `Email validation started...\n\nList ID: ${listId}\n\nYou'll be notified when validation is complete.`);
+    });
 }
 
 // ============================================
@@ -282,7 +282,7 @@ function viewTransactionDetails(txnId) {
 }
 
 function downloadInvoice(txnId) {
-    alert(`📄 Download Invoice\n\nTransaction ID: ${txnId}\n\nDownloading PDF invoice...\n\nIn production, this would generate and download a professional PDF invoice.`);
+    showModal('info', 'Download Invoice', `Transaction ID: ${txnId}\n\nDownloading PDF invoice...\n\nIn production, this would generate and download a professional PDF invoice.`);
 }
 
 // ============================================
@@ -295,17 +295,17 @@ function generateAPIKey() {
 
 function copyAPIKey(key) {
     navigator.clipboard.writeText(key).then(() => {
-        alert(`✅ API Key copied to clipboard!\n\n${key}`);
+        showModal('success', 'API Key Copied', `API Key copied to clipboard!\n\n${key}`);
     }).catch(err => {
-        alert('Failed to copy API key');
+        showModal('error', 'Copy Failed', 'Failed to copy API key');
     });
 }
 
 function revokeAPIKey(keyId) {
-    if (confirm(`🗑️ Revoke API Key?\n\nKey ID: ${keyId}\n\nThis will immediately invalidate the API key. All applications using this key will stop working.\n\nThis action cannot be undone. Are you sure?`)) {
-        alert(`✅ API Key has been revoked.\n\nKey ID: ${keyId}\n\nAll access using this key has been terminated.`);
-        location.reload();
-    }
+    showModal('confirmation', 'Revoke API Key?', `Key ID: ${keyId}\n\nThis will immediately invalidate the API key. All applications using this key will stop working.\n\nThis action cannot be undone. Are you sure?`, function() {
+        showModal('success', 'API Key Revoked', `API Key has been revoked.\n\nKey ID: ${keyId}\n\nAll access using this key has been terminated.`);
+        setTimeout(() => location.reload(), 2000);
+    });
 }
 
 // ============================================
@@ -313,23 +313,24 @@ function revokeAPIKey(keyId) {
 // ============================================
 
 function inviteTeamMember() {
-    const email = prompt('📧 Invite Team Member\n\nEnter the email address of the person you want to invite:');
+    // In production, this would show a modal with an input field
+    const email = prompt('Enter the email address of the person you want to invite:');
     if (email && email.includes('@')) {
-        alert(`✅ Invitation sent!\n\nEmail: ${email}\n\nThey will receive an invitation link to join your team.`);
+        showModal('success', 'Invitation Sent', `Email: ${email}\n\nThey will receive an invitation link to join your team.`);
     } else if (email) {
-        alert('❌ Invalid email address. Please try again.');
+        showModal('error', 'Invalid Email', 'Invalid email address. Please try again.');
     }
 }
 
 function editMember(memberId) {
-    alert(`✏️ Edit Team Member\n\nMember ID: ${memberId}\n\nIn production, this would open a modal to:\n• Change member role\n• Update permissions\n• Modify access levels`);
+    showModal('info', 'Edit Team Member', `Member ID: ${memberId}\n\nIn production, this would open a modal to:\n• Change member role\n• Update permissions\n• Modify access levels`);
 }
 
 function removeMember(memberId) {
-    if (confirm(`🗑️ Remove Team Member?\n\nMember ID: ${memberId}\n\nThis will:\n• Remove their access to the account\n• Revoke all permissions\n• Stop access to shared resources\n\nAre you sure?`)) {
-        alert(`✅ Team member has been removed.`);
-        location.reload();
-    }
+    showModal('confirmation', 'Remove Team Member?', `Member ID: ${memberId}\n\nThis will:\n• Remove their access to the account\n• Revoke all permissions\n• Stop access to shared resources\n\nAre you sure?`, function() {
+        showModal('success', 'Member Removed', `Team member has been removed.`);
+        setTimeout(() => location.reload(), 2000);
+    });
 }
 
 // ============================================
@@ -337,24 +338,24 @@ function removeMember(memberId) {
 // ============================================
 
 function saveSettings() {
-    alert('✅ Settings Saved!\n\nYour preferences have been updated successfully.');
+    showModal('success', 'Settings Saved!', 'Your preferences have been updated successfully.');
 }
 
 function changePassword() {
-    alert('🔐 Change Password\n\nIn production, this would open a secure modal to:\n• Verify current password\n• Set new password\n• Confirm new password\n• Send confirmation email');
+    showModal('info', 'Change Password', 'In production, this would open a secure modal to:\n• Verify current password\n• Set new password\n• Confirm new password\n• Send confirmation email');
 }
 
 function enable2FA() {
-    alert('🔒 Enable Two-Factor Authentication\n\nIn production, this would:\n• Generate QR code for authenticator app\n• Provide backup codes\n• Verify setup with test code\n• Enhance account security');
+    showModal('info', 'Enable Two-Factor Authentication', 'In production, this would:\n• Generate QR code for authenticator app\n• Provide backup codes\n• Verify setup with test code\n• Enhance account security');
 }
 
 function deleteAccount() {
-    if (confirm('⚠️ DELETE ACCOUNT?\n\nThis will permanently delete:\n• Your account\n• All data and lists\n• Transaction history\n• API keys\n• Team members\n\nThis action CANNOT be undone!\n\nAre you absolutely sure?')) {
+    showModal('warning', 'DELETE ACCOUNT?', 'This will permanently delete:\n• Your account\n• All data and lists\n• Transaction history\n• API keys\n• Team members\n\nThis action CANNOT be undone!\n\nAre you absolutely sure?', function() {
         const confirmation = prompt('Type "DELETE" to confirm:');
         if (confirmation === 'DELETE') {
-            alert('Account deletion initiated. You will receive a confirmation email.');
+            showModal('info', 'Account Deletion', 'Account deletion initiated. You will receive a confirmation email.');
         }
-    }
+    });
 }
 
 // ============================================
@@ -362,11 +363,11 @@ function deleteAccount() {
 // ============================================
 
 function submitTicket() {
-    alert('📧 Submit Support Ticket\n\nIn production, this would open a form to:\n• Describe your issue\n• Upload screenshots\n• Select priority level\n• Submit to support team');
+    showModal('info', 'Submit Support Ticket', 'In production, this would open a form to:\n• Describe your issue\n• Upload screenshots\n• Select priority level\n• Submit to support team');
 }
 
 function viewTicket(ticketId) {
-    alert(`🎫 Support Ticket #${ticketId}\n\nIn production, this would show:\n• Full conversation history\n• Attachments\n• Status updates\n• Resolution details`);
+    showModal('info', `Support Ticket #${ticketId}`, `In production, this would show:\n• Full conversation history\n• Attachments\n• Status updates\n• Resolution details`);
 }
 
 // ============================================
@@ -374,31 +375,31 @@ function viewTicket(ticketId) {
 // ============================================
 
 function startExtraction() {
-    alert('🚀 Start New Extraction\n\nIn production, this form would:\n• Accept website URLs\n• Configure extraction parameters\n• Set filters and options\n• Start the extraction process\n• Deduct credits from balance');
+    showModal('info', 'Start New Extraction', 'In production, this form would:\n• Accept website URLs\n• Configure extraction parameters\n• Set filters and options\n• Start the extraction process\n• Deduct credits from balance');
 }
 
 function pauseTask(taskId) {
-    alert(`⏸️ Pause Task\n\nTask ID: ${taskId}\n\nTask has been paused. You can resume it anytime from the Tasks page.`);
+    showModal('info', 'Pause Task', `Task ID: ${taskId}\n\nTask has been paused. You can resume it anytime from the Tasks page.`);
 }
 
 function resumeTask(taskId) {
-    alert(`▶️ Resume Task\n\nTask ID: ${taskId}\n\nTask has been resumed and will continue processing.`);
+    showModal('info', 'Resume Task', `Task ID: ${taskId}\n\nTask has been resumed and will continue processing.`);
 }
 
 function exportAllTasks() {
-    alert('📥 Exporting All Tasks...\n\nDownloading CSV file with all your extraction tasks.\n\nIn production, this would generate and download a comprehensive report of all your tasks.');
+    showModal('info', 'Exporting All Tasks...', 'Downloading CSV file with all your extraction tasks.\n\nIn production, this would generate and download a comprehensive report of all your tasks.');
 }
 
 function retryTask(taskId) {
-    if (confirm(`🔄 Retry Failed Task?\n\nTask ID: ${taskId}\n\nThis will restart the extraction process.\n\nProceed?`)) {
-        alert(`✅ Task ${taskId} queued for retry!\n\nYou'll receive a notification when it starts.`);
-    }
+    showModal('confirmation', 'Retry Failed Task?', `Task ID: ${taskId}\n\nThis will restart the extraction process.\n\nProceed?`, function() {
+        showModal('success', 'Task Queued', `Task ${taskId} queued for retry!\n\nYou'll receive a notification when it starts.`);
+    });
 }
 
 function cancelTask(taskId) {
-    if (confirm(`❌ Cancel Pending Task?\n\nTask ID: ${taskId}\n\nThis will remove the task from the queue. Credits will be refunded.\n\nProceed?`)) {
-        alert(`✅ Task ${taskId} cancelled!\n\nCredits have been refunded to your account.`);
-    }
+    showModal('confirmation', 'Cancel Pending Task?', `Task ID: ${taskId}\n\nThis will remove the task from the queue. Credits will be refunded.\n\nProceed?`, function() {
+        showModal('success', 'Task Cancelled', `Task ${taskId} cancelled!\n\nCredits have been refunded to your account.`);
+    });
 }
 
 // ============================================
@@ -406,7 +407,7 @@ function cancelTask(taskId) {
 // ============================================
 
 function showAdvancedFilter() {
-    alert('🔍 Advanced Filter\n\nIn production, this would open a modal with:\n• Date range filter\n• Status filter\n• Source filter\n• Domain filter\n• Sort options\n• Custom tags filter');
+    showModal('info', 'Advanced Filter', 'In production, this would open a modal with:\n• Date range filter\n• Status filter\n• Source filter\n• Domain filter\n• Sort options\n• Custom tags filter');
 }
 
 // ============================================
@@ -451,5 +452,5 @@ function changePage(direction) {
     }
     
     // Simulate loading
-    alert(`📄 Loading Page ${currentPageNum}...\n\nIn production, this would load the actual data from the server.`);
+    showModal('info', 'Loading Page', `Loading Page ${currentPageNum}...\n\nIn production, this would load the actual data from the server.`);
 }

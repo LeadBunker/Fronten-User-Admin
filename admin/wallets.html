@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/dashboard.css">
     <link rel="stylesheet" href="css/admin-styles.css">
+    <link rel="stylesheet" href="../css/modals.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
@@ -678,7 +679,7 @@
 
         function copyToClipboard(text) {
             navigator.clipboard.writeText(text).then(() => {
-                alert('Copied to clipboard!');
+                showModal('info', 'Copied!', 'Copied to clipboard!');
             });
         }
 
@@ -694,7 +695,7 @@
             let cryptoName = walletType === 'btc' ? 'Bitcoin' : walletType === 'eth' ? 'Ethereum' : 'USDT';
             
             // Simulate wallet generation
-            alert(`✅ Success!\n\nNew ${cryptoName} wallet generated successfully.\n\nWallet Address: ${generateFakeAddress(walletType)}\n\nThe wallet has been added to the system and is now monitoring for transactions.`);
+            showModal('success', 'Success!', `✅ Success!\n\nNew ${cryptoName} wallet generated successfully.\n\nWallet Address: ${generateFakeAddress(walletType)}\n\nThe wallet has been added to the system and is now monitoring for transactions.`);
             
             document.getElementById('generateWalletModal').style.display = 'none';
             
@@ -710,7 +711,7 @@
         }
 
         function exportWallet(id) {
-            alert('Export wallet #WALL-' + id + ' (Demo)');
+            showModal('info', 'Export Wallet', 'Export wallet #WALL-' + id + ' (Demo)');
         }
 
         // Crypto option selection interactivity
@@ -740,6 +741,7 @@
             });
         });
     </script>
+    <script src="../js/universal-modal.js"></script>
     <script src="../js/dashboard.js"></script>
 </body>
 </html>

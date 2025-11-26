@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/dashboard.css">
     <link rel="stylesheet" href="css/admin-styles.css">
+    <link rel="stylesheet" href="../css/modals.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
@@ -281,7 +282,7 @@
                     <h3><i class="fas fa-users"></i> All Users</h3>
                     <span style="color: var(--text-light); font-size: 14px;">Showing 1-10 of 2,847 users</span>
                 </div>
-                <div class="table-responsive">
+                <div class="table-responsive data-table-container">
                     <table class="tasks-table">
                         <thead>
                             <tr>
@@ -482,6 +483,294 @@
                             </tr>
                         </tbody>
                     </table>
+                    
+                    <!-- Mobile Cards View -->
+                    <div class="mobile-cards-container">
+                        <!-- User 1 -->
+                        <div class="mobile-user-card">
+                            <div class="mobile-user-header">
+                                <img src="https://ui-avatars.com/api/?name=John+Doe&background=667eea&color=fff" class="mobile-user-avatar" alt="User">
+                                <div class="mobile-user-info">
+                                    <div class="mobile-user-name">John Doe</div>
+                                    <div class="mobile-user-id">#10847</div>
+                                </div>
+                                <span class="badge badge-success">Active</span>
+                            </div>
+                            <div class="mobile-user-details">
+                                <div class="mobile-user-detail-row">
+                                    <span class="mobile-user-detail-label">Email</span>
+                                    <span class="mobile-user-detail-value mobile-user-email">john@example.com</span>
+                                </div>
+                                <div class="mobile-user-detail-row">
+                                    <span class="mobile-user-detail-label">Plan</span>
+                                    <span class="mobile-user-detail-value"><span class="badge badge-success">Pro</span></span>
+                                </div>
+                                <div class="mobile-user-detail-row">
+                                    <span class="mobile-user-detail-label">Credits</span>
+                                    <span class="mobile-user-detail-value">2,450</span>
+                                </div>
+                                <div class="mobile-user-detail-row">
+                                    <span class="mobile-user-detail-label">Joined</span>
+                                    <span class="mobile-user-detail-value">Jan 15, 2025</span>
+                                </div>
+                                <div class="mobile-user-detail-row">
+                                    <span class="mobile-user-detail-label">Last Active</span>
+                                    <span class="mobile-user-detail-value">2 hours ago</span>
+                                </div>
+                            </div>
+                            <div class="mobile-user-actions">
+                                <button class="btn-sm btn-primary" onclick="openUserDetails('10847')">
+                                    <i class="fas fa-eye"></i> View
+                                </button>
+                                <button class="btn-sm btn-secondary" onclick="openAddCreditsModal('10847')">
+                                    <i class="fas fa-coins"></i> Credits
+                                </button>
+                                <button class="btn-sm btn-secondary" onclick="loginAsUser('10847')">
+                                    <i class="fas fa-sign-in-alt"></i> Login
+                                </button>
+                                <button class="btn-sm" style="background: #ef4444; color: white;" onclick="deleteUser('10847')">
+                                    <i class="fas fa-trash"></i> Delete
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- User 2 -->
+                        <div class="mobile-user-card">
+                            <div class="mobile-user-header">
+                                <img src="https://ui-avatars.com/api/?name=Sarah+Smith&background=f093fb&color=fff" class="mobile-user-avatar" alt="User">
+                                <div class="mobile-user-info">
+                                    <div class="mobile-user-name">Sarah Smith</div>
+                                    <div class="mobile-user-id">#10846</div>
+                                </div>
+                                <span class="badge badge-success">Active</span>
+                            </div>
+                            <div class="mobile-user-details">
+                                <div class="mobile-user-detail-row">
+                                    <span class="mobile-user-detail-label">Email</span>
+                                    <span class="mobile-user-detail-value mobile-user-email">sarah@company.com</span>
+                                </div>
+                                <div class="mobile-user-detail-row">
+                                    <span class="mobile-user-detail-label">Plan</span>
+                                    <span class="mobile-user-detail-value"><span class="badge badge-warning">Starter</span></span>
+                                </div>
+                                <div class="mobile-user-detail-row">
+                                    <span class="mobile-user-detail-label">Credits</span>
+                                    <span class="mobile-user-detail-value">850</span>
+                                </div>
+                                <div class="mobile-user-detail-row">
+                                    <span class="mobile-user-detail-label">Joined</span>
+                                    <span class="mobile-user-detail-value">Jan 14, 2025</span>
+                                </div>
+                                <div class="mobile-user-detail-row">
+                                    <span class="mobile-user-detail-label">Last Active</span>
+                                    <span class="mobile-user-detail-value">4 hours ago</span>
+                                </div>
+                            </div>
+                            <div class="mobile-user-actions">
+                                <button class="btn-sm btn-primary" onclick="openUserDetails('10846')">
+                                    <i class="fas fa-eye"></i> View
+                                </button>
+                                <button class="btn-sm btn-secondary" onclick="openAddCreditsModal('10846')">
+                                    <i class="fas fa-coins"></i> Credits
+                                </button>
+                                <button class="btn-sm btn-secondary" onclick="loginAsUser('10846')">
+                                    <i class="fas fa-sign-in-alt"></i> Login
+                                </button>
+                                <button class="btn-sm" style="background: #ef4444; color: white;" onclick="deleteUser('10846')">
+                                    <i class="fas fa-trash"></i> Delete
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- User 3 -->
+                        <div class="mobile-user-card">
+                            <div class="mobile-user-header">
+                                <img src="https://ui-avatars.com/api/?name=Mike+Johnson&background=4facfe&color=fff" class="mobile-user-avatar" alt="User">
+                                <div class="mobile-user-info">
+                                    <div class="mobile-user-name">Mike Johnson</div>
+                                    <div class="mobile-user-id">#10845</div>
+                                </div>
+                                <span class="badge badge-success">Active</span>
+                            </div>
+                            <div class="mobile-user-details">
+                                <div class="mobile-user-detail-row">
+                                    <span class="mobile-user-detail-label">Email</span>
+                                    <span class="mobile-user-detail-value mobile-user-email">mike@startup.io</span>
+                                </div>
+                                <div class="mobile-user-detail-row">
+                                    <span class="mobile-user-detail-label">Plan</span>
+                                    <span class="mobile-user-detail-value"><span class="badge badge-info">Enterprise</span></span>
+                                </div>
+                                <div class="mobile-user-detail-row">
+                                    <span class="mobile-user-detail-label">Credits</span>
+                                    <span class="mobile-user-detail-value">50,000</span>
+                                </div>
+                                <div class="mobile-user-detail-row">
+                                    <span class="mobile-user-detail-label">Joined</span>
+                                    <span class="mobile-user-detail-value">Jan 10, 2025</span>
+                                </div>
+                                <div class="mobile-user-detail-row">
+                                    <span class="mobile-user-detail-label">Last Active</span>
+                                    <span class="mobile-user-detail-value">1 day ago</span>
+                                </div>
+                            </div>
+                            <div class="mobile-user-actions">
+                                <button class="btn-sm btn-primary" onclick="openUserDetails('10845')">
+                                    <i class="fas fa-eye"></i> View
+                                </button>
+                                <button class="btn-sm btn-secondary" onclick="openAddCreditsModal('10845')">
+                                    <i class="fas fa-coins"></i> Credits
+                                </button>
+                                <button class="btn-sm btn-secondary" onclick="loginAsUser('10845')">
+                                    <i class="fas fa-sign-in-alt"></i> Login
+                                </button>
+                                <button class="btn-sm" style="background: #ef4444; color: white;" onclick="deleteUser('10845')">
+                                    <i class="fas fa-trash"></i> Delete
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- User 4 -->
+                        <div class="mobile-user-card">
+                            <div class="mobile-user-header">
+                                <img src="https://ui-avatars.com/api/?name=Emily+Brown&background=fa709a&color=fff" class="mobile-user-avatar" alt="User">
+                                <div class="mobile-user-info">
+                                    <div class="mobile-user-name">Emily Brown</div>
+                                    <div class="mobile-user-id">#10844</div>
+                                </div>
+                                <span class="badge badge-warning">Inactive</span>
+                            </div>
+                            <div class="mobile-user-details">
+                                <div class="mobile-user-detail-row">
+                                    <span class="mobile-user-detail-label">Email</span>
+                                    <span class="mobile-user-detail-value mobile-user-email">emily@design.co</span>
+                                </div>
+                                <div class="mobile-user-detail-row">
+                                    <span class="mobile-user-detail-label">Plan</span>
+                                    <span class="mobile-user-detail-value"><span class="badge badge-warning">Starter</span></span>
+                                </div>
+                                <div class="mobile-user-detail-row">
+                                    <span class="mobile-user-detail-label">Credits</span>
+                                    <span class="mobile-user-detail-value">340</span>
+                                </div>
+                                <div class="mobile-user-detail-row">
+                                    <span class="mobile-user-detail-label">Joined</span>
+                                    <span class="mobile-user-detail-value">Dec 28, 2024</span>
+                                </div>
+                                <div class="mobile-user-detail-row">
+                                    <span class="mobile-user-detail-label">Last Active</span>
+                                    <span class="mobile-user-detail-value">15 days ago</span>
+                                </div>
+                            </div>
+                            <div class="mobile-user-actions">
+                                <button class="btn-sm btn-primary" onclick="openUserDetails('10844')">
+                                    <i class="fas fa-eye"></i> View
+                                </button>
+                                <button class="btn-sm btn-secondary" onclick="openAddCreditsModal('10844')">
+                                    <i class="fas fa-coins"></i> Credits
+                                </button>
+                                <button class="btn-sm btn-secondary" onclick="loginAsUser('10844')">
+                                    <i class="fas fa-sign-in-alt"></i> Login
+                                </button>
+                                <button class="btn-sm" style="background: #ef4444; color: white;" onclick="deleteUser('10844')">
+                                    <i class="fas fa-trash"></i> Delete
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- User 5 -->
+                        <div class="mobile-user-card suspended">
+                            <div class="mobile-user-header">
+                                <img src="https://ui-avatars.com/api/?name=David+Lee&background=dc2626&color=fff" class="mobile-user-avatar" alt="User">
+                                <div class="mobile-user-info">
+                                    <div class="mobile-user-name">David Lee</div>
+                                    <div class="mobile-user-id">#10843</div>
+                                </div>
+                                <span class="badge badge-danger">Suspended</span>
+                            </div>
+                            <div class="mobile-user-details">
+                                <div class="mobile-user-detail-row">
+                                    <span class="mobile-user-detail-label">Email</span>
+                                    <span class="mobile-user-detail-value mobile-user-email">david@spam.com</span>
+                                </div>
+                                <div class="mobile-user-detail-row">
+                                    <span class="mobile-user-detail-label">Plan</span>
+                                    <span class="mobile-user-detail-value"><span class="badge badge-secondary">Free</span></span>
+                                </div>
+                                <div class="mobile-user-detail-row">
+                                    <span class="mobile-user-detail-label">Credits</span>
+                                    <span class="mobile-user-detail-value">0</span>
+                                </div>
+                                <div class="mobile-user-detail-row">
+                                    <span class="mobile-user-detail-label">Joined</span>
+                                    <span class="mobile-user-detail-value">Dec 15, 2024</span>
+                                </div>
+                                <div class="mobile-user-detail-row">
+                                    <span class="mobile-user-detail-label">Last Active</span>
+                                    <span class="mobile-user-detail-value">30+ days ago</span>
+                                </div>
+                            </div>
+                            <div class="mobile-user-actions">
+                                <button class="btn-sm btn-primary" onclick="openUserDetails('10843')">
+                                    <i class="fas fa-eye"></i> View
+                                </button>
+                                <button class="btn-sm btn-success" onclick="suspendUser('10843')">
+                                    <i class="fas fa-check"></i> Unsuspend
+                                </button>
+                                <button class="btn-sm" style="background: #ef4444; color: white;" onclick="deleteUser('10843')">
+                                    <i class="fas fa-trash"></i> Delete
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- User 6 -->
+                        <div class="mobile-user-card">
+                            <div class="mobile-user-header">
+                                <img src="https://ui-avatars.com/api/?name=Lisa+Anderson&background=feca57&color=000" class="mobile-user-avatar" alt="User">
+                                <div class="mobile-user-info">
+                                    <div class="mobile-user-name">Lisa Anderson</div>
+                                    <div class="mobile-user-id">#10842</div>
+                                </div>
+                                <span class="badge badge-success">Active</span>
+                            </div>
+                            <div class="mobile-user-details">
+                                <div class="mobile-user-detail-row">
+                                    <span class="mobile-user-detail-label">Email</span>
+                                    <span class="mobile-user-detail-value mobile-user-email">lisa@marketing.com</span>
+                                </div>
+                                <div class="mobile-user-detail-row">
+                                    <span class="mobile-user-detail-label">Plan</span>
+                                    <span class="mobile-user-detail-value"><span class="badge badge-success">Pro</span></span>
+                                </div>
+                                <div class="mobile-user-detail-row">
+                                    <span class="mobile-user-detail-label">Credits</span>
+                                    <span class="mobile-user-detail-value">1,890</span>
+                                </div>
+                                <div class="mobile-user-detail-row">
+                                    <span class="mobile-user-detail-label">Joined</span>
+                                    <span class="mobile-user-detail-value">Dec 05, 2024</span>
+                                </div>
+                                <div class="mobile-user-detail-row">
+                                    <span class="mobile-user-detail-label">Last Active</span>
+                                    <span class="mobile-user-detail-value">12 hours ago</span>
+                                </div>
+                            </div>
+                            <div class="mobile-user-actions">
+                                <button class="btn-sm btn-primary" onclick="openUserDetails('10842')">
+                                    <i class="fas fa-eye"></i> View
+                                </button>
+                                <button class="btn-sm btn-secondary" onclick="openAddCreditsModal('10842')">
+                                    <i class="fas fa-coins"></i> Credits
+                                </button>
+                                <button class="btn-sm btn-secondary" onclick="loginAsUser('10842')">
+                                    <i class="fas fa-sign-in-alt"></i> Login
+                                </button>
+                                <button class="btn-sm" style="background: #ef4444; color: white;" onclick="deleteUser('10842')">
+                                    <i class="fas fa-trash"></i> Delete
+                                </button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- Pagination -->
@@ -587,8 +876,8 @@
     </div>
 
     <!-- User Details Modal -->
-    <div id="userDetailsModal" style="display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); z-index: 9999; align-items: center; justify-content: center; overflow-y: auto; padding: 20px;">
-        <div style="background: white; border-radius: 16px; padding: 30px; max-width: 700px; width: 90%; max-height: 90vh; overflow-y: auto;">
+    <div id="userDetailsModal" style="display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); z-index: 9999; align-items: center; justify-content: center; overflow-y: auto; padding: 20px;" onclick="if(event.target === this) { this.style.display = 'none'; }">
+        <div style="background: white; border-radius: 16px; padding: 20px; max-width: 700px; width: 90%; max-height: 85vh; overflow-y: auto;">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
                 <h2 style="margin: 0;"><i class="fas fa-user"></i> User Details</h2>
                 <button onclick="document.getElementById('userDetailsModal').style.display='none'" style="background: none; border: none; font-size: 24px; cursor: pointer; color: var(--text-light);">×</button>
@@ -706,34 +995,35 @@
         }
 
         function loginAsUser(userId) {
-            if (confirm('Are you sure you want to login as this user? This action will be logged.')) {
-                alert('Logging in as user #' + userId + '... (Demo)');
+            showModal('confirmation', 'Login as User?', 'Are you sure you want to login as this user? This action will be logged.', function() {
+                showModal('info', 'Logging In', 'Logging in as user #' + userId + '... (Demo)');
                 // In production, this would redirect to user dashboard with admin session
-                window.location.href = '../dashboard.html?admin_session=' + userId;
-            }
+                setTimeout(() => window.location.href = '../dashboard.html?admin_session=' + userId, 2000);
+            });
         }
 
         function deleteUser(userId) {
-            if (confirm('⚠️ WARNING: This will permanently delete the user and all their data. This action cannot be undone!\n\nAre you absolutely sure?')) {
-                if (confirm('Please confirm again. Delete user #' + userId + '?')) {
-                    alert('User #' + userId + ' has been deleted. (Demo)');
+            showModal('warning', 'Delete User?', 'WARNING: This will permanently delete the user and all their data. This action cannot be undone!\n\nAre you absolutely sure?', function() {
+                showModal('confirmation', 'Confirm Deletion', 'Please confirm again. Delete user #' + userId + '?', function() {
+                    showModal('success', 'User Deleted', 'User #' + userId + ' has been deleted. (Demo)');
                     // In production, this would call API to delete user
-                }
-            }
+                });
+            });
         }
 
         function suspendUser(userId) {
-            if (confirm('Are you sure you want to suspend this user?')) {
-                alert('User #' + userId + ' has been suspended. (Demo)');
-            }
+            showModal('confirmation', 'Suspend User?', 'Are you sure you want to suspend this user?', function() {
+                showModal('success', 'User Suspended', 'User #' + userId + ' has been suspended. (Demo)');
+            });
         }
 
         function unsuspendUser(userId) {
-            if (confirm('Are you sure you want to unsuspend this user?')) {
-                alert('User #' + userId + ' has been unsuspended. (Demo)');
-            }
+            showModal('confirmation', 'Unsuspend User?', 'Are you sure you want to unsuspend this user?', function() {
+                showModal('success', 'User Unsuspended', 'User #' + userId + ' has been unsuspended. (Demo)');
+            });
         }
     </script>
+    <script src="../js/universal-modal.js"></script>
     <script src="../js/dashboard.js"></script>
 </body>
 </html>
